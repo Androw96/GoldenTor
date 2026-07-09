@@ -1,0 +1,7 @@
+FROM python:3.12-slim
+WORKDIR /app
+COPY . /app
+ENV GOLDENTOR_HOST=0.0.0.0
+ENV GOLDENTOR_PORT=4174
+EXPOSE 4174
+CMD ["python3", "server.py"]

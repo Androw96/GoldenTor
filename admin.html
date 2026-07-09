@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin | Golden Tor Consulting</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=2"><link rel="stylesheet" href="styles.css?v=7">
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <header class="admin-header">
+        <a class="legal-brand" href="index.html"><img src="assets/goldentor_logo_gold.png" alt=""><span>Golden Tor Admin</span></a>
+        <button class="button button-ghost" type="button" data-admin-logout>Kijelentkezés</button>
+      </header>
+
+      <section class="admin-login" data-admin-login>
+        <p class="eyebrow dark">Biztonságos terület</p><h1>Admin belépés</h1>
+        <form data-admin-login-form>
+          <label><span>Felhasználónév</span><input name="username" autocomplete="username" required></label>
+          <label><span>Jelszó</span><input type="password" name="password" autocomplete="current-password" required></label>
+          <button class="button button-gold" type="submit">Belépés</button>
+          <p class="form-status" data-admin-login-status></p>
+        </form>
+      </section>
+
+      <section class="admin-dashboard" data-admin-dashboard hidden>
+        <div class="admin-tabs" role="tablist" aria-label="Admin nézetek">
+          <button class="active" type="button" data-admin-tab="overview">Áttekintés</button>
+          <button type="button" data-admin-tab="bookings">Foglalások</button>
+          <button type="button" data-admin-tab="contacts">Kapcsolatok</button>
+          <button type="button" data-admin-tab="content">Tartalom</button>
+        </div>
+        <div class="admin-panel" data-admin-panel="overview">
+          <div class="admin-panel-heading"><h2>Üzleti áttekintés</h2><button type="button" data-admin-refresh>Frissítés</button></div>
+          <div class="admin-kpi-grid" data-admin-kpis></div>
+          <div class="admin-topic-chart">
+            <h3>Leggyakoribb foglalási témák</h3>
+            <div data-admin-topics></div>
+          </div>
+        </div>
+        <div class="admin-panel" data-admin-panel="bookings" hidden>
+          <div class="admin-panel-heading"><h2>Időpontkérések</h2><button type="button" data-admin-refresh>Frissítés</button></div>
+          <div class="admin-table-wrap"><table><thead><tr><th>Időpont</th><th>Ügyfél</th><th>Téma</th><th>Forma</th><th>Státusz</th></tr></thead><tbody data-booking-rows></tbody></table></div>
+        </div>
+        <div class="admin-panel" data-admin-panel="contacts" hidden>
+          <div class="admin-panel-heading"><h2>Kapcsolatfelvételek</h2><button type="button" data-admin-refresh>Frissítés</button></div>
+          <div class="admin-table-wrap"><table><thead><tr><th>Dátum</th><th>Ügyfél</th><th>Téma</th><th>Üzenet</th></tr></thead><tbody data-contact-rows></tbody></table></div>
+        </div>
+        <div class="admin-panel" data-admin-panel="content" hidden>
+          <div class="admin-panel-heading"><h2>Tartalmi rekord</h2></div>
+          <form class="admin-content-form" data-content-form>
+            <label><span>Kulcs</span><input name="contentKey" placeholder="pl. experts" required></label>
+            <label><span>Nyelv</span><select name="language"><option>hu</option><option>en</option><option>de</option></select></label>
+            <label class="full-field"><span>Cím</span><input name="title" required></label>
+            <label class="full-field"><span>JSON tartalom</span><textarea name="payload" rows="12" required>{}</textarea></label>
+            <button class="button button-ghost" type="button" data-expert-template>Szakértői profilsablon</button>
+            <button class="button button-gold" type="submit">Tartalom mentése</button>
+            <p class="form-status" data-content-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="admin.js?v=2"></script>
+  </body>
+</html>

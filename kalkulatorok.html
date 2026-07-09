@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pénzügyi kalkulátorok | Golden Tor Consulting</title>
+    <meta name="description" content="Befektetési, hitel- és pénzügyi védelmi kalkulátorok a tudatos döntések előkészítéséhez.">
+    <meta property="og:title" content="Pénzügyi kalkulátorok | Golden Tor Consulting">
+    <meta property="og:description" content="Számolja ki a vagyonépítés, finanszírozás és biztonsági tartalék fő számait.">
+    <meta property="og:type" content="website"><meta property="og:locale" content="hu_HU"><meta property="og:image" content="assets/goldentor_logo.jpg">
+    <link rel="canonical" href="https://goldentor.hu/kalkulatorok.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=2"><link rel="stylesheet" href="styles.css?v=7">
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"WebApplication","name":"Golden Tor pénzügyi kalkulátorok","applicationCategory":"FinanceApplication","operatingSystem":"Web","isAccessibleForFree":true,"provider":{"@type":"ProfessionalService","name":"Golden Tor Consulting"}}
+    </script>
+  </head>
+  <body data-page="kalkulatorok">
+    <header class="site-header" data-header>
+      <a class="brand" href="index.html"><span class="brand-mark"><img src="assets/goldentor_logo_gold.png" alt=""></span><span>Golden Tor Consulting</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle><span></span><span></span><span></span><span class="sr-only">Menü megnyitása</span></button>
+      <nav class="site-nav" id="site-nav" data-nav>
+        <a href="index.html" data-page-link="home">Főoldal</a><a href="befektetes.html" data-page-link="befektetes">Befektetés</a>
+        <a href="ingatlan.html" data-page-link="ingatlan">Ingatlan</a><a href="finanszirozas.html" data-page-link="finanszirozas">Finanszírozás</a>
+        <a href="biztositas.html" data-page-link="biztositas">Biztosítás</a><a href="szakertoink.html" data-page-link="szakertoink">Szakértőink</a>
+        <a href="idopont.html" data-page-link="idopont">Időpont</a>
+      </nav>
+    </header>
+    <main>
+      <section class="calculator-hero">
+        <div class="container calculator-hero-grid">
+          <div><p class="eyebrow">Döntés számokkal</p><h1>Pénzügyi kalkulátorok</h1><p>Három gyors számítás, amely megmutatja, mekkora lehetőség, havi teher vagy biztonsági rés van a tervei mögött.</p></div>
+          <div class="calculator-promise"><strong>Azonnali eredmény</strong><span>Nincs regisztráció</span><span>Átlátható feltételezések</span><span>Személyre szabható folytatás</span></div>
+        </div>
+      </section>
+      <section class="section calculator-section">
+        <div class="container">
+          <div class="calculator-tabs" role="tablist" aria-label="Kalkulátor választó">
+            <button class="active" type="button" data-calculator-tab="investment">Vagyonépítés</button>
+            <button type="button" data-calculator-tab="loan">Hitel</button>
+            <button type="button" data-calculator-tab="reserve">Védelmi tartalék</button>
+          </div>
+          <article class="calculator-panel" data-calculator-panel="investment">
+            <div class="calculator-form">
+              <p class="eyebrow dark">Befektetési növekedés</p><h2>Mennyit építhet fel a pénze?</h2>
+              <label><span>Kezdőtőke</span><input type="number" min="0" step="100000" value="5000000" data-investment="capital"><small>Ft</small></label>
+              <label><span>Havi megtakarítás</span><input type="number" min="0" step="10000" value="150000" data-investment="monthly"><small>Ft</small></label>
+              <label><span>Éves feltételezett hozam</span><input type="range" min="0" max="15" step="0.5" value="7" data-investment="rate"><output>7%</output></label>
+              <label><span>Időtáv</span><input type="range" min="1" max="30" value="15" data-investment="years"><output>15 év</output></label>
+            </div>
+            <div class="calculator-result"><span>Becsült jövőérték</span><strong data-investment-result></strong><div class="result-split"><span>Befizetés <b data-investment-paid></b></span><span>Becsült növekmény <b data-investment-growth></b></span></div><p>Tájékoztató számítás, nem hozamígéret. A tényleges eredmény és kockázat eltérhet.</p><a class="button button-gold" href="idopont.html">Személyre szabott stratégiát kérek</a></div>
+          </article>
+          <article class="calculator-panel" data-calculator-panel="loan" hidden>
+            <div class="calculator-form"><p class="eyebrow dark">Finanszírozási teher</p><h2>Mennyibe kerülhet a hitel?</h2>
+              <label><span>Hitelösszeg</span><input type="number" min="100000" step="100000" value="30000000" data-loan="amount"><small>Ft</small></label>
+              <label><span>Éves kamat</span><input type="range" min="1" max="20" step="0.1" value="7.5" data-loan="rate"><output>7,5%</output></label>
+              <label><span>Futamidő</span><input type="range" min="1" max="30" value="20" data-loan="years"><output>20 év</output></label>
+            </div>
+            <div class="calculator-result"><span>Becsült havi törlesztő</span><strong data-loan-result></strong><div class="result-split"><span>Teljes visszafizetés <b data-loan-total></b></span><span>Becsült kamatteher <b data-loan-cost></b></span></div><p>Az eredmény annuitásos, végig azonos kamattal számol; banki díjakat nem tartalmaz.</p><a class="button button-gold" href="idopont.html">Finanszírozási átvilágítást kérek</a></div>
+          </article>
+          <article class="calculator-panel" data-calculator-panel="reserve" hidden>
+            <div class="calculator-form"><p class="eyebrow dark">Pénzügyi biztonság</p><h2>Mekkora tartalék adhat nyugalmat?</h2>
+              <label><span>Havi alapkiadás</span><input type="number" min="0" step="10000" value="600000" data-reserve="expense"><small>Ft</small></label>
+              <label><span>Eltartottak száma</span><input type="number" min="0" max="10" value="2" data-reserve="dependants"></label>
+              <label><span>Biztonsági időszak</span><input type="range" min="3" max="18" value="9" data-reserve="months"><output>9 hónap</output></label>
+              <label><span>Jelenlegi likvid tartalék</span><input type="number" min="0" step="100000" value="2500000" data-reserve="current"><small>Ft</small></label>
+            </div>
+            <div class="calculator-result"><span>Javasolt tartalékszint</span><strong data-reserve-result></strong><div class="result-split"><span>Jelenlegi fedezet <b data-reserve-coverage></b></span><span>Még felépítendő <b data-reserve-gap></b></span></div><p>Irányadó modell; az élethelyzet, bevételbiztonság és meglévő védelem módosíthatja.</p><a class="button button-gold" href="idopont.html">Védelmi tervet kérek</a></div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><p>© 2026 Golden Tor Consulting. Minden jog fenntartva.</p></footer>
+    <script src="script.js?v=3"></script><script src="calculator.js?v=1"></script>
+  </body>
+</html>

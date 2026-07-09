@@ -1,0 +1,7 @@
+.env
+data/*.sqlite3
+data/backups/*.sqlite3
+data/outbox.log
+__pycache__/
+tests/__pycache__/
+.DS_Store
