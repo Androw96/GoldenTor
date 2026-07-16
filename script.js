@@ -21,8 +21,8 @@ const pageTranslations = {
     de: ["Wählen Sie Ihre Richtung", "Ihre nächste Entscheidung kann neue Möglichkeiten für Vermögensaufbau, Immobilien, Finanzierung, Schutz oder Expertenanalyse eröffnen."],
   },
   home: {
-    en: ["Private financial decision support", "Wealth built on trust, calmer decisions.", "Investments, real estate, financing and insurance in one thoughtful system for clients who want discretion, clarity and a personal financial direction."],
-    de: ["Private Finanzentscheidungen", "Vermögen mit Vertrauen aufbauen, ruhiger entscheiden.", "Investitionen, Immobilien, Finanzierung und Versicherung in einem durchdachten System für Kunden, die Diskretion, Klarheit und persönliche Orientierung suchen."],
+    en: ["Private financial decision support", "Wealth built on trust, calmer decisions.", "We help you understand what to do with savings, real estate, financing or insurance. We do not push products; we give a clear decision order."],
+    de: ["Private Finanzentscheidungen", "Vermögen mit Vertrauen aufbauen, ruhiger entscheiden.", "Wir helfen Ihnen zu verstehen, wie Sie mit Ersparnissen, Immobilien, Finanzierung oder Versicherung umgehen können. Wir drängen keine Produkte auf, sondern geben eine klare Entscheidungsreihenfolge."],
   },
   blog: {
     en: ["Golden Tor Journal", "Financial decisions explained at a calmer pace.", "Short, clear articles for people who prefer good questions over loud promises."],
