@@ -11,7 +11,7 @@ cp .env.example .env
 python3 server.py
 ```
 
-Alapértelmezett cím: `http://127.0.0.1:4174/preindex.html`
+Alapértelmezett cím: `http://127.0.0.1:4174/index.html`
 
 Admin: `http://127.0.0.1:4174/admin.html`
 

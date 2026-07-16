@@ -11,37 +11,30 @@ python3 server.py
 
 A weboldal ezután az alábbi címen érhető el:
 
-- Belépőoldal: `http://127.0.0.1:4174/preindex.html`
 - Főoldal: `http://127.0.0.1:4174/index.html`
+- Blog: `http://127.0.0.1:4174/blog.html`
 - Adminfelület: `http://127.0.0.1:4174/admin.html`
 
 A szerver leállításához a terminálban nyomja meg a `Ctrl+C` billentyűkombinációt.
 
 ## 2. Látogatói útvonal
 
-### Animált belépőoldal
+### Letisztult főoldali belépés
 
-1. A látogató megnyitja a `preindex.html` oldalt.
-2. Öt másodperc után megjelenik a kapunyitási felirat.
-3. A Golden Tor logójából kialakított kapura kattintva elindul a nyitási animáció.
-4. A rendszer automatikusan a lehetőségválasztó oldalra navigál.
+1. A látogató közvetlenül az `index.html` oldalt nyitja meg.
+2. A főoldal egy sötétkék-arany, bizalmi hangulatú vizuális nyitóval indul.
+3. Az első szakasz rögtön személyes konzultációra vagy élethelyzet szerinti tájékozódásra vezet.
+4. A korábbi `preindex.html` és `welcome.html` útvonalak automatikusan az új főoldalra irányítanak.
 
-A böngésző vissza gombjának használatakor a kapu és minden kapcsolódó animáció alaphelyzetbe áll.
+### Élethelyzet alapú tájékozódás
 
-### Lehetőségválasztó oldal
+A főoldalon külön kártyák segítenek felismerni, melyik ügyfélhelyzethez kapcsolódhat a látogató:
 
-A `welcome.html` oldalon külön kapukártyákon választható:
+- felszabadult tőke vállalkozás után;
+- meglévő, de átvilágítást igénylő portfólió;
+- öröklés, életforduló vagy nagyobb döntés előtti helyzet.
 
-- Főoldal;
-- Befektetés;
-- Ingatlan;
-- Finanszírozás;
-- Biztosítás;
-- Szakértőink;
-- Időpontfoglalás;
-- Kalkulátorok.
-
-Egy kártyára kattintva annak kapuja kinyílik, majd betöltődik a kiválasztott oldal. Visszalépéskor az összes kártya bezárt állapotból indul újra.
+Ezek után a látogató a szolgáltatási oldalak, a kalkulátorok, a blog vagy az időpontfoglalás felé tud továbblépni.
 
 ## 3. Navigáció
 
@@ -64,6 +57,7 @@ Minden terület külön oldalon található:
 - `finanszirozas.html` - finanszírozási konstrukciók és stresszteszt;
 - `biztositas.html` - kockázati és vagyonvédelmi megoldások;
 - `szakertoink.html` - szakértői átvilágítás, folyamatok és esettípusok.
+- `blog.html` - közérthető pénzügyi cikkek és döntési segédletek.
 
 Az oldalak tartalomjegyzéke az adott részhez görget. A cselekvésre ösztönző gombok az időpontfoglaláshoz vagy a kapcsolatfelvételhez vezetnek.
 
@@ -304,9 +298,9 @@ Ellenőrizze, hogy:
 
 ## 15. Rövid bemutatási útvonal
 
-1. Nyissa meg a `preindex.html` oldalt.
-2. Mutassa be a kapunyitási animációt.
-3. Válasszon szolgáltatást a welcome oldalon.
+1. Nyissa meg az `index.html` oldalt.
+2. Mutassa be a letisztult, sötétkék-arany főoldali nyitót.
+3. Válasszon egy élethelyzet-kártyát vagy szolgáltatási irányt.
 4. Mutasson meg egy részletes szolgáltatási oldalt.
 5. Próbálja ki a vagyonépítési kalkulátort.
 6. Mutassa be az időpontfoglalást.

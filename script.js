@@ -6,9 +6,9 @@ const currentPage = document.body.dataset.page;
 window.dataLayer = window.dataLayer || [];
 
 const sharedTranslations = {
-  hu: { nav: ["Főoldal", "Befektetés", "Ingatlan", "Finanszírozás", "Biztosítás", "Szakértőink", "Időpont"] },
-  en: { nav: ["Home", "Investments", "Real Estate", "Financing", "Insurance", "Experts", "Booking"] },
-  de: { nav: ["Startseite", "Investitionen", "Immobilien", "Finanzierung", "Versicherung", "Experten", "Termin"] },
+  hu: { nav: ["Főoldal", "Befektetés", "Ingatlan", "Finanszírozás", "Biztosítás", "Szakértőink", "Blog", "Időpont"] },
+  en: { nav: ["Home", "Investments", "Real Estate", "Financing", "Insurance", "Experts", "Journal", "Booking"] },
+  de: { nav: ["Startseite", "Investitionen", "Immobilien", "Finanzierung", "Versicherung", "Experten", "Journal", "Termin"] },
 };
 
 const pageTranslations = {
@@ -21,8 +21,12 @@ const pageTranslations = {
     de: ["Wählen Sie Ihre Richtung", "Ihre nächste Entscheidung kann neue Möglichkeiten für Vermögensaufbau, Immobilien, Finanzierung, Schutz oder Expertenanalyse eröffnen."],
   },
   home: {
-    en: ["Independent financial consulting", "Golden Tor", "Money never sleeps, and opportunities do not wait. Premium financial strategy for those who want to preserve and deliberately grow their wealth."],
-    de: ["Unabhängige Finanzberatung", "Golden Tor", "Geld schläft nicht und Chancen warten nicht. Premium-Finanzstrategie für Menschen, die ihr Vermögen erhalten und gezielt aufbauen möchten."],
+    en: ["Private financial decision support", "Wealth built on trust, calmer decisions.", "Investments, real estate, financing and insurance in one thoughtful system for clients who want discretion, clarity and a personal financial direction."],
+    de: ["Private Finanzentscheidungen", "Vermögen mit Vertrauen aufbauen, ruhiger entscheiden.", "Investitionen, Immobilien, Finanzierung und Versicherung in einem durchdachten System für Kunden, die Diskretion, Klarheit und persönliche Orientierung suchen."],
+  },
+  blog: {
+    en: ["Golden Tor Journal", "Financial decisions explained at a calmer pace.", "Short, clear articles for people who prefer good questions over loud promises."],
+    de: ["Golden Tor Journal", "Finanzentscheidungen verständlich und in ruhigem Tempo.", "Kurze, klare Beiträge für Menschen, die gute Fragen lauten Versprechen vorziehen."],
   },
   befektetes: {
     en: ["Investment strategy", "Investments", "Give your wealth direction, rhythm and protection through a deliberate investment system."],
@@ -68,6 +72,7 @@ function translatePage(language) {
   if (currentPage === "preindex") elements = [document.querySelector(".gate-copy h1"), document.querySelector(".gate-copy p:not(.eyebrow)"), document.querySelector(".gate-label")];
   else if (currentPage === "welcome") elements = [document.querySelector(".welcome-intro h1"), document.querySelector(".welcome-intro p")];
   else if (currentPage === "home") elements = [document.querySelector(".hero-content .eyebrow"), document.querySelector(".hero-content h1"), document.querySelector(".hero-content p:not(.eyebrow)")];
+  else if (currentPage === "blog") elements = [document.querySelector(".blog-hero .eyebrow"), document.querySelector(".blog-hero h1"), document.querySelector(".blog-hero p:not(.eyebrow)")];
   else if (currentPage === "idopont") elements = [document.querySelector(".booking-hero .eyebrow"), document.querySelector(".booking-hero h1"), document.querySelector(".booking-hero p:not(.eyebrow)")];
   else if (currentPage === "kalkulatorok") elements = [document.querySelector(".calculator-hero .eyebrow"), document.querySelector(".calculator-hero h1"), document.querySelector(".calculator-hero p:not(.eyebrow)")];
   else elements = [document.querySelector(".detail-hero .eyebrow"), document.querySelector(".detail-hero h1"), document.querySelector(".detail-hero p:not(.eyebrow)")];
@@ -75,7 +80,7 @@ function translatePage(language) {
 }
 
 function installLanguageSwitcher() {
-  if (!["preindex", "welcome", "home", "befektetes", "ingatlan", "finanszirozas", "biztositas", "szakertoink", "idopont", "kalkulatorok"].includes(currentPage)) return;
+  if (!["preindex", "welcome", "home", "befektetes", "ingatlan", "finanszirozas", "biztositas", "szakertoink", "blog", "idopont", "kalkulatorok"].includes(currentPage)) return;
   const switcher = document.createElement("div");
   switcher.className = `language-switcher${header ? "" : " floating-language"}`;
   switcher.setAttribute("aria-label", "Nyelvválasztás / Language / Sprache");
