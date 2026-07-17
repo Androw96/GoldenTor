@@ -25,7 +25,7 @@
       {"@context":"https://schema.org","@type":"ProfessionalService","name":"Golden Tor Consulting","email":"info@goldentor.hu","telephone":"+36207456490","address":{"@type":"PostalAddress","postalCode":"9023","addressLocality":"Győr","streetAddress":"Bartók Béla út 44.","addressCountry":"HU"},"areaServed":"HU","knowsAbout":["Befektetés","Ingatlan","Finanszírozás","Biztosítás"]}
     </script>
   </head>
-  <body data-page="home">
+  <body class="partner-layout" data-page="home">
     <header class="site-header" data-header>
       <a class="brand" href="index.html" aria-label="Golden Tor Consulting főoldal">
         <span class="brand-mark">
@@ -33,6 +33,11 @@
         </span>
         <span>Golden Tor Consulting</span>
       </a>
+
+      <div class="header-actions" aria-label="Gyors műveletek">
+        <a class="header-login header-login-gold" href="idopont.html">Konzultáció</a>
+        <a class="header-login header-login-blue" href="ugyfelportal.html">Ügyfélportál</a>
+      </div>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
         <span></span>
@@ -55,7 +60,7 @@
 
     <main>
       <section class="hero legacy-landing" id="home">
-        <div class="container legacy-hero-grid">
+        <div class="container legacy-hero-grid partner-hero-grid">
           <div class="hero-content">
             <p class="eyebrow">Privát pénzügyi döntéstámogatás</p>
             <h1>Bizalommal felépített vagyon, nyugodtabb döntések.</h1>
@@ -63,33 +68,38 @@
               Segítünk átlátni, hogyan érdemes bánni a megtakarítással, ingatlannal, hitellel vagy
               biztosítással. Nem terméket erőltetünk, hanem érthető döntési sorrendet adunk.
             </p>
-            <div class="hero-actions">
-              <a class="button button-gold" href="idopont.html">Kérek személyes konzultációt</a>
-              <a class="button button-ghost" href="#helyzetek">Melyik helyzetben vagyok?</a>
-            </div>
           </div>
-          <aside class="legacy-hero-card" aria-label="Golden Tor szemlélet">
-            <img src="assets/goldentor_logo_gold.png" alt="">
-            <p>Átvilágítás</p>
-            <strong>először megértjük a helyzetét</strong>
-            <span>Ezután javaslunk befektetési, ingatlan-, finanszírozási vagy biztosítási irányt.</span>
-          </aside>
         </div>
       </section>
 
+      <nav class="side-rail" aria-label="Gyors elérés">
+        <a href="blog.html"><span aria-hidden="true">▤</span>Blog</a>
+        <a href="idopont.html"><span aria-hidden="true">☎</span>Kapcsolat</a>
+        <a href="kalkulatorok.html"><span aria-hidden="true">∑</span>Kalkulátor</a>
+        <a href="szakertoink.html"><span aria-hidden="true">◎</span>Szakértőink</a>
+      </nav>
+
       <section class="trustbar" aria-label="Golden Tor kiemelt értékek">
-        <div class="container trustbar-grid">
-          <div>
-            <strong>10+ év</strong>
-            <span>piaci tapasztalat</span>
+        <div class="container partner-info-panel">
+          <div class="partner-benefits">
+            <p><span aria-hidden="true">▥</span> Fizikai és pénzügyi vagyon átlátható rendszerben</p>
+            <p><span aria-hidden="true">◈</span> Befektetés, ingatlan, finanszírozás és biztosítás egy szemléletben</p>
+            <p><span aria-hidden="true">✦</span> Független döntéstámogatás, érthető magyarázattal</p>
+            <p><span aria-hidden="true">☑</span> Személyes konzultáció, kapkodás és nyomás nélkül</p>
           </div>
-          <div>
-            <strong>4 terület</strong>
-            <span>egy stratégiai szemléletben</span>
-          </div>
-          <div>
-            <strong>Független</strong>
-            <span>tanácsadás és partneri döntéstámogatás</span>
+          <div class="partner-metrics">
+            <div>
+              <strong>10+ év</strong>
+              <span>piaci tapasztalat</span>
+            </div>
+            <div>
+              <strong>4</strong>
+              <span>fő pénzügyi terület</span>
+            </div>
+            <div>
+              <strong>1</strong>
+              <span>átlátható lépésterv</span>
+            </div>
           </div>
         </div>
       </section>
