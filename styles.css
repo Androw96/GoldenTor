@@ -1113,7 +1113,7 @@ img {
 .visual-block {
   background:
     radial-gradient(circle at 8% 0%, rgba(244, 216, 141, 0.12), transparent 28%),
-    linear-gradient(135deg, rgba(24, 82, 164, 0.94), rgba(9, 45, 108, 0.92));
+    linear-gradient(135deg, rgba(10, 27, 43, 0.96), rgba(4, 15, 27, 0.98));
 }
 
 .visual-flow {
@@ -1504,7 +1504,7 @@ body {
 .intro,
 .service-row:nth-of-type(even) {
   background:
-    linear-gradient(135deg, rgba(20, 74, 154, 0.9), rgba(9, 45, 108, 0.92));
+    linear-gradient(135deg, rgba(10, 27, 43, 0.94), rgba(4, 15, 27, 0.98));
 }
 
 .intro h2,
@@ -1580,7 +1580,7 @@ body {
 
 .trustbar-grid div {
   background:
-    linear-gradient(180deg, rgba(24, 82, 164, 0.94), rgba(9, 45, 108, 0.92));
+    linear-gradient(180deg, rgba(10, 27, 43, 0.94), rgba(4, 15, 27, 0.98));
 }
 
 .trustbar strong,
@@ -3058,7 +3058,7 @@ body {
 .calculator-panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(340px, 0.82fr);
-  background: linear-gradient(145deg, rgba(24, 82, 164, 0.94), rgba(9, 45, 108, 0.96));
+  background: linear-gradient(145deg, rgba(10, 27, 43, 0.96), rgba(4, 15, 27, 0.98));
   border: 1px solid rgba(244, 216, 141, 0.2);
   border-radius: var(--radius);
   box-shadow: 0 28px 70px rgba(9, 28, 45, 0.1);
@@ -3201,8 +3201,8 @@ body {
 
 .quick-path {
   background:
-    radial-gradient(circle at 12% 0%, rgba(244, 216, 141, 0.13), transparent 28%),
-    linear-gradient(180deg, rgba(20, 74, 154, 0.88), rgba(9, 45, 108, 0.9));
+    radial-gradient(circle at 12% 0%, rgba(244, 216, 141, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(10, 27, 43, 0.94), rgba(4, 15, 27, 0.98));
 }
 
 .quick-path-grid {
