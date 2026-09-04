@@ -48,12 +48,12 @@ const defaultBlogPosts = [
 ];
 
 const defaultDesign = {
-  navy: "#03111f",
+  navy: "#0b3478",
   gold: "#c89b4a",
   goldLight: "#f4d88d",
-  panel: "#071421",
-  heroDarkness: "0.78",
-  goldGlow: "0.14",
+  panel: "#123f8c",
+  heroDarkness: "0.58",
+  goldGlow: "0.2",
 };
 
 function cloneDefaultBlogPosts() {

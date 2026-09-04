@@ -1,8 +1,8 @@
 :root {
-  --navy-950: #04101b;
-  --navy-900: #06182a;
-  --navy-800: #0a2238;
-  --navy-700: #202a44;
+  --navy-950: #08245a;
+  --navy-900: #0b3478;
+  --navy-800: #123f8c;
+  --navy-700: #1b4ea0;
   --steel: #6f7d90;
   --emerald: #1f7a6d;
   --gold: #c89b4a;
@@ -14,9 +14,9 @@
   --soft: #f5f7fa;
   --shadow: 0 24px 70px rgba(9, 17, 31, 0.16);
   --radius: 8px;
-  --admin-panel-color: #071421;
-  --hero-darkness: 0.78;
-  --gold-glow: 0.14;
+  --admin-panel-color: #0b3478;
+  --hero-darkness: 0.58;
+  --gold-glow: 0.2;
 }
 
 * {
@@ -34,7 +34,7 @@ body {
     radial-gradient(circle at 18% 0%, rgba(200, 155, 74, 0.11), transparent 28%),
     linear-gradient(90deg, rgba(200, 155, 74, 0.055) 1px, transparent 1px),
     linear-gradient(180deg, rgba(244, 216, 141, 0.035) 1px, transparent 1px),
-    #03111f;
+    #0b3478;
   background-size: 72px 72px;
   font-family: "Montserrat", Arial, sans-serif;
   font-size: 18px;
@@ -802,10 +802,10 @@ img {
   place-items: center;
   padding: clamp(128px, 15vw, 172px) 0 clamp(64px, 9vw, 98px);
   background:
-    radial-gradient(circle at 50% 38%, rgba(244, 216, 141, 0.24), transparent 24%),
-    radial-gradient(circle at 72% 18%, rgba(12, 88, 116, 0.22), transparent 28%),
-    linear-gradient(180deg, rgba(2, 10, 18, 0.86), rgba(3, 17, 31, 0.78) 42%, rgba(2, 8, 15, 0.98)),
-    linear-gradient(90deg, rgba(2, 8, 15, 0.98), rgba(35, 25, 8, 0.48) 50%, rgba(2, 8, 15, 0.98)),
+    radial-gradient(circle at 50% 38%, rgba(244, 216, 141, 0.28), transparent 24%),
+    radial-gradient(circle at 72% 18%, rgba(92, 165, 255, 0.28), transparent 28%),
+    linear-gradient(180deg, rgba(8, 36, 90, 0.76), rgba(13, 61, 138, 0.62) 42%, rgba(7, 30, 76, 0.9)),
+    linear-gradient(90deg, rgba(8, 30, 76, 0.94), rgba(31, 87, 170, 0.42) 50%, rgba(8, 30, 76, 0.94)),
     var(--detail-image);
   background-position: center;
   background-size: auto, auto, auto, auto, cover;
@@ -881,7 +881,7 @@ img {
   overflow: hidden;
   background:
     radial-gradient(circle at 18% 0%, rgba(244, 216, 141, 0.22), transparent 28%),
-    linear-gradient(145deg, rgba(255, 232, 168, 0.14), rgba(9, 15, 24, 0.84) 32%, rgba(3, 12, 22, 0.96));
+    linear-gradient(145deg, rgba(255, 232, 168, 0.16), rgba(12, 55, 124, 0.82) 32%, rgba(8, 36, 90, 0.94));
   border: 1px solid rgba(244, 216, 141, 0.34);
   border-radius: 20px;
   backdrop-filter: blur(18px);
@@ -1113,7 +1113,7 @@ img {
 .visual-block {
   background:
     radial-gradient(circle at 8% 0%, rgba(244, 216, 141, 0.12), transparent 28%),
-    linear-gradient(135deg, rgba(8, 31, 52, 0.98), rgba(4, 16, 27, 0.96));
+    linear-gradient(135deg, rgba(24, 82, 164, 0.94), rgba(9, 45, 108, 0.92));
 }
 
 .visual-flow {
@@ -1415,11 +1415,11 @@ img {
 body {
   color: rgba(255, 246, 224, 0.9);
   background:
-    radial-gradient(circle at 50% -10%, rgba(244, 216, 141, 0.14), transparent 22%),
-    radial-gradient(circle at 12% 22%, rgba(200, 155, 74, 0.08), transparent 20%),
-    linear-gradient(90deg, rgba(244, 216, 141, 0.065) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
-    #06182a;
+    radial-gradient(circle at 50% -10%, rgba(244, 216, 141, 0.18), transparent 22%),
+    radial-gradient(circle at 12% 22%, rgba(114, 177, 255, 0.16), transparent 22%),
+    linear-gradient(90deg, rgba(244, 216, 141, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    #0b3478;
   background-attachment: fixed;
   background-position: center;
   background-size: auto, auto, 72px 72px, 72px 72px, auto;
@@ -1427,14 +1427,14 @@ body {
 
 .site-header {
   background:
-    linear-gradient(135deg, rgba(10, 12, 16, 0.88), rgba(35, 25, 9, 0.72));
-  border-color: rgba(244, 216, 141, 0.34);
-  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.44), 0 0 42px rgba(200, 155, 74, 0.08);
+    linear-gradient(135deg, rgba(8, 36, 90, 0.9), rgba(16, 70, 150, 0.78));
+  border-color: rgba(244, 216, 141, 0.4);
+  box-shadow: 0 18px 54px rgba(2, 16, 45, 0.32), 0 0 42px rgba(200, 155, 74, 0.1);
 }
 
 .site-header.scrolled {
   background:
-    linear-gradient(135deg, rgba(5, 8, 13, 0.96), rgba(29, 20, 8, 0.92));
+    linear-gradient(135deg, rgba(8, 32, 78, 0.97), rgba(9, 55, 124, 0.94));
 }
 
 .brand {
@@ -1463,7 +1463,7 @@ body {
 
 .hero {
   background:
-    linear-gradient(90deg, rgba(4, 8, 13, 0.96), rgba(21, 15, 7, 0.72) 50%, rgba(4, 8, 13, 0.96)),
+    linear-gradient(90deg, rgba(8, 36, 90, 0.92), rgba(20, 72, 142, 0.66) 50%, rgba(8, 36, 90, 0.92)),
     url("assets/investment.webp");
   background-position: center;
   background-size: cover;
@@ -1473,8 +1473,8 @@ body {
 .detail-hero::after {
   background:
     radial-gradient(circle at 50% 22%, rgba(244, 216, 141, var(--gold-glow)), transparent 18%),
-    radial-gradient(circle at 78% 68%, rgba(200, 155, 74, 0.16), transparent 24%),
-    linear-gradient(135deg, rgba(3, 7, 12, 0.98), rgba(35, 25, 9, var(--hero-darkness)) 54%, rgba(3, 7, 12, 0.98));
+    radial-gradient(circle at 78% 68%, rgba(114, 177, 255, 0.18), transparent 24%),
+    linear-gradient(135deg, rgba(8, 26, 64, 0.94), rgba(13, 61, 138, var(--hero-darkness)) 54%, rgba(7, 30, 76, 0.94));
 }
 
 .hero h1,
@@ -1498,13 +1498,13 @@ body {
 .contact {
   border-bottom-color: rgba(244, 216, 141, 0.18);
   background:
-    linear-gradient(180deg, rgba(6, 24, 42, 0.94), rgba(4, 16, 27, 0.92));
+    linear-gradient(180deg, rgba(13, 61, 138, 0.9), rgba(8, 36, 90, 0.92));
 }
 
 .intro,
 .service-row:nth-of-type(even) {
   background:
-    linear-gradient(135deg, rgba(10, 34, 56, 0.92), rgba(4, 16, 27, 0.92));
+    linear-gradient(135deg, rgba(20, 74, 154, 0.9), rgba(9, 45, 108, 0.92));
 }
 
 .intro h2,
@@ -1561,7 +1561,7 @@ body {
 .info-grid div,
 .process-list li {
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--admin-panel-color) 74%, #14161c), rgba(11, 15, 22, 0.92));
+    linear-gradient(180deg, color-mix(in srgb, var(--admin-panel-color) 76%, #315fae), rgba(8, 36, 90, 0.9));
   border-color: rgba(244, 216, 141, 0.22);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 232, 168, 0.06);
 }
@@ -1573,14 +1573,14 @@ body {
 .detail-summary {
   background:
     radial-gradient(circle at 18% 0%, rgba(244, 216, 141, 0.22), transparent 28%),
-    linear-gradient(145deg, rgba(255, 232, 168, 0.14), rgba(9, 15, 24, 0.84) 32%, rgba(3, 12, 22, 0.96));
+    linear-gradient(145deg, rgba(255, 232, 168, 0.16), rgba(12, 55, 124, 0.82) 32%, rgba(8, 36, 90, 0.94));
   border-color: rgba(244, 216, 141, 0.34);
   box-shadow: 0 22px 70px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 232, 168, 0.1);
 }
 
 .trustbar-grid div {
   background:
-    linear-gradient(180deg, rgba(8, 31, 52, 0.96), rgba(4, 16, 27, 0.94));
+    linear-gradient(180deg, rgba(24, 82, 164, 0.94), rgba(9, 45, 108, 0.92));
 }
 
 .trustbar strong,
@@ -1626,7 +1626,7 @@ body {
 
 .about {
   background:
-    linear-gradient(135deg, rgba(4, 16, 27, 0.98), rgba(10, 34, 56, 0.86)),
+    linear-gradient(135deg, rgba(12, 55, 124, 0.94), rgba(22, 78, 158, 0.76)),
     url("assets/investment.webp");
   background-position: center;
   background-size: cover;
@@ -1634,7 +1634,7 @@ body {
 
 .detail-hero {
   background:
-    linear-gradient(90deg, rgba(2, 10, 18, 0.98), rgba(36, 25, 8, 0.78) 54%, rgba(2, 10, 18, 0.98)),
+    linear-gradient(90deg, rgba(8, 36, 90, 0.92), rgba(22, 78, 158, 0.58) 54%, rgba(8, 36, 90, 0.92)),
     var(--detail-image);
   background-position: center;
   background-size: cover;
@@ -1676,7 +1676,7 @@ body {
   background:
     radial-gradient(circle at 50% 24%, rgba(244, 216, 141, 0.22), transparent 20%),
     radial-gradient(circle at 74% 70%, rgba(200, 155, 74, 0.15), transparent 22%),
-    linear-gradient(135deg, #03070c, var(--navy-950) 42%, #06182a);
+    linear-gradient(135deg, #08245a, var(--navy-950) 42%, #1b4ea0);
 }
 
 .preindex-shell {
@@ -1912,7 +1912,7 @@ body {
   padding: 24px;
   color: rgba(255, 246, 224, 0.78);
   background:
-    linear-gradient(180deg, rgba(20, 22, 28, 0.92), rgba(7, 14, 23, 0.94));
+    linear-gradient(180deg, rgba(22, 78, 158, 0.84), rgba(8, 36, 90, 0.9));
   border: 1px solid rgba(244, 216, 141, 0.22);
   border-radius: var(--radius);
   text-decoration: none;
@@ -2211,7 +2211,7 @@ body {
 .booking-aside,
 .expertise-card,
 .case-card {
-  background: linear-gradient(180deg, rgba(20, 22, 28, 0.94), rgba(8, 14, 22, 0.96));
+  background: linear-gradient(180deg, rgba(22, 78, 158, 0.86), rgba(8, 36, 90, 0.92));
   border: 1px solid rgba(244, 216, 141, 0.24);
   border-radius: var(--radius);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 232, 168, 0.06);
@@ -2717,7 +2717,7 @@ body {
 .portal-page {
   min-height: 100vh;
   color: rgba(255, 246, 224, 0.78);
-  background: linear-gradient(135deg, #03070c, var(--navy-950) 48%, #071c2e);
+  background: linear-gradient(135deg, #08245a, var(--navy-950) 48%, #1b4ea0);
 }
 
 .admin-shell,
@@ -2808,7 +2808,7 @@ body {
 
 .admin-panel {
   padding: 24px;
-  background: color-mix(in srgb, var(--admin-panel-color) 86%, #071421);
+  background: color-mix(in srgb, var(--admin-panel-color) 86%, #0b3478);
   border: 1px solid rgba(244, 216, 141, 0.22);
   border-radius: var(--radius);
 }
@@ -3045,7 +3045,7 @@ body {
   min-width: 180px;
   padding: 15px 18px;
   color: rgba(255, 246, 224, 0.74);
-  background: rgba(2, 9, 15, 0.45);
+  background: rgba(21, 86, 174, 0.36);
   border: 1px solid rgba(244, 216, 141, 0.2);
   border-radius: 6px;
   font: inherit;
@@ -3058,7 +3058,7 @@ body {
 .calculator-panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(340px, 0.82fr);
-  background: linear-gradient(145deg, rgba(14, 29, 42, 0.98), rgba(7, 19, 30, 0.98));
+  background: linear-gradient(145deg, rgba(24, 82, 164, 0.94), rgba(9, 45, 108, 0.96));
   border: 1px solid rgba(244, 216, 141, 0.2);
   border-radius: var(--radius);
   box-shadow: 0 28px 70px rgba(9, 28, 45, 0.1);
@@ -3070,7 +3070,7 @@ body {
 .calculator-form h2 { margin: 10px 0 30px; color: var(--gold-light); font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3.7rem); line-height: 1.05; }
 
 .calculator-form label { position: relative; display: grid; grid-template-columns: 1fr minmax(120px, 210px) auto; gap: 14px; align-items: center; padding: 18px 0; color: rgba(255, 246, 224, 0.86); border-bottom: 1px solid rgba(244, 216, 141, 0.12); font-weight: 700; }
-.calculator-form input[type="number"] { width: 100%; padding: 12px; color: #fff4cf; background: rgba(2, 9, 15, 0.72); border: 1px solid rgba(244, 216, 141, 0.22); border-radius: 5px; font: inherit; }
+.calculator-form input[type="number"] { width: 100%; padding: 12px; color: #fff4cf; background: rgba(8, 36, 90, 0.62); border: 1px solid rgba(244, 216, 141, 0.22); border-radius: 5px; font: inherit; }
 .calculator-form input[type="range"] {
   width: 100%;
   height: 22px;
@@ -3117,7 +3117,7 @@ body {
 .calculator-form output { min-width: 68px; color: var(--gold-dark); font-weight: 800; text-align: right; }
 .calculator-form small { min-width: 20px; color: rgba(255, 246, 224, 0.52); }
 
-.calculator-result { display: flex; flex-direction: column; justify-content: center; color: rgba(255, 246, 224, 0.76); background: linear-gradient(145deg, #02070c, #07111b); border-left: 1px solid rgba(244, 216, 141, 0.12); }
+.calculator-result { display: flex; flex-direction: column; justify-content: center; color: rgba(255, 246, 224, 0.76); background: linear-gradient(145deg, #08245a, #123f8c); border-left: 1px solid rgba(244, 216, 141, 0.12); }
 .calculator-result > span { color: var(--gold-light); font-weight: 800; text-transform: uppercase; }
 .calculator-result > strong { display: block; margin: 14px 0 32px; color: #fff4cf; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.4rem, 5vw, 4.7rem); line-height: 1; overflow-wrap: anywhere; }
 .result-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
@@ -3154,7 +3154,7 @@ body {
   background:
     linear-gradient(90deg, rgba(244, 216, 141, 0.035) 1px, transparent 1px),
     linear-gradient(180deg, rgba(244, 216, 141, 0.025) 1px, transparent 1px),
-    #081827;
+    #0b3478;
   background-size: 64px 64px;
   border-block: 1px solid rgba(244, 216, 141, 0.12);
 }
@@ -3163,7 +3163,7 @@ body {
 .decision-tools p:not(.eyebrow) { max-width: 850px; line-height: 1.75; }
 .decision-tools .eyebrow.dark { color: var(--gold); }
 
-.proof-section { color: #fff8e8; background: linear-gradient(135deg, #03080e, #071a2a); }
+.proof-section { color: #fff8e8; background: linear-gradient(135deg, #08245a, #123f8c); }
 .proof-section .section-heading h2 { color: var(--gold-light); }
 .proof-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .proof-grid article { padding: clamp(24px, 4vw, 42px); border: 1px solid rgba(244, 216, 141, 0.2); background: rgba(255, 255, 255, 0.025); }
@@ -3177,7 +3177,7 @@ body {
   padding: 146px 0 112px;
   place-items: stretch;
   background:
-    linear-gradient(90deg, rgba(4, 16, 27, 0.96), rgba(6, 24, 42, 0.7) 48%, rgba(4, 16, 27, 0.94)),
+    linear-gradient(90deg, rgba(8, 36, 90, 0.92), rgba(22, 78, 158, 0.58) 48%, rgba(8, 36, 90, 0.9)),
     url("assets/insurance.webp");
   background-position: center;
   background-size: cover;
@@ -3185,7 +3185,7 @@ body {
 .legacy-landing::before {
   background:
     radial-gradient(circle at 78% 34%, rgba(244, 216, 141, 0.2), transparent 24%),
-    linear-gradient(135deg, rgba(4, 16, 27, 0.98), rgba(11, 35, 56, 0.66) 54%, rgba(4, 16, 27, 0.97));
+    linear-gradient(135deg, rgba(8, 36, 90, 0.92), rgba(22, 78, 158, 0.6) 54%, rgba(8, 36, 90, 0.9));
 }
 .legacy-landing::after { opacity: 0.58; }
 .legacy-hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(310px, 0.52fr); gap: clamp(34px, 6vw, 86px); align-items: center; }
@@ -3193,7 +3193,7 @@ body {
 .legacy-landing h1 { max-width: 820px; color: #f0d88f; font-size: clamp(2.35rem, 4.2vw, 4.25rem); line-height: 1.08; text-transform: none; }
 .legacy-landing .hero-content > p:not(.eyebrow) { max-width: 760px; margin-left: 0; color: rgba(255, 246, 224, 0.9); font-size: clamp(1.08rem, 1.55vw, 1.24rem); line-height: 1.82; }
 .legacy-landing .hero-actions { justify-content: flex-start; }
-.legacy-hero-card { display: grid; gap: 12px; align-self: center; padding: clamp(26px, 3.5vw, 38px); color: rgba(255, 246, 224, 0.84); background: linear-gradient(180deg, rgba(6, 15, 25, 0.88), rgba(3, 10, 18, 0.93)); border: 1px solid rgba(244, 216, 141, 0.3); border-radius: var(--radius); box-shadow: 0 30px 90px rgba(0, 0, 0, 0.34); backdrop-filter: blur(14px); }
+.legacy-hero-card { display: grid; gap: 12px; align-self: center; padding: clamp(26px, 3.5vw, 38px); color: rgba(255, 246, 224, 0.84); background: linear-gradient(180deg, rgba(16, 70, 150, 0.82), rgba(8, 36, 90, 0.9)); border: 1px solid rgba(244, 216, 141, 0.3); border-radius: var(--radius); box-shadow: 0 30px 90px rgba(0, 0, 0, 0.26); backdrop-filter: blur(14px); }
 .legacy-hero-card img { width: 92px; height: 92px; object-fit: contain; filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.38)); }
 .legacy-hero-card p { margin: 8px 0 0; color: var(--gold-light); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
 .legacy-hero-card strong { color: #fff6dc; font-size: clamp(1.42rem, 2.2vw, 1.95rem); line-height: 1.18; }
@@ -3202,7 +3202,7 @@ body {
 .quick-path {
   background:
     radial-gradient(circle at 12% 0%, rgba(244, 216, 141, 0.13), transparent 28%),
-    linear-gradient(180deg, rgba(5, 18, 31, 0.96), rgba(4, 16, 27, 0.94));
+    linear-gradient(180deg, rgba(20, 74, 154, 0.88), rgba(9, 45, 108, 0.9));
 }
 
 .quick-path-grid {
@@ -3218,7 +3218,7 @@ body {
   padding: clamp(24px, 3vw, 34px);
   color: rgba(255, 246, 224, 0.82);
   background:
-    linear-gradient(180deg, rgba(20, 22, 28, 0.94), rgba(11, 15, 22, 0.94));
+    linear-gradient(180deg, rgba(22, 78, 158, 0.86), rgba(8, 36, 90, 0.9));
   border: 1px solid rgba(244, 216, 141, 0.24);
   border-radius: var(--radius);
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
@@ -3250,9 +3250,9 @@ body {
   line-height: 1.72;
 }
 
-.client-scenarios { background: radial-gradient(circle at 80% 0%, rgba(200, 155, 74, 0.12), transparent 26%), linear-gradient(180deg, rgba(6, 24, 42, 0.94), rgba(4, 16, 27, 0.92)); }
+.client-scenarios { background: radial-gradient(circle at 80% 0%, rgba(200, 155, 74, 0.14), transparent 26%), linear-gradient(180deg, rgba(13, 61, 138, 0.88), rgba(8, 36, 90, 0.9)); }
 .scenario-grid, .journal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.scenario-card, .journal-card, .article-card { display: grid; align-content: start; gap: 16px; padding: clamp(24px, 3vw, 34px); background: linear-gradient(180deg, rgba(20, 22, 28, 0.92), rgba(11, 15, 22, 0.92)); border: 1px solid rgba(244, 216, 141, 0.22); border-radius: var(--radius); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 232, 168, 0.06); }
+.scenario-card, .journal-card, .article-card { display: grid; align-content: start; gap: 16px; padding: clamp(24px, 3vw, 34px); background: linear-gradient(180deg, rgba(22, 78, 158, 0.86), rgba(8, 36, 90, 0.9)); border: 1px solid rgba(244, 216, 141, 0.24); border-radius: var(--radius); box-shadow: 0 24px 70px rgba(4, 20, 58, 0.24), inset 0 1px 0 rgba(255, 232, 168, 0.08); }
 .scenario-card { min-height: 310px; }
 .journal-card { min-height: 255px; }
 .scenario-card span, .journal-card span, .article-meta span { width: max-content; max-width: 100%; padding: 7px 11px; color: #111722; background: linear-gradient(135deg, #fff1bb, var(--gold)); border-radius: 999px; font-size: 0.76rem; font-weight: 800; text-transform: uppercase; }
@@ -3264,9 +3264,9 @@ body {
 .heritage-grid h2 { margin: 0; color: #fff6dc; font-size: clamp(1.75rem, 3.4vw, 3.2rem); line-height: 1.12; }
 .heritage-grid p:not(.eyebrow) { margin: 0; color: rgba(255, 246, 224, 0.78); font-size: clamp(1.04rem, 1.8vw, 1.28rem); line-height: 1.78; }
 
-.blog-preview, .blog-index { background: radial-gradient(circle at 84% 2%, rgba(244, 216, 141, 0.11), transparent 26%), linear-gradient(180deg, rgba(6, 24, 42, 0.94), rgba(4, 16, 27, 0.92)); }
+.blog-preview, .blog-index { background: radial-gradient(circle at 84% 2%, rgba(244, 216, 141, 0.13), transparent 26%), linear-gradient(180deg, rgba(13, 61, 138, 0.88), rgba(8, 36, 90, 0.9)); }
 .blog-preview-cta { margin-top: 30px; }
-.blog-hero { min-height: 600px; padding: 160px 0 96px; color: #fff; background: linear-gradient(90deg, rgba(4, 16, 27, 0.96), rgba(6, 24, 42, 0.76) 52%, rgba(4, 16, 27, 0.96)), url("assets/investment.webp"); background-position: center; background-size: cover; }
+.blog-hero { min-height: 600px; padding: 160px 0 96px; color: #fff; background: linear-gradient(90deg, rgba(8, 36, 90, 0.9), rgba(22, 78, 158, 0.64) 52%, rgba(8, 36, 90, 0.9)), url("assets/investment.webp"); background-position: center; background-size: cover; }
 .blog-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr); gap: clamp(32px, 5vw, 76px); align-items: end; }
 .blog-hero h1 { max-width: 840px; margin: 0; color: #f0d88f; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.8rem, 5vw, 5.1rem); line-height: 0.98; }
 .blog-hero p:not(.eyebrow) { max-width: 720px; margin: 24px 0 0; color: rgba(255, 246, 224, 0.86); font-size: clamp(1.04rem, 1.8vw, 1.28rem); }
@@ -3275,7 +3275,7 @@ body {
 .blog-hero-note span { color: rgba(255, 246, 224, 0.74); }
 .article-list { display: grid; gap: 18px; }
 .article-card { padding: clamp(26px, 4vw, 44px); }
-.featured-article { background: linear-gradient(135deg, rgba(244, 216, 141, 0.13), rgba(20, 22, 28, 0.92) 34%), rgba(11, 15, 22, 0.92); }
+.featured-article { background: linear-gradient(135deg, rgba(244, 216, 141, 0.16), rgba(22, 78, 158, 0.88) 34%), rgba(8, 36, 90, 0.9); }
 .article-meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 .article-meta time { color: rgba(255, 246, 224, 0.62); font-size: 0.9rem; font-weight: 700; }
 .article-card h2 { margin: 0; color: var(--gold-light); font-size: clamp(1.5rem, 3vw, 2.45rem); line-height: 1.16; }
@@ -3294,14 +3294,14 @@ body {
 .site-header > .language-switcher { margin-left: 2px; }
 .redirect-page { min-height: 100vh; display: grid; place-items: center; padding: 48px 20px; background: radial-gradient(circle at 50% 18%, rgba(244, 216, 141, 0.16), transparent 28%), linear-gradient(135deg, var(--navy-950), var(--navy-800)); }
 .redirect-brand { position: fixed; top: 24px; left: 24px; }
-.redirect-panel { width: min(760px, 100%); display: grid; gap: 18px; padding: clamp(28px, 5vw, 48px); color: rgba(255, 246, 224, 0.78); background: linear-gradient(180deg, rgba(20, 22, 28, 0.92), rgba(11, 15, 22, 0.92)); border: 1px solid rgba(244, 216, 141, 0.24); border-radius: var(--radius); box-shadow: 0 30px 90px rgba(0, 0, 0, 0.34); text-align: center; }
+.redirect-panel { width: min(760px, 100%); display: grid; gap: 18px; padding: clamp(28px, 5vw, 48px); color: rgba(255, 246, 224, 0.78); background: linear-gradient(180deg, rgba(22, 78, 158, 0.86), rgba(8, 36, 90, 0.92)); border: 1px solid rgba(244, 216, 141, 0.24); border-radius: var(--radius); box-shadow: 0 30px 90px rgba(0, 0, 0, 0.34); text-align: center; }
 .redirect-panel h1 { margin: 0; color: var(--gold-light); font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1.05; }
 .redirect-panel p { margin: 0; }
 .redirect-panel .button { justify-self: center; }
 
 .partner-layout {
   color: rgba(255, 246, 224, 0.88);
-  background: #03111f;
+  background: #0b3478;
 }
 
 .partner-layout .site-header {
@@ -3430,7 +3430,7 @@ body {
   padding: 250px 0 160px;
   background:
     linear-gradient(180deg, rgba(2, 14, 24, 0.78), rgba(3, 18, 29, 0.62) 42%, rgba(2, 13, 23, 0.9)),
-    linear-gradient(90deg, rgba(2, 10, 18, 0.58), rgba(2, 16, 27, 0.22) 48%, rgba(2, 10, 18, 0.64)),
+    linear-gradient(90deg, rgba(8, 36, 90, 0.62), rgba(22, 78, 158, 0.3) 48%, rgba(8, 36, 90, 0.62)),
     url("assets/insurance.webp");
   background-position: center;
   background-size: cover;
@@ -3484,7 +3484,7 @@ body {
 .partner-layout .trustbar {
   margin-top: -88px;
   padding-bottom: 48px;
-  background: linear-gradient(180deg, transparent 0, transparent 88px, #03111f 88px);
+  background: linear-gradient(180deg, transparent 0, transparent 88px, #0b3478 88px);
 }
 
 .partner-info-panel {
@@ -3498,7 +3498,7 @@ body {
   color: rgba(255, 246, 224, 0.9);
   background:
     linear-gradient(135deg, rgba(10, 27, 43, 0.98), rgba(4, 15, 27, 0.98)),
-    #071421;
+    #0b3478;
   border: 1px solid rgba(243, 217, 130, 0.28);
   box-shadow: 0 28px 84px rgba(0, 0, 0, 0.42);
 }
@@ -3599,7 +3599,7 @@ body {
 .partner-layout .quick-path,
 .partner-layout .contact {
   color: rgba(255, 246, 224, 0.88);
-  background: #03111f;
+  background: #0b3478;
   border-bottom-color: rgba(243, 217, 130, 0.12);
 }
 
@@ -3755,7 +3755,7 @@ body {
   .partner-layout .trustbar {
     margin-top: -62px;
     padding-bottom: 26px;
-    background: linear-gradient(180deg, transparent 0, transparent 62px, #03111f 62px);
+    background: linear-gradient(180deg, transparent 0, transparent 62px, #0b3478 62px);
   }
 
   .partner-info-panel {
@@ -4154,6 +4154,6 @@ textarea {
   .partner-layout .trustbar {
     margin-top: 0;
     padding-top: 24px;
-    background: #03111f;
+    background: #0b3478;
   }
 }
