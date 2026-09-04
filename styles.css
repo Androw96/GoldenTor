@@ -3836,6 +3836,230 @@ textarea {
   white-space: normal;
 }
 
+.insurance-market {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(244, 216, 141, 0.18), transparent 34%),
+    linear-gradient(145deg, rgba(8, 36, 90, 0.96), rgba(18, 63, 140, 0.9));
+  border-color: rgba(244, 216, 141, 0.22);
+  color: rgba(255, 246, 224, 0.84);
+}
+
+.market-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  gap: clamp(20px, 4vw, 42px);
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.market-heading h2,
+.insurance-market h3 {
+  color: #fff4cf;
+}
+
+.market-heading p {
+  max-width: 780px;
+  color: rgba(255, 246, 224, 0.78);
+}
+
+.market-stamp {
+  display: grid;
+  min-height: 150px;
+  place-items: center;
+  padding: 18px;
+  text-align: center;
+  background: rgba(255, 246, 224, 0.08);
+  border: 1px solid rgba(244, 216, 141, 0.26);
+  border-radius: 8px;
+}
+
+.market-stamp strong {
+  color: var(--gold-light);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 4rem;
+  line-height: 0.9;
+}
+
+.market-stamp span {
+  color: rgba(255, 246, 224, 0.72);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.market-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.market-form label,
+.market-form fieldset {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+}
+
+.market-form label > span,
+.market-form legend {
+  color: rgba(255, 246, 224, 0.74);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.market-form input,
+.market-form select {
+  width: 100%;
+  min-height: 48px;
+  color: #fff6e0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(244, 216, 141, 0.2);
+  border-radius: 6px;
+}
+
+.market-form fieldset {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 16px;
+  background: rgba(2, 15, 26, 0.18);
+  border: 1px solid rgba(244, 216, 141, 0.18);
+  border-radius: 8px;
+}
+
+.market-form fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(255, 246, 224, 0.82);
+  font-weight: 700;
+}
+
+.market-form input[type="checkbox"] {
+  width: 18px;
+  min-height: 18px;
+  accent-color: var(--gold);
+}
+
+.market-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  margin: 24px 0;
+  border: 1px solid rgba(244, 216, 141, 0.2);
+  border-radius: 8px;
+}
+
+.market-summary div {
+  padding: 20px;
+  background: rgba(2, 15, 26, 0.28);
+}
+
+.market-summary span,
+.market-card span,
+.market-card-score span,
+.market-card-score small,
+.market-card-score em {
+  display: block;
+  color: rgba(255, 246, 224, 0.66);
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.market-summary strong {
+  display: block;
+  margin-top: 8px;
+  color: #fff4cf;
+  font-size: clamp(1.05rem, 1.8vw, 1.32rem);
+}
+
+.market-results {
+  display: grid;
+  gap: 12px;
+}
+
+.market-card {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) minmax(180px, 0.28fr);
+  gap: 18px;
+  align-items: start;
+  padding: 18px;
+  background: rgba(255, 246, 224, 0.08);
+  border: 1px solid rgba(244, 216, 141, 0.18);
+  border-radius: 8px;
+}
+
+.market-rank {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  color: #111722;
+  background: linear-gradient(135deg, #fff1bb, var(--gold));
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.market-card h3 {
+  margin: 6px 0 8px;
+  color: #fff4cf;
+  font-family: var(--font);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+}
+
+.market-card p {
+  margin: 0 0 12px;
+  color: rgba(255, 246, 224, 0.76);
+}
+
+.market-card ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.market-card li {
+  padding: 7px 9px;
+  color: rgba(255, 246, 224, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(244, 216, 141, 0.14);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.market-card-score {
+  display: grid;
+  gap: 6px;
+  justify-items: end;
+  text-align: right;
+}
+
+.market-card-score strong {
+  color: var(--gold-light);
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  line-height: 1.1;
+}
+
+.market-card-score em {
+  color: rgba(255, 246, 224, 0.54);
+  text-transform: none;
+}
+
+.market-note {
+  margin: 18px 0 0;
+  color: rgba(255, 246, 224, 0.62);
+  font-size: 0.88rem;
+}
+
 @media (max-width: 1180px) {
   .site-header {
     width: min(100% - 24px, 1210px);
@@ -3934,8 +4158,27 @@ textarea {
   .quick-path-grid,
   .scenario-grid,
   .journal-grid,
-  .proof-grid {
+  .proof-grid,
+  .market-heading,
+  .market-summary,
+  .market-card {
+    grid-template-columns: 1fr;
+  }
+
+  .market-form,
+  .market-form fieldset {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .market-stamp {
+    min-height: auto;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .market-card-score {
+    justify-items: start;
+    text-align: left;
   }
 }
 
@@ -4059,6 +4302,8 @@ textarea {
   .scenario-grid,
   .journal-grid,
   .proof-grid,
+  .market-form,
+  .market-form fieldset,
   .service-cards {
     grid-template-columns: 1fr;
   }
