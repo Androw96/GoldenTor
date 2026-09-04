@@ -4157,3 +4157,33 @@ textarea {
     background: #0b3478;
   }
 }
+
+@media (max-width: 1060px) {
+  .site-header,
+  .partner-layout .site-header {
+    justify-content: flex-start;
+  }
+
+  .site-header .brand,
+  .partner-layout .brand {
+    order: 1;
+  }
+
+  .site-header > .language-switcher,
+  .partner-layout > .language-switcher {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .site-header .menu-toggle,
+  .partner-layout .menu-toggle {
+    order: 3;
+    margin-left: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-header > .language-switcher {
+    margin-left: auto;
+  }
+}
