@@ -5,6 +5,15 @@ const links = [...document.querySelectorAll(".site-nav a")];
 const currentPage = document.body.dataset.page;
 window.dataLayer = window.dataLayer || [];
 
+const defaultDesign = {
+  navy: "#03111f",
+  gold: "#c89b4a",
+  goldLight: "#f4d88d",
+  panel: "#071421",
+  heroDarkness: "0.78",
+  goldGlow: "0.14",
+};
+
 const sharedTranslations = {
   hu: { nav: ["Főoldal", "Befektetés", "Ingatlan", "Finanszírozás", "Biztosítás", "Szakértőink", "Blog", "Időpont"] },
   en: { nav: ["Home", "Investments", "Real Estate", "Financing", "Insurance", "Experts", "Journal", "Booking"] },
@@ -67,16 +76,87 @@ function translatePage(language) {
   const navLabels = sharedTranslations[language]?.nav;
   if (navLabels) links.forEach((link, index) => { if (navLabels[index]) link.textContent = navLabels[index]; });
   const values = pageTranslations[currentPage]?.[language];
-  if (!values) return;
+  if (!values) {
+    loadSiteTextOverrides(language);
+    return;
+  }
   let elements = [];
   if (currentPage === "preindex") elements = [document.querySelector(".gate-copy h1"), document.querySelector(".gate-copy p:not(.eyebrow)"), document.querySelector(".gate-label")];
   else if (currentPage === "welcome") elements = [document.querySelector(".welcome-intro h1"), document.querySelector(".welcome-intro p")];
-  else if (currentPage === "home") elements = [document.querySelector(".hero-content .eyebrow"), document.querySelector(".hero-content h1"), document.querySelector(".hero-content p:not(.eyebrow)")];
+  else if (currentPage === "home") elements = [document.querySelector(".detail-hero .eyebrow"), document.querySelector(".detail-hero h1"), document.querySelector(".detail-hero p:not(.eyebrow)")];
   else if (currentPage === "blog") elements = [document.querySelector(".blog-hero .eyebrow"), document.querySelector(".blog-hero h1"), document.querySelector(".blog-hero p:not(.eyebrow)")];
   else if (currentPage === "idopont") elements = [document.querySelector(".booking-hero .eyebrow"), document.querySelector(".booking-hero h1"), document.querySelector(".booking-hero p:not(.eyebrow)")];
   else if (currentPage === "kalkulatorok") elements = [document.querySelector(".calculator-hero .eyebrow"), document.querySelector(".calculator-hero h1"), document.querySelector(".calculator-hero p:not(.eyebrow)")];
   else elements = [document.querySelector(".detail-hero .eyebrow"), document.querySelector(".detail-hero h1"), document.querySelector(".detail-hero p:not(.eyebrow)")];
   elements.forEach((element, index) => { if (element && values[index]) element.textContent = values[index]; });
+  loadSiteTextOverrides(language);
+}
+
+function pageTextTargets() {
+  if (currentPage === "home") {
+    return {
+      eyebrow: document.querySelector(".detail-hero .eyebrow"),
+      title: document.querySelector(".detail-hero h1"),
+      lead: document.querySelector(".detail-hero p:not(.eyebrow)"),
+    };
+  }
+  if (currentPage === "blog") {
+    return {
+      eyebrow: document.querySelector(".blog-hero .eyebrow"),
+      title: document.querySelector(".blog-hero h1"),
+      lead: document.querySelector(".blog-hero p:not(.eyebrow)"),
+    };
+  }
+  if (currentPage === "idopont") {
+    return {
+      eyebrow: document.querySelector(".booking-hero .eyebrow"),
+      title: document.querySelector(".booking-hero h1"),
+      lead: document.querySelector(".booking-hero p:not(.eyebrow)"),
+    };
+  }
+  if (["befektetes", "ingatlan", "finanszirozas", "biztositas", "szakertoink"].includes(currentPage)) {
+    return {
+      title: document.querySelector(".detail-hero h1"),
+      lead: document.querySelector(".detail-hero p:not(.eyebrow)"),
+    };
+  }
+  return {};
+}
+
+async function loadSiteTextOverrides(language = localStorage.getItem("goldenTorLanguage") || "hu") {
+  if (!currentPage || !["home", "befektetes", "ingatlan", "finanszirozas", "biztositas", "szakertoink", "blog", "idopont"].includes(currentPage)) return;
+  try {
+    const response = await fetch(`/api/content/site_texts?lang=${encodeURIComponent(language)}`);
+    if (!response.ok) return;
+    const result = await response.json();
+    const values = result.payload?.[currentPage];
+    if (!values) return;
+    const targets = pageTextTargets();
+    if (targets.eyebrow && values.eyebrow) targets.eyebrow.textContent = values.eyebrow;
+    if (targets.title && values.title) targets.title.textContent = values.title;
+    if (targets.lead && values.lead) targets.lead.textContent = values.lead;
+  } catch (_) {
+    // Static fallback: keep bundled page text.
+  }
+}
+
+async function loadDesignOverrides() {
+  try {
+    const response = await fetch("/api/content/site_design?lang=hu");
+    if (!response.ok) return;
+    const result = await response.json();
+    const design = { ...defaultDesign, ...(result.payload || {}) };
+    const root = document.documentElement;
+    root.style.setProperty("--navy-950", design.navy);
+    root.style.setProperty("--navy-900", design.navy);
+    root.style.setProperty("--gold", design.gold);
+    root.style.setProperty("--gold-light", design.goldLight);
+    root.style.setProperty("--admin-panel-color", design.panel);
+    root.style.setProperty("--hero-darkness", design.heroDarkness);
+    root.style.setProperty("--gold-glow", design.goldGlow);
+  } catch (_) {
+    // Static fallback: keep bundled design.
+  }
 }
 
 function installLanguageSwitcher() {
@@ -367,6 +447,72 @@ async function loadExpertProfiles() {
 }
 
 loadExpertProfiles();
+
+async function loadBlogPosts() {
+  const container = document.querySelector("[data-blog-posts]");
+  if (!container) return;
+  const language = localStorage.getItem("goldenTorLanguage") || "hu";
+  try {
+    const response = await fetch(`/api/content/blog_posts?lang=${encodeURIComponent(language)}`);
+    if (!response.ok) return;
+    const result = await response.json();
+    const posts = Array.isArray(result.payload?.posts)
+      ? result.payload.posts.filter((post) => post.title && post.excerpt && post.status !== "draft")
+      : [];
+    if (!posts.length) return;
+    container.replaceChildren(...posts.map((post, index) => {
+      const article = document.createElement("article");
+      article.className = index === 0 ? "article-card featured-article" : "article-card";
+      if (post.slug) article.id = post.slug;
+      if (post.image) {
+        const image = document.createElement("img");
+        image.className = "article-image";
+        image.src = post.image;
+        image.alt = post.title;
+        image.loading = "lazy";
+        article.append(image);
+      }
+      const meta = document.createElement("div");
+      meta.className = "article-meta";
+      const category = document.createElement("span");
+      category.textContent = post.category || "Golden Tor";
+      const time = document.createElement("time");
+      time.textContent = post.date || "";
+      meta.append(category, time);
+      const title = document.createElement("h2");
+      title.textContent = post.title;
+      const excerpt = document.createElement("p");
+      excerpt.textContent = post.excerpt;
+      article.append(meta, title, excerpt);
+      if (Array.isArray(post.points) && post.points.length) {
+        const list = document.createElement("ul");
+        list.className = "article-points";
+        post.points.forEach((point) => {
+          const item = document.createElement("li");
+          item.textContent = point;
+          list.append(item);
+        });
+        article.append(list);
+      }
+      if (Array.isArray(post.body) && post.body.length) {
+        const body = document.createElement("div");
+        body.className = "article-body";
+        post.body.forEach((paragraph) => {
+          const text = document.createElement("p");
+          text.textContent = paragraph;
+          body.append(text);
+        });
+        article.append(body);
+      }
+      return article;
+    }));
+  } catch (_) {
+    // Static fallback: keep bundled blog articles.
+  }
+}
+
+loadBlogPosts();
+loadDesignOverrides();
 
 document.querySelectorAll(".opportunity-card").forEach((card) => {
   card.addEventListener("click", () => {

@@ -15,7 +15,7 @@ Alapértelmezett cím: `http://127.0.0.1:4174/index.html`
 
 Admin: `http://127.0.0.1:4174/admin.html`
 
-Az admin alapértelmezett helyi belépése `admin` / `change-me-local`. Élesítés előtt kötelező erős `GOLDENTOR_ADMIN_PASSWORD` értéket megadni.
+Az adminfelület admin kóddal lép be. Élesítés előtt kötelező erős, hosszú `GOLDENTOR_ADMIN_KEY` értéket megadni az `.env` fájlban. Ha nincs megadva, a szerver indításkor ideiglenes helyi admin kódot generál és kiír a terminálra. A régi Basic Auth változók (`GOLDENTOR_ADMIN_USER`, `GOLDENTOR_ADMIN_PASSWORD`) kompatibilitási okból megmaradtak, de az alapértelmezett jelszóval nem használhatók.
 
 ## E-mail
 
@@ -28,9 +28,11 @@ Induláskor, majd naponta automatikus mentés készül a `data/backups/` mappáb
 
 ## Admin és automatikus értesítések
 
-Az admin áttekintés foglalási, érdeklődői és konverziós mutatókat jelenít meg. A foglalás visszaigazolása, lemondása vagy lezárása e-mailt készít az ügyfélnek, a megerősített konzultációkhoz pedig 24 órás emlékeztető tartozik.
+Az admin áttekintés foglalási, érdeklődői és konverziós mutatókat jelenít meg. A megkeresések státusza jelölhető, a foglalás visszaigazolása, lemondása vagy lezárása e-mailt készít az ügyfélnek, a megerősített konzultációkhoz pedig 24 órás emlékeztető tartozik.
 
-Valódi szakértői profil feltöltéséhez az admin Tartalom lapján használható a `Szakértői profilsablon`. A `name`, `role`, `bio`, `credentials` és `photo` mezőket kizárólag ellenőrzött, publikálható adatokkal kell kitölteni.
+A `Szövegek` admin lapon a főoldal és a fő aloldalak kiemelt nyitó szövegei szerkeszthetők. A `Blog` lapon a publikus blogbejegyzések bővíthetők: új cikk, vázlat/publikált státusz, kép, URL azonosító, rövid bevezető, kiemelt pontok és teljes cikk szöveg kezelhető. A `Design` lapon a fő arany/sötétkék színek és a hero hangulata állítható. Mentés után a nyilvános oldal a szerveroldali tartalmi rekordból tölti be az új tartalmat vagy design beállítást.
+
+Valódi szakértői profil feltöltéséhez az admin `JSON tartalom` lapján használható a `Szakértői profilsablon`. A `name`, `role`, `bio`, `credentials` és `photo` mezőket kizárólag ellenőrzött, publikálható adatokkal kell kitölteni.
 
 ## Kalkulátorok
 

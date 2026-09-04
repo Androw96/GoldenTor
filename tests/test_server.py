@@ -16,6 +16,11 @@ class FakeHandler:
         self.payload = payload
 
 
+class FakeAuthHandler:
+    def __init__(self, headers):
+        self.headers = headers
+
+
 class GoldenTorBackendTest(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -23,6 +28,9 @@ class GoldenTorBackendTest(unittest.TestCase):
         server.DB_PATH = server.DATA_DIR / "test.sqlite3"
         server.OUTBOX_PATH = server.DATA_DIR / "outbox.log"
         server.PUBLIC_BASE_URL = "http://127.0.0.1:4174"
+        server.ADMIN_KEY = "unit-test-admin-key"
+        server.ADMIN_USER = "admin"
+        server.ADMIN_PASSWORD = "change-me-local"
         server.RATE_LIMIT.clear()
         server.init_db()
 
@@ -86,6 +94,13 @@ class GoldenTorBackendTest(unittest.TestCase):
         server.GoldenTorHandler.get_admin_stats(handler)
         self.assertEqual(handler.payload["bookings"], 1)
         self.assertEqual(handler.payload["upcoming"], 1)
+
+    def test_admin_key_auth_and_default_basic_rejected(self):
+        key_handler = FakeAuthHandler({"X-Admin-Key": "unit-test-admin-key"})
+        self.assertTrue(server.GoldenTorHandler.admin_authorized(key_handler))
+        basic = "Basic YWRtaW46Y2hhbmdlLW1lLWxvY2Fs"
+        basic_handler = FakeAuthHandler({"Authorization": basic})
+        self.assertFalse(server.GoldenTorHandler.admin_authorized(basic_handler))
 
 
 if __name__ == "__main__":

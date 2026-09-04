@@ -154,10 +154,9 @@ Admin URL: `http://127.0.0.1:4174/admin.html`
 
 Helyi fejlesztői belépés:
 
-- Felhasználónév: `admin`
-- Jelszó: `change-me-local`
+- Admin kód: az `.env` fájl `GOLDENTOR_ADMIN_KEY` értéke.
 
-> Élesítés előtt kötelező erős, egyedi adminjelszót beállítani.
+> Ha nincs `GOLDENTOR_ADMIN_KEY`, a szerver indításkor ideiglenes helyi admin kódot generál és kiír a terminálra. Élesítés előtt kötelező erős, egyedi, hosszú admin kódot beállítani. Az admin API-k szerver oldalon ellenőrzik ezt a kulcsot, ezért a megkeresések és a tartalom mentése nem érhető el pusztán böngészős módosítással.
 
 ### Áttekintés
 
@@ -183,7 +182,45 @@ Státuszváltozáskor a rendszer automatikus ügyfélértesítést készít. A m
 
 ### Kapcsolatok
 
-Itt jelennek meg a főoldali kapcsolatfelvételi űrlapon érkezett megkeresések és az ügyfél által megadott adatok.
+Itt jelennek meg a főoldali kapcsolatfelvételi űrlapon érkezett megkeresések és az ügyfél által megadott adatok. A státusz `Új`, `Folyamatban`, `Lezárva` vagy `Archivált` értékre állítható.
+
+### Szövegek szerkesztése
+
+A `Szövegek` lapon a főoldal és a fő aloldalak nyitó szövegei módosíthatók:
+
+- válassza ki az oldalt;
+- válassza ki a nyelvet;
+- írja át a kis feliratot, főcímet vagy bevezetőt;
+- mentse a változást.
+
+A mentés szerveroldali tartalmi rekordba kerül, és a nyilvános oldal frissítés után betölti.
+
+### Blog hozzáférés
+
+A `Blog` lapon a publikus blogoldal bejegyzései szerkeszthetők:
+
+- válassza ki a nyelvet;
+- válasszon meglévő cikket, vagy kattintson az `Új cikk` gombra;
+- állítsa be, hogy a cikk `Publikált` vagy `Vázlat` legyen;
+- adja meg az URL azonosítót, kategóriát, dátumot, képet, címet és rövid bevezetőt;
+- a pontok mezőbe soronként egy kiemelt gondolat kerüljön;
+- a teljes cikk szövegét bekezdésenként lehet megadni;
+- a cikk duplikálható vagy törölhető;
+- mentse a blogtartalmat.
+
+Mentés után a `blog.html` oldal frissítéskor az adminban rögzített, publikált cikkeket jeleníti meg. A `Vázlat` státuszú cikkek adminban megmaradnak, de a látogatóknak nem látszanak.
+
+### Design beállítások
+
+A `Design` lapon a fő vizuális karakter állítható:
+
+- sötétkék háttérszín;
+- arany és világos arany hangsúlyszín;
+- panel háttérszín;
+- hero sötétítése;
+- arany fényerő.
+
+Az `Alap design` gomb visszaállítja a Golden Tor sötétkék-arany alapstílust. A mentett beállítás a publikus oldalakon automatikusan betöltődik.
 
 ### Tartalomkezelés
 
@@ -196,7 +233,7 @@ A tartalmi rekordok nyelvenként menthetők. A mezők:
 
 ## 10. Szakértői profil feltöltése
 
-1. Nyissa meg az adminfelület `Tartalom` lapját.
+1. Nyissa meg az adminfelület `JSON tartalom` lapját.
 2. Kattintson a `Szakértői profilsablon` gombra.
 3. Töltse ki a következő mezőket:
    - `name` - szakértő neve;
@@ -309,7 +346,7 @@ Ellenőrizze, hogy:
 
 ## 16. Élesítés előtti ellenőrzőlista
 
-- erős adminjelszó beállítása;
+- erős admin kód beállítása (`GOLDENTOR_ADMIN_KEY`);
 - végleges domain és HTTPS;
 - SMTP-adatok beállítása;
 - hivatalos cégadatok ellenőrzése;

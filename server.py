@@ -44,6 +44,7 @@ HOST = os.getenv("GOLDENTOR_HOST", "127.0.0.1")
 PORT = int(os.getenv("GOLDENTOR_PORT", "4174"))
 ADMIN_USER = os.getenv("GOLDENTOR_ADMIN_USER", "admin")
 ADMIN_PASSWORD = os.getenv("GOLDENTOR_ADMIN_PASSWORD", "change-me-local")
+ADMIN_KEY = os.getenv("GOLDENTOR_ADMIN_KEY") or secrets.token_urlsafe(24)
 PUBLIC_BASE_URL = os.getenv("GOLDENTOR_PUBLIC_URL", f"http://{HOST}:{PORT}").rstrip("/")
 
 
@@ -245,6 +246,9 @@ class GoldenTorHandler(SimpleHTTPRequestHandler):
         super().__init__(*args, directory=str(BASE_DIR), **kwargs)
 
     def end_headers(self) -> None:
+        self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("X-Frame-Options", "SAMEORIGIN")
         self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
@@ -273,6 +277,11 @@ class GoldenTorHandler(SimpleHTTPRequestHandler):
             raise ValueError("Érvénytelen JSON kérés.") from exc
 
     def admin_authorized(self) -> bool:
+        key_header = self.headers.get("X-Admin-Key", "")
+        if key_header and secrets.compare_digest(key_header, ADMIN_KEY):
+            return True
+        if ADMIN_PASSWORD == "change-me-local":
+            return False
         header = self.headers.get("Authorization", "")
         if not header.startswith("Basic "):
             return False
@@ -350,21 +359,30 @@ class GoldenTorHandler(SimpleHTTPRequestHandler):
             self.json_response({"error": "Ez az időpont időközben foglalttá vált. Kérjük, válasszon másikat."}, HTTPStatus.CONFLICT)
 
     def do_PATCH(self) -> None:
-        if not self.path.startswith("/api/admin/bookings/") or not self.require_admin():
+        if not self.path.startswith(("/api/admin/bookings/", "/api/admin/contacts/")) or not self.require_admin():
             return
         try:
-            booking_id = int(self.path.rsplit("/", 1)[-1])
             payload = self.read_json()
-            status = clean_text(payload.get("status"), 24)
-            if status not in {"requested", "confirmed", "completed", "cancelled"}:
-                raise ValueError("Érvénytelen státusz.")
-            with db() as connection:
-                booking = connection.execute("SELECT * FROM bookings WHERE id=?", (booking_id,)).fetchone()
-                if not booking:
-                    raise ValueError("A foglalás nem található.")
-                connection.execute("UPDATE bookings SET status=? WHERE id=?", (status, booking_id))
-            if status != booking["status"]:
-                send_booking_status_email(booking, status)
+            item_id = int(self.path.rsplit("/", 1)[-1])
+            if self.path.startswith("/api/admin/bookings/"):
+                status = clean_text(payload.get("status"), 24)
+                if status not in {"requested", "confirmed", "completed", "cancelled"}:
+                    raise ValueError("Érvénytelen státusz.")
+                with db() as connection:
+                    booking = connection.execute("SELECT * FROM bookings WHERE id=?", (item_id,)).fetchone()
+                    if not booking:
+                        raise ValueError("A foglalás nem található.")
+                    connection.execute("UPDATE bookings SET status=? WHERE id=?", (status, item_id))
+                if status != booking["status"]:
+                    send_booking_status_email(booking, status)
+            else:
+                status = clean_text(payload.get("status"), 24)
+                if status not in {"new", "in_progress", "done", "archived"}:
+                    raise ValueError("Érvénytelen státusz.")
+                with db() as connection:
+                    cursor = connection.execute("UPDATE contacts SET status=? WHERE id=?", (status, item_id))
+                if not cursor.rowcount:
+                    raise ValueError("A megkeresés nem található.")
             self.json_response({"ok": True})
         except (ValueError, sqlite3.Error) as exc:
             self.json_response({"error": str(exc)}, HTTPStatus.BAD_REQUEST)
@@ -555,6 +573,9 @@ def run() -> None:
     print(f"Golden Tor server: http://{HOST}:{PORT}")
     if ADMIN_PASSWORD == "change-me-local":
         print("FIGYELEM: az admin jelszó alapértelmezett; élesítés előtt állítsa be a GOLDENTOR_ADMIN_PASSWORD értékét.")
+    if not os.getenv("GOLDENTOR_ADMIN_KEY"):
+        print(f"IDEIGLENES HELYI ADMIN KÓD: {ADMIN_KEY}")
+        print("Élesítés előtt állítsa be a GOLDENTOR_ADMIN_KEY értékét az .env fájlban.")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
