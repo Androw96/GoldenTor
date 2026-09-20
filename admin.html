@@ -27,6 +27,7 @@
           <button class="active" type="button" data-admin-tab="overview">Áttekintés</button>
           <button type="button" data-admin-tab="bookings">Foglalások</button>
           <button type="button" data-admin-tab="contacts">Új megkeresések</button>
+          <button type="button" data-admin-tab="feedback">Visszajelzések</button>
           <button type="button" data-admin-tab="texts">Szövegek</button>
           <button type="button" data-admin-tab="blog">Blog</button>
           <button type="button" data-admin-tab="design">Design</button>
@@ -48,6 +49,7 @@
           <div class="admin-panel-heading"><h2>Új megkeresések</h2><button type="button" data-admin-refresh>Frissítés</button></div>
           <div class="admin-table-wrap"><table><thead><tr><th>Dátum</th><th>Ügyfél</th><th>Téma</th><th>Üzenet</th><th>Státusz</th></tr></thead><tbody data-contact-rows></tbody></table></div>
         </div>
+        <div class="admin-panel" data-admin-panel="feedback" hidden><div class="admin-panel-heading"><h2>Szakértői visszajelzések</h2><button type="button" data-admin-refresh>Frissítés</button></div><p data-feedback-admin-status role="status"></p><div class="admin-table-wrap"><table><thead><tr><th>Dátum</th><th>Ügyfél</th><th>Szakértő / téma</th><th>Értékelés</th><th>Visszajelzés</th></tr></thead><tbody data-feedback-rows></tbody></table></div></div>
         <div class="admin-panel" data-admin-panel="texts" hidden>
           <div class="admin-panel-heading"><h2>Oldalszövegek szerkesztése</h2><button type="button" data-text-load>Betöltés</button></div>
           <form class="admin-content-form" data-text-form>

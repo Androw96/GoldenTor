@@ -6,16 +6,16 @@ const currentPage = document.body.dataset.page;
 window.dataLayer = window.dataLayer || [];
 
 const defaultDesign = {
-  navy: "#04101b",
-  gold: "#c89b4a",
-  goldLight: "#f4d88d",
-  panel: "#071421",
+  navy: "#1b251e",
+  gold: "#668272",
+  goldLight: "#ebf150",
+  panel: "#263c2e",
   heroDarkness: "0.78",
   goldGlow: "0.14",
 };
 
 const sharedTranslations = {
-  hu: { nav: ["Főoldal", "Befektetés", "Ingatlan", "Finanszírozás", "Biztosítás", "Szakértőink", "Blog", "Időpont"] },
+  hu: { nav: ["Főoldal", "Befektetés", "Ingatlan", "Finanszírozás", "Biztosítás", "Szakértőink", "Blog", "Időpontfoglalás"] },
   en: { nav: ["Home", "Investments", "Real Estate", "Financing", "Insurance", "Experts", "Journal", "Booking"] },
   de: { nav: ["Startseite", "Investitionen", "Immobilien", "Finanzierung", "Versicherung", "Experten", "Journal", "Termin"] },
 };
@@ -30,8 +30,8 @@ const pageTranslations = {
     de: ["Wählen Sie Ihre Richtung", "Ihre nächste Entscheidung kann neue Möglichkeiten für Vermögensaufbau, Immobilien, Finanzierung, Schutz oder Expertenanalyse eröffnen."],
   },
   home: {
-    en: ["Private financial decision support", "Wealth built on trust, calmer decisions.", "We help you understand what to do with savings, real estate, financing or insurance. We do not push products; we give a clear decision order."],
-    de: ["Private Finanzentscheidungen", "Vermögen mit Vertrauen aufbauen, ruhiger entscheiden.", "Wir helfen Ihnen zu verstehen, wie Sie mit Ersparnissen, Immobilien, Finanzierung oder Versicherung umgehen können. Wir drängen keine Produkte auf, sondern geben eine klare Entscheidungsreihenfolge."],
+    en: ["Private financial decision support", "Clear perspective. Confident decisions.", "We help you understand what to do with savings, real estate, financing or insurance. We do not push products; we give a clear decision order."],
+    de: ["Private Finanzentscheidungen", "Klar sehen. Bewusst entscheiden.", "Wir helfen Ihnen zu verstehen, wie Sie mit Ersparnissen, Immobilien, Finanzierung oder Versicherung umgehen können. Wir drängen keine Produkte auf, sondern geben eine klare Entscheidungsreihenfolge."],
   },
   blog: {
     en: ["Golden Tor Journal", "Financial decisions explained at a calmer pace.", "Short, clear articles for people who prefer good questions over loud promises."],
@@ -71,12 +71,20 @@ function trackEvent(event, details = {}) {
   window.dataLayer.push({ event, ...details });
 }
 
+const originalPageText = new Map();
 function translatePage(language) {
   document.documentElement.lang = language;
   const navLabels = sharedTranslations[language]?.nav;
-  if (navLabels) links.forEach((link, index) => { if (navLabels[index]) link.textContent = navLabels[index]; });
+  if (navLabels) links.forEach((link) => {
+    const keys = ["home", "befektetes", "ingatlan", "finanszirozas", "biztositas", "szakertoink", "blog", "idopont"];
+    const index = keys.indexOf(link.dataset.pageLink);
+    const extra = {hu: {rolunk:"Rólunk", szolgaltatasok:"Szolgáltatások", kalkulatorok:"Kalkulátor"}, en: {rolunk:"About us", szolgaltatasok:"Services", kalkulatorok:"Calculators"}, de: {rolunk:"Über uns", szolgaltatasok:"Leistungen", kalkulatorok:"Rechner"}};
+    if (index >= 0) link.textContent = navLabels[index];
+    else if (extra[language]?.[link.dataset.pageLink]) link.textContent = extra[language][link.dataset.pageLink];
+  });
   const values = pageTranslations[currentPage]?.[language];
   if (!values) {
+    if (language === "hu") originalPageText.forEach((html, element) => { element.innerHTML = html; });
     loadSiteTextOverrides(language);
     return;
   }
@@ -88,7 +96,11 @@ function translatePage(language) {
   else if (currentPage === "idopont") elements = [document.querySelector(".booking-hero .eyebrow"), document.querySelector(".booking-hero h1"), document.querySelector(".booking-hero p:not(.eyebrow)")];
   else if (currentPage === "kalkulatorok") elements = [document.querySelector(".calculator-hero .eyebrow"), document.querySelector(".calculator-hero h1"), document.querySelector(".calculator-hero p:not(.eyebrow)")];
   else elements = [document.querySelector(".detail-hero .eyebrow"), document.querySelector(".detail-hero h1"), document.querySelector(".detail-hero p:not(.eyebrow)")];
-  elements.forEach((element, index) => { if (element && values[index]) element.textContent = values[index]; });
+  elements.forEach((element, index) => {
+    if (!element || !values[index]) return;
+    if (!originalPageText.has(element)) originalPageText.set(element, element.innerHTML);
+    element.textContent = values[index];
+  });
   loadSiteTextOverrides(language);
 }
 
@@ -160,15 +172,23 @@ async function loadDesignOverrides() {
 }
 
 function installLanguageSwitcher() {
-  if (!["preindex", "welcome", "home", "befektetes", "ingatlan", "finanszirozas", "biztositas", "szakertoink", "blog", "idopont", "kalkulatorok"].includes(currentPage)) return;
-  const switcher = document.createElement("div");
-  switcher.className = `language-switcher${header ? "" : " floating-language"}`;
-  switcher.setAttribute("aria-label", "Nyelvválasztás / Language / Sprache");
-  ["hu", "en", "de"].forEach((language) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.textContent = language.toUpperCase();
-    button.dataset.language = language;
+  if (!["preindex", "welcome", "home", "befektetes", "ingatlan", "finanszirozas", "biztositas", "szakertoink", "blog", "idopont", "kalkulatorok", "fiok"].includes(currentPage)) return;
+  let switcher = header?.querySelector(".language-switcher");
+  if (!switcher) {
+    switcher = document.createElement("div");
+    switcher.className = `language-switcher${header ? "" : " floating-language"}`;
+    switcher.setAttribute("aria-label", "Nyelvválasztás / Language / Sprache");
+    ["hu", "en", "de"].forEach((language) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = language.toUpperCase();
+      button.dataset.language = language;
+      switcher.append(button);
+    });
+    (header || document.body).append(switcher);
+  }
+  switcher.querySelectorAll("button[data-language]").forEach((button) => {
+    const language = button.dataset.language;
     button.addEventListener("click", () => {
       localStorage.setItem("goldenTorLanguage", language);
       switcher.querySelectorAll("button").forEach((item) => item.classList.toggle("active", item === button));
@@ -176,9 +196,7 @@ function installLanguageSwitcher() {
       if (currentPage === "kalkulatorok") window.location.reload();
       trackEvent("language_changed", { language });
     });
-    switcher.append(button);
   });
-  (header || document.body).append(switcher);
   const language = localStorage.getItem("goldenTorLanguage") || "hu";
   switcher.querySelector(`[data-language="${language}"]`)?.classList.add("active");
   translatePage(language);
@@ -200,6 +218,10 @@ if (nav && toggle) {
     toggle.setAttribute("aria-expanded", String(isOpen));
   });
   links.forEach((link) => link.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && nav.classList.contains("open")) { closeMenu(); toggle.focus(); }
+  });
+  document.addEventListener("click", event => { if (!header.contains(event.target)) closeMenu(); });
 }
 
 if (currentPage) {
@@ -389,7 +411,7 @@ function showCookieBanner() {
     banner.innerHTML = `
       <div>
         <strong>Adatvédelmi beállítások</strong>
-        <p>Az oldal csak a működéshez szükséges helyi beállításokat használja. Marketing- és analitikai cookie jelenleg nincs bekapcsolva.</p>
+        <p>Az oldal a működéshez szükséges bejelentkezési sütit és helyi beállításokat használja. Marketing- és analitikai cookie jelenleg nincs bekapcsolva.</p>
       </div>
       <div class="cookie-actions">
         <a href="adatkezeles.html">Részletek</a>
@@ -449,7 +471,7 @@ async function loadExpertProfiles() {
 loadExpertProfiles();
 
 async function loadBlogPosts() {
-  const container = document.querySelector("[data-blog-posts]");
+  const container = document.querySelector("[data-blog-posts]") || document.querySelector(".gt-journal-grid");
   if (!container) return;
   const language = localStorage.getItem("goldenTorLanguage") || "hu";
   try {
@@ -460,10 +482,26 @@ async function loadBlogPosts() {
       ? result.payload.posts.filter((post) => post.title && post.excerpt && post.status !== "draft")
       : [];
     if (!posts.length) return;
+    if (container.classList.contains("gt-journal-grid")) {
+      container.replaceChildren(...posts.slice(0, 3).map((post, index) => {
+        const card = document.createElement("a");
+        card.className = "gt-journal-card";
+        card.href = `blog.html#${encodeURIComponent(post.slug || `article-${index + 1}`)}`;
+        const category = document.createElement("span"); category.className = "gt-category";
+        category.textContent = post.category || "Golden Tor";
+        const title = document.createElement("h3"); title.textContent = post.title;
+        const excerpt = document.createElement("p"); excerpt.textContent = post.excerpt;
+        const read = document.createElement("span"); read.className = "gt-read";
+        read.textContent = "Elolvasom ↗";
+        card.append(category, title, excerpt, read);
+        return card;
+      }));
+      return;
+    }
     container.replaceChildren(...posts.map((post, index) => {
       const article = document.createElement("article");
       article.className = index === 0 ? "article-card featured-article" : "article-card";
-      if (post.slug) article.id = post.slug;
+      article.id = post.slug || `article-${index + 1}`;
       if (post.image) {
         const image = document.createElement("img");
         image.className = "article-image";

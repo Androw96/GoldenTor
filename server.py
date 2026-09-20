@@ -15,7 +15,11 @@ from email.message import EmailMessage
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlparse, quote
+from accounts import AccountMixin, init_accounts
+import sys
+# Keep account helpers on the running server module when launched as a script.
+sys.modules.setdefault("server", sys.modules[__name__])
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -100,6 +104,7 @@ def init_db() -> None:
             );
             """
         )
+        init_accounts(connection)
         booking_columns = {row["name"] for row in connection.execute("PRAGMA table_info(bookings)")}
         if "reminder_sent_at" not in booking_columns:
             connection.execute("ALTER TABLE bookings ADD COLUMN reminder_sent_at TEXT")
@@ -239,7 +244,7 @@ def backup_worker(stop_event: threading.Event) -> None:
             return
 
 
-class GoldenTorHandler(SimpleHTTPRequestHandler):
+class GoldenTorHandler(AccountMixin, SimpleHTTPRequestHandler):
     server_version = "GoldenTor/1.0"
 
     def __init__(self, *args, **kwargs):
@@ -302,10 +307,53 @@ class GoldenTorHandler(SimpleHTTPRequestHandler):
         self.end_headers()
         return False
 
+    def send_head(self):
+        # Resolve before authorizing: encoded paths, symlinks and HEAD obey the same rules.
+        target = Path(self.translate_path(self.path)).resolve()
+        public_root = target.parent == BASE_DIR and target.suffix in {".html", ".css", ".js"}
+        public_asset = target.is_relative_to(BASE_DIR / "assets")
+        if not (public_root or public_asset or target in {BASE_DIR / "robots.txt", BASE_DIR / "sitemap.xml"}):
+            if target == BASE_DIR:
+                self.path = "/index.html"
+                return super().send_head()
+            self.send_error(404)
+            return None
+        if target.name in {"kalkulatorok.html", "calculator.js", "insurance-market.js"} and not self.current_user():
+            if target.suffix == ".html":
+                self.send_response(303)
+                self.send_header("Location", "/fiok.html?next=" + quote("/kalkulatorok.html", safe=""))
+                self.end_headers()
+            else:
+                self.send_error(401)
+            return None
+        return super().send_head()
+
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
         path = parsed.path
         query = parse_qs(parsed.query)
+        if path == "/api/auth/me":
+            self.json_response({"user": self.current_user()})
+            return
+        if path == "/api/calculations":
+            user = self.current_user()
+            if not user:
+                self.json_response({"error": "A folytatáshoz jelentkezzen be."}, 401)
+                return
+            with db() as connection:
+                rows = connection.execute('''SELECT id,calculator_type,inputs_json,results_json,created_at FROM calculations
+                    WHERE user_id=? ORDER BY id DESC LIMIT 100''', (user['id'],)).fetchall()
+            self.json_response({"items": [{
+                "id": row["id"], "calculator_type": row["calculator_type"], "created_at": row["created_at"],
+                "inputs": json.loads(row["inputs_json"]), "results": json.loads(row["results_json"])
+            } for row in rows]})
+            return
+        if path == "/api/member/valiora":
+            if not self.current_user():
+                self.json_response({"error": "Bejelentkezés szükséges."}, 401)
+                return
+            self.json_response({"html": (BASE_DIR / "private" / "valiora.html").read_text(encoding="utf-8")})
+            return
         if path == "/api/health":
             self.json_response({"ok": True, "time": utc_now()})
             return
@@ -322,6 +370,20 @@ class GoldenTorHandler(SimpleHTTPRequestHandler):
             if self.require_admin():
                 self.get_admin_rows("bookings")
             return
+        if path == "/api/admin/feedback":
+            if self.require_admin():
+                with db() as connection:
+                    rows = connection.execute("SELECT f.*,u.name,u.email FROM feedback f JOIN users u ON u.id=f.user_id ORDER BY f.id DESC LIMIT 250").fetchall()
+                self.json_response({"items": [dict(row) for row in rows]})
+            return
+        if path == "/api/admin/customers":
+            if self.require_admin():
+                with db() as connection:
+                    rows = connection.execute('''SELECT u.id,u.name,u.email,u.phone,u.created_at,COUNT(c.id) AS calculation_count
+                        FROM users u LEFT JOIN calculations c ON c.user_id=u.id
+                        GROUP BY u.id ORDER BY u.id DESC LIMIT 250''').fetchall()
+                self.json_response({"items": [dict(row) for row in rows]})
+            return
         if path == "/api/admin/contacts":
             if self.require_admin():
                 self.get_admin_rows("contacts")
@@ -336,6 +398,9 @@ class GoldenTorHandler(SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_POST(self) -> None:
+        if urlparse(self.path).path.startswith("/api/auth/") or urlparse(self.path).path in {"/api/profile", "/api/feedback", "/api/calculations"}:
+            self.account_post()
+            return
         if self.path not in {"/api/contact", "/api/bookings", "/api/booking/cancel"}:
             self.json_response({"error": "Ismeretlen végpont."}, HTTPStatus.NOT_FOUND)
             return

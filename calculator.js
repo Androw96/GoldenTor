@@ -81,5 +81,52 @@ document.querySelectorAll("[data-calculator-tab]").forEach((button) => button.ad
   window.dataLayer?.push({ event: "calculator_opened", calculator: button.dataset.calculatorTab });
 }));
 
+function calculationPayload(type) {
+  if (type === "investment") {
+    const capital = numberValue('[data-investment="capital"]'); const monthly = numberValue('[data-investment="monthly"]');
+    const rate = numberValue('[data-investment="rate"]'); const years = numberValue('[data-investment="years"]');
+    const monthlyRate = rate / 100 / 12; const periods = years * 12;
+    const total = capital * ((1 + monthlyRate) ** periods) + (monthlyRate ? monthly * (((1 + monthlyRate) ** periods - 1) / monthlyRate) : monthly * periods);
+    const paid = capital + monthly * periods;
+    return {calculator_type:type, inputs:{capital,monthly,rate,years}, results:{total,paid,growth:Math.max(0,total-paid)}};
+  }
+  if (type === "loan") {
+    const amount = numberValue('[data-loan="amount"]'); const rate = numberValue('[data-loan="rate"]'); const years = numberValue('[data-loan="years"]');
+    const periods = years * 12; const monthlyRate = rate / 100 / 12;
+    const payment = monthlyRate ? amount * monthlyRate * ((1 + monthlyRate) ** periods) / (((1 + monthlyRate) ** periods) - 1) : amount / periods;
+    const total = payment * periods;
+    return {calculator_type:type, inputs:{amount,rate,years}, results:{payment,total,cost:Math.max(0,total-amount)}};
+  }
+  const expense = numberValue('[data-reserve="expense"]'); const dependants = numberValue('[data-reserve="dependants"]');
+  const months = numberValue('[data-reserve="months"]'); const current = numberValue('[data-reserve="current"]'); const target = expense * months * (1 + dependants * .05);
+  return {calculator_type:type, inputs:{expense,dependants,months,current}, results:{target,coverage:expense ? current / expense : 0,gap:Math.max(0,target-current)}};
+}
+
+async function saveCalculation(type, status, button) {
+  button.disabled = true; status.textContent = "Mentés folyamatban…";
+  try {
+    const response = await fetch('/api/calculations', {method:'POST', headers:{'Content-Type':'application/json','X-GoldenTor-Request':'1'}, body:JSON.stringify(calculationPayload(type))});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'A kalkuláció mentése nem sikerült.');
+    status.textContent = 'Kalkuláció elmentve a személyes fiókjába.';
+  } catch (error) { status.textContent = error.message || 'Kapcsolódási hiba. Próbálja újra.'; }
+  finally { button.disabled = false; }
+}
+
+document.querySelectorAll('[data-calculator-panel]').forEach((panel) => {
+  const type = panel.dataset.calculatorPanel;
+  const result = panel.querySelector('.calculator-result');
+  if (!result) return;
+  const button = document.createElement('button'); button.type = 'button'; button.className = 'button button-ghost calculation-save'; button.textContent = 'Kalkuláció mentése';
+  const status = document.createElement('p'); status.className = 'calculation-save-status'; status.setAttribute('role', 'status');
+  button.addEventListener('click', () => saveCalculation(type, status, button));
+  result.append(button, status);
+});
+
 calculateInvestment(); calculateLoan(); calculateReserve();
 translateCalculator();
+
+const requestedCalculator = location.hash.slice(1);
+if (["investment", "loan", "reserve"].includes(requestedCalculator)) {
+  document.querySelector(`[data-calculator-tab="${requestedCalculator}"]`)?.click();
+}

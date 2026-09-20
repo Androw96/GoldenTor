@@ -1,0 +1,113 @@
+            <article id="piackutatas" class="content-block insurance-market" data-insurance-market>
+              <div class="market-heading">
+                <div>
+                  <p class="eyebrow dark">VALIORA módszertan</p>
+                  <h2>Biztosítási piackutatási algoritmus</h2>
+                  <p>
+                    A Valiora módszertan összehasonlító logikája becsült díj, fedezeti pontszám,
+                    szolgáltatási elemek és kockázati szorzók alapján rendezi sorba a lehetséges irányokat.
+                  </p>
+                </div>
+                <div class="market-stamp">
+                  <strong>5</strong>
+                  <span>fő biztosítási terület</span>
+                </div>
+              </div>
+
+              <form class="market-form" data-market-form>
+                <label>
+                  <span>Biztosítás típusa</span>
+                  <select name="type">
+                    <option value="home">Lakásbiztosítás</option>
+                    <option value="casco">Casco</option>
+                    <option value="kgfb">KGFB</option>
+                    <option value="travel">Utasbiztosítás</option>
+                    <option value="health">Egészségbiztosítás</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Döntési prioritás</span>
+                  <select name="priority">
+                    <option value="balanced">Ár-érték arány</option>
+                    <option value="coverage">Legerősebb védelem</option>
+                    <option value="cheapest">Legalacsonyabb díj</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Életkor</span>
+                  <input name="age" type="number" min="18" max="85" value="52">
+                </label>
+                <label>
+                  <span>Város</span>
+                  <select name="city">
+                    <option>Győr</option>
+                    <option>Budapest</option>
+                    <option>Debrecen</option>
+                    <option>Szeged</option>
+                    <option>Pécs</option>
+                    <option>Székesfehérvár</option>
+                  </select>
+                </label>
+                <label data-market-field="home">
+                  <span>Ingatlan értéke</span>
+                  <select name="homeValue">
+                    <option value="normal">40-90 millió Ft</option>
+                    <option value="high">90 millió Ft felett</option>
+                    <option value="low">40 millió Ft alatt</option>
+                  </select>
+                </label>
+                <label data-market-field="vehicle">
+                  <span>Autó kora</span>
+                  <select name="carAge">
+                    <option value="mid">4-9 év</option>
+                    <option value="new">0-3 év</option>
+                    <option value="old">10+ év</option>
+                  </select>
+                </label>
+                <label data-market-field="vehicle">
+                  <span>Éves futás</span>
+                  <select name="mileage">
+                    <option value="normal">10-20 ezer km</option>
+                    <option value="low">10 ezer km alatt</option>
+                    <option value="high">20 ezer km felett</option>
+                  </select>
+                </label>
+                <label data-market-field="travel" hidden>
+                  <span>Utazás hossza</span>
+                  <select name="travelDays">
+                    <option value="week">6-10 nap</option>
+                    <option value="short">1-5 nap</option>
+                    <option value="long">11-21 nap</option>
+                  </select>
+                </label>
+
+                <fieldset>
+                  <legend>Elvárt szolgáltatás</legend>
+                  <label><input type="checkbox" name="extras" value="assistance" checked> 0-24 assistance</label>
+                  <label><input type="checkbox" name="extras" value="digital" checked> Online ügyintézés</label>
+                  <label><input type="checkbox" name="extras" value="fastClaim"> Gyorsított kárrendezés</label>
+                  <label><input type="checkbox" name="extras" value="premiumCare"> Prémium ügyfélszolgálat</label>
+                </fieldset>
+              </form>
+
+              <div class="market-summary" aria-live="polite">
+                <div>
+                  <span>Legjobb illeszkedés</span>
+                  <strong data-market-winner>-</strong>
+                </div>
+                <div>
+                  <span>Becsült havi díj</span>
+                  <strong data-market-price>-</strong>
+                </div>
+                <div>
+                  <span>Döntési ok</span>
+                  <strong data-market-reason>-</strong>
+                </div>
+              </div>
+
+              <div class="market-results" data-market-results></div>
+              <p class="market-note">
+                Fontos: ez piackutatási és döntés-előkészítő kalkuláció. A végleges ajánlatot minden esetben
+                biztosítói vagy alkuszi tarifamotor, szerződési feltétel és személyes kockázatellenőrzés erősíti meg.
+              </p>
+            </article>

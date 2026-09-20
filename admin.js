@@ -48,10 +48,10 @@ const defaultBlogPosts = [
 ];
 
 const defaultDesign = {
-  navy: "#04101b",
-  gold: "#c89b4a",
-  goldLight: "#f4d88d",
-  panel: "#071421",
+  navy: "#1b251e",
+  gold: "#668272",
+  goldLight: "#ebf150",
+  panel: "#263c2e",
   heroDarkness: "0.78",
   goldGlow: "0.14",
 };
@@ -87,8 +87,8 @@ function normalizeBlogPost(post = {}, index = 0) {
 
 const defaultSiteTexts = {
   home: {
-    eyebrow: "Privát pénzügyi döntéstámogatás",
-    title: "Bizalommal felépített vagyon, nyugodtabb döntések.",
+    eyebrow: "Személyes pénzügyi tanácsadás",
+    title: "Tisztán látni. Jól dönteni.",
     lead: "Segítünk átlátni, hogyan érdemes bánni a megtakarítással, ingatlannal, hitellel vagy biztosítással. Nem terméket erőltetünk, hanem érthető döntési sorrendet adunk.",
   },
   befektetes: {
@@ -252,6 +252,7 @@ document.querySelectorAll("[data-admin-tab]").forEach((button) => {
     document.querySelectorAll("[data-admin-panel]").forEach((panel) => { panel.hidden = panel.dataset.adminPanel !== button.dataset.adminTab; });
     if (button.dataset.adminTab === "bookings") await loadBookings();
     if (button.dataset.adminTab === "contacts") await loadContacts();
+    if (button.dataset.adminTab === "feedback") await loadFeedback();
     if (button.dataset.adminTab === "texts") await loadSiteTexts();
     if (button.dataset.adminTab === "blog") await loadBlogPosts();
     if (button.dataset.adminTab === "design") await loadDesign();
@@ -263,6 +264,7 @@ document.querySelectorAll("[data-admin-refresh]").forEach((button) => button.add
   const panel = button.closest("[data-admin-panel]").dataset.adminPanel;
   if (panel === "bookings") await loadBookings();
   if (panel === "contacts") await loadContacts();
+  if (panel === "feedback") await loadFeedback();
   if (panel === "overview") await loadStats();
 }));
 
@@ -501,3 +503,16 @@ document.querySelector("[data-admin-logout]").addEventListener("click", () => {
 });
 
 if (adminKey) enterDashboard().catch(() => sessionStorage.removeItem("goldenTorAdminKey"));
+
+async function loadFeedback() {
+  const status = document.querySelector('[data-feedback-admin-status]');
+  try {
+    const result = await adminFetch('/api/admin/feedback');
+    document.querySelector('[data-feedback-rows]').replaceChildren(...result.items.map(item => {
+      const row = document.createElement('tr');
+      [item.created_at, `${item.name} (${item.email})`, item.expert, `${item.rating} / 5`, item.message].forEach(value => textCell(row, value));
+      return row;
+    }));
+    status.textContent = result.items.length ? '' : 'Még nem érkezett visszajelzés.';
+  } catch (error) { status.textContent = error.message; }
+}

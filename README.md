@@ -36,7 +36,7 @@ Valódi szakértői profil feltöltéséhez az admin `JSON tartalom` lapján has
 
 ## Kalkulátorok
 
-A `kalkulatorok.html` befektetési növekedés-, hiteltörlesztés- és védelmi tartalék-kalkulátort tartalmaz. Ezek tájékoztató modellek, nem minősülnek ajánlatnak vagy hozamígéretnek.
+A kalkulátorok és a Valiora módszertan kizárólag bejelentkezés után érhetők el. A `kalkulatorok.html` befektetési növekedés-, hiteltörlesztés- és védelmi tartalék-kalkulátort tartalmaz. Ezek tájékoztató modellek, nem minősülnek ajánlatnak vagy hozamígéretnek.
 
 ## Tesztek
 
@@ -51,3 +51,21 @@ python3 -m unittest discover -s tests
 - SMTP és végleges publikus URL beállítása;
 - Google/Microsoft OAuth kulcsok megadása, ha kétirányú naptárszinkron szükséges;
 - HTTPS reverse proxy és rendszeres adatbázismentés beállítása.
+
+## Személyes ügyfélfiók
+
+A `fiok.html` oldalon regisztráció, bejelentkezés, név/telefonszám szerkesztés és kijelentkezés érhető el. A fiók különálló a foglalási tokenes ügyfélportáltól; regisztrációval nem kapcsolunk össze korábbi foglalásokat ellenőrizetlen e-mail-cím alapján. A jelszó scrypt kivonatként, egyedi sóval tárolódik. A szerver által ellenőrzött munkamenet 8 órás, HttpOnly és SameSite=Lax sütivel; HTTPS publikus URL esetén Secure attribútummal.
+
+A `GOLDENTOR_PUBLIC_URL` pontosan egyezzen a böngészőben használt origin értékével (protokoll, domain és port). Az ügyfélfiók API idegen eredetű POST kéréseket elutasít. Az éles oldalt HTTPS mögött kell futtatni. Az új oldalakat a `server.py` szolgálja ki: általános statikus tárhely vagy a védett fájlokat közvetlenül kiszolgáló reverse proxy nem biztosítja a hozzáférésvédelmet. A `private/valiora.html` csak hitelesített API-n át érhető el. A kalkulátor HTML és az eszközök JavaScriptje GET és HEAD esetén is védett.
+
+A regisztráció jelenleg közvetlenül létrehozza a fiókot; e-mail-megerősítés és automatikus elfelejtettjelszó-folyamat nincs. A visszajelzéseket a szakértői oldal bejelentkezett űrlapja menti; az admin **Visszajelzések** lapján olvashatók, nyilvánosan nem jelennek meg.
+
+## Megjelenés és fejlécvideó
+
+A főoldal sorrendje: fejlécvideó → Rólunk (pénzügyi döntési rend és időtálló szemlélet) → Szolgáltatások → Kalkulátor → Blog → Kapcsolat. A színpaletta a Gutmann hivatalos weboldalának 2026. szeptember 18-án ellenőrzött színein alapul: `#1b251e`, `#668272`, `#f8f3ee`, `#ebf150`. Az adminban mentett egyedi színbeállítások továbbra is felülírhatják az alap tokeneket.
+
+Az `assets/market-loop.mp4` saját, 10 másodperces, ismétlődő, illusztratív animáció; a számok nem élő árfolyamok. Szüneteltethető, csökkentett mozgás beállításnál állóképpel indul. Újragenerálás macOS-en: `swift scripts/generate_market_video.swift`. A videóhoz nem kell külső szolgáltatás.
+
+## A megjelenés szerkesztése
+
+A 2026. szeptember 20-i átdolgozás önálló `site.css` stíluslapot használ a főoldalon. Az aloldalakon ez a fájl biztosítja az egységes fejlécet, láblécet, tipográfiát és űrlapokat a régebbi `styles.css` elrendezései felett. A főoldal szolgáltatásonként egy kártyát tartalmaz, az ismétlődő hosszú blokkok a részletes aloldalakon olvashatók. A főoldali blogelőnézet a publikált adminisztrátori cikkeket is követi; tartalom nélkül a beépített cikkekre mutat.

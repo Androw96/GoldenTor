@@ -63,7 +63,9 @@ Az oldalak tartalomjegyzéke az adott részhez görget. A cselekvésre ösztönz
 
 ## 5. Pénzügyi kalkulátorok
 
-A kalkulátorok a `kalkulatorok.html` oldalon érhetők el.
+A kalkulátorok a `kalkulatorok.html` oldalon, regisztráció és bejelentkezés után érhetők el. A Finanszírozás oldali link közvetlenül a Hitel kalkulátorra vezet. A Valiora módszertan szintén ügyfélfiókhoz kötött.
+
+A `fiok.html` oldalon hozható létre fiók, szerkeszthető a név és telefonszám, illetve innen lehet kijelentkezni. A munkamenet legfeljebb 8 órás. A Szakértőink oldal Visszajelzések rovatában belépés után értékelés küldhető. A beérkezett visszajelzéseket az admin Visszajelzések lapja listázza; ezek nem kerülnek automatikusan a nyilvános oldalra.
 
 ### Vagyonépítési kalkulátor
 

@@ -20,34 +20,17 @@
     <link rel="icon" type="image/png" href="assets/favicon.png?v=2">
     <link rel="apple-touch-icon" href="assets/favicon.png?v=2">
     <link rel="stylesheet" href="styles.css?v=20">
-  </head>
+  <link rel="stylesheet" href="site.css?v=1">
+</head>
   <body data-page="ingatlan">
-    <header class="site-header" data-header>
-      <a class="brand" href="index.html" aria-label="Golden Tor Consulting főoldal">
-        <span class="brand-mark">
-          <img src="assets/goldentor_logo_gold.png" alt="">
-        </span>
-        <span>Golden Tor Consulting</span>
-      </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span class="sr-only">Menü megnyitása</span>
-      </button>
-      <nav class="site-nav" id="site-nav" data-nav>
-        <a href="index.html" data-page-link="home">Főoldal</a>
-        <a href="befektetes.html" data-page-link="befektetes">Befektetés</a>
-        <a href="ingatlan.html" data-page-link="ingatlan">Ingatlan</a>
-        <a href="finanszirozas.html" data-page-link="finanszirozas">Finanszírozás</a>
-        <a href="biztositas.html" data-page-link="biztositas">Biztosítás</a>
-        <a href="szakertoink.html" data-page-link="szakertoink">Szakértőink</a>
-        <a href="blog.html" data-page-link="blog">Blog</a>
-        <a href="idopont.html" data-page-link="idopont">Időpont</a>
-      </nav>
-    </header>
+    <a class="skip-link" href="#main-content">Ugrás a tartalomra</a>
+<header class="site-header" data-header>
+<a class="brand" href="index.html" aria-label="Golden Tor Consulting főoldal"><span class="brand-mark"><img src="assets/goldentor_logo_gold.png" alt=""></span><span class="brand-name">Golden Tor<small>CONSULTING</small></span></a>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle><span></span><span></span><span></span><span class="sr-only">Menü megnyitása</span></button>
+<nav class="site-nav" id="site-nav" data-nav><a href="index.html#rolunk" data-page-link="rolunk">Rólunk</a><a href="index.html#szolgaltatasok" data-page-link="szolgaltatasok">Szolgáltatások</a><a href="kalkulatorok.html" data-page-link="kalkulatorok">Kalkulátor</a><a href="szakertoink.html" data-page-link="szakertoink">Szakértőink</a><a href="blog.html" data-page-link="blog">Blog</a><a href="idopont.html" data-page-link="idopont">Időpontfoglalás <span aria-hidden="true">↗</span></a><a class="account-nav-link" href="fiok.html" data-account-link>Bejelentkezés</a></nav>
+</header>
 
-    <main>
+    <main id="main-content">
       <section class="detail-hero" style="--detail-image: url('assets/real-estate.webp')">
         <div class="container detail-hero-grid">
           <div>
@@ -183,9 +166,8 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <p>© 2026 Golden Tor Consulting. Minden jog fenntartva.</p>
-    </footer>
-    <script src="script.js?v=10"></script>
+    <footer class="site-footer"><div class="container footer-grid"><div><a class="footer-brand" href="index.html">Golden Tor Consulting</a><p>Átlátható pénzügyi döntések.<br>Személyes figyelem, hosszú távú szemlélet.</p></div><nav aria-label="Lábléc szolgáltatások"><h2>Szolgáltatások</h2><a href="befektetes.html">Befektetés</a><a href="ingatlan.html">Ingatlan</a><a href="finanszirozas.html">Finanszírozás</a><a href="biztositas.html">Biztosítás</a></nav><nav aria-label="Lábléc navigáció"><h2>Golden Tor</h2><a href="index.html#rolunk">Rólunk</a><a href="szakertoink.html">Szakértőink</a><a href="blog.html">Blog</a><a href="fiok.html">Személyes fiók</a><a href="kalkulatorok.html">Kalkulátor</a></nav><div><h2>Kapcsolat</h2><a href="mailto:info@goldentor.hu">info@goldentor.hu</a><a href="tel:+36207456490">+36 20 745 6490</a><p>9023 Győr, Bartók Béla út 44.</p><a href="idopont.html">Időpontfoglalás ↗</a></div></div><div class="container footer-bottom"><p>© 2026 Golden Tor Consulting. Minden jog fenntartva.</p><nav class="footer-links" aria-label="Jogi információk"><a href="impresszum.html">Impresszum</a><a href="adatkezeles.html">Adatkezelés</a><a href="jogi-nyilatkozat.html">Jogi nyilatkozat</a><button type="button" data-cookie-settings>Cookie-beállítások</button></nav></div></footer>
+    <script src="script.js?v=12"></script>
+    <script src="account.js?v=1"></script>
   </body>
 </html>
