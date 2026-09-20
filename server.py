@@ -105,9 +105,27 @@ def init_db() -> None:
             """
         )
         init_accounts(connection)
+        migrate_legacy_home_content(connection)
         booking_columns = {row["name"] for row in connection.execute("PRAGMA table_info(bookings)")}
         if "reminder_sent_at" not in booking_columns:
             connection.execute("ALTER TABLE bookings ADD COLUMN reminder_sent_at TEXT")
+
+
+def migrate_legacy_home_content(connection: sqlite3.Connection) -> None:
+    """Keep a pre-redesign default CMS entry from overriding the new hero."""
+    row = connection.execute("SELECT payload FROM content WHERE content_key='site_texts' AND language='hu'").fetchone()
+    if not row:
+        return
+    try:
+        payload = json.loads(row["payload"])
+        home = payload.get("home", {})
+    except (TypeError, json.JSONDecodeError):
+        return
+    if home.get("title") != "Bizalommal felépített vagyon, nyugodtabb döntések.":
+        return
+    payload.pop("home", None)
+    connection.execute("UPDATE content SET payload=?,updated_at=? WHERE content_key='site_texts' AND language='hu'",
+        (json.dumps(payload, ensure_ascii=False), utc_now()))
 
 
 def utc_now() -> str:

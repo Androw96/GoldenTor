@@ -62,6 +62,8 @@ class AccountHTTPTests(unittest.TestCase):
                 self.assertEqual(status, 303, path); self.assertTrue(headers['Location'].startswith('/fiok.html?next='))
         for path in ['/calculator.js', '/insurance-market.js', '/api/member/valiora']:
             self.assertEqual(self.request(path)[0], 401, path)
+        self.assertEqual(self.request('/api/calculations')[0], 401)
+        self.assertEqual(self.request('/api/admin/customers')[0], 401)
         for path in ['/private/valiora.html','/data/goldentor.sqlite3','/.env','/server.py','/accounts.py','/.git/config','/assets/../private/valiora.html']:
             self.assertEqual(self.request(path)[0], 404, path)
         self.assertNotIn(b'data-market-form', self.request('/biztositas.html')[2])
@@ -122,5 +124,11 @@ class AccountHTTPTests(unittest.TestCase):
         self.assertEqual(saved[0]['calculator_type'], 'investment')
         self.assertEqual(saved[0]['inputs']['capital'], 5000000)
         self.assertEqual(self.request('/api/calculations', {'calculator_type':'loan','inputs':{},'results':{}})[0], 400)
+        self.assertEqual(self.request('/api/calculations', payload, headers={'Origin':'https://evil.example'})[0], 403)
+        status, _, body = self.request('/api/admin/customers', headers={'X-Admin-Key':'test-admin'})
+        self.assertEqual(status, 200)
+        customer = json.loads(body)['items'][0]
+        self.assertEqual(customer['calculation_count'], 1)
+        self.assertNotIn('password_hash', customer)
 
 if __name__=='__main__': unittest.main()
