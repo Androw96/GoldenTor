@@ -1,0 +1,14 @@
+<?php
+// Copy to config.php on the UNAS server. Do not commit the real config.php.
+return [
+    'database' => [
+        'host' => 'localhost',
+        'name' => 'UNAS_MYSQL_DATABASE_NAME',
+        'user' => 'UNAS_MYSQL_USER_NAME',
+        'password' => 'replace-with-a-long-random-password',
+    ],
+    'public_url' => 'https://goldentor.hu',
+    'admin_key' => 'replace-with-a-long-random-admin-key',
+    'contact_recipient' => 'info@goldentor.hu',
+    'mail_from' => 'info@goldentor.hu',
+];

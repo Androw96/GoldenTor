@@ -1,4 +1,5 @@
 .env
+unas/config.php
 data/*.sqlite3
 data/backups/*.sqlite3
 data/outbox.log

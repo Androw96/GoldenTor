@@ -1,0 +1,24 @@
+Options -Indexes
+RewriteEngine On
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: https://www.google.com https://maps.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; frame-src https://www.google.com; connect-src 'self'"
+</IfModule>
+
+# Preserve the existing /api/... URLs while running the API on PHP/MySQL.
+RewriteRule ^api/(.*)$ unas/api.php?route=$1 [QSA,L]
+
+# These resources contain the account-only tools and are never served as plain files.
+RewriteRule ^kalkulatorok\.html$ unas/protected.php?page=kalkulatorok [QSA,L]
+RewriteRule ^calculator\.js$ unas/protected.php?asset=calculator [QSA,L]
+RewriteRule ^insurance-market\.js$ unas/protected.php?asset=insurance [QSA,L]
+
+# Server-side source, local data and deployment material are never public.
+RewriteRule ^(?:private|data|deploy|tests|scripts)/ - [F,L]
+RewriteRule ^(?:server|accounts)\.py$ - [F,L]
+RewriteRule ^unas/(?:config\.php|schema\.sql|config\.php\.example|reminders\.php)$ - [F,L]
