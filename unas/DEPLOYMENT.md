@@ -6,7 +6,7 @@ Az UNAS webtárhely PHP 8, MySQL, FTP, cron és SSL szolgáltatását használja
 
 1. Az UNAS tárhely adminfelületén hozd létre a `goldentor` MySQL adatbázist és egy csak ehhez tartozó MySQL felhasználót. Adj neki hosszú, egyedi jelszót.
 2. Nyisd meg a PHPMyAdmin felületet, válaszd ki az új adatbázist, és importáld az `unas/schema.sql` fájlt.
-3. A tárhely fájlkezelőjében vagy SFTP-n töltsd fel a projekt fájljait a `goldentor.hu` webgyökérkönyvtárába. A `.git`, `data`, `deploy`, `tests`, `scripts`, `server.py` és `accounts.py` mappák/fájlok nem szükségesek a feltöltéshez.
+3. A tárhely fájlkezelőjében vagy SFTP-n töltsd fel a projekt fájljait a `goldentor.hu` webgyökérkönyvtárába, a gyökérben található `.htaccess` fájllal együtt. A `.git`, `data`, `deploy`, `tests`, `scripts`, `server.py` és `accounts.py` mappák/fájlok nem szükségesek a feltöltéshez.
 4. Másold az `unas/config.php.example` fájlt `unas/config.php` néven, majd töltsd ki a tényleges MySQL adatokkal és egy minimum 32 véletlen bájtból készült admin kulccsal. A fájlt a `.htaccess` tiltja a nyilvános eléréstől.
 5. Állítsd a `goldentor.hu` és a `www.goldentor.hu` webhelyet erre a tárhelyre, majd kapcsold be az UNAS SSL tanúsítványát.
 6. Nyisd meg a `https://goldentor.hu/api/health` címet. A válaszban `"ok":true` jelenik meg, ha a PHP és MySQL kapcsolat működik.
