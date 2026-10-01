@@ -1,0 +1,29 @@
+[Unit]
+Description=Golden Tor Consulting web application
+After=network.target
+
+[Service]
+Type=simple
+User=goldentor
+Group=goldentor
+WorkingDirectory=/opt/goldentor
+EnvironmentFile=-/opt/goldentor/.env
+ExecStart=/usr/bin/python3 /opt/goldentor/server.py
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+
+# The application only needs to read its code and write its own data directory.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+ProtectKernelTunables=true
+ProtectControlGroups=true
+ProtectKernelModules=true
+LockPersonality=true
+RestrictSUIDSGID=true
+ReadWritePaths=/opt/goldentor/data
+
+[Install]
+WantedBy=multi-user.target

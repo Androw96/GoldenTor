@@ -52,8 +52,18 @@ ADMIN_KEY = os.getenv("GOLDENTOR_ADMIN_KEY") or secrets.token_urlsafe(24)
 PUBLIC_BASE_URL = os.getenv("GOLDENTOR_PUBLIC_URL", f"http://{HOST}:{PORT}").rstrip("/")
 
 
+class DatabaseConnection(sqlite3.Connection):
+    """Commit or roll back a transaction, then release the SQLite handle."""
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        try:
+            return super().__exit__(exc_type, exc_value, traceback)
+        finally:
+            self.close()
+
+
 def db() -> sqlite3.Connection:
-    connection = sqlite3.connect(DB_PATH)
+    connection = sqlite3.connect(DB_PATH, factory=DatabaseConnection)
     connection.row_factory = sqlite3.Row
     connection.execute("PRAGMA foreign_keys = ON")
     return connection

@@ -52,6 +52,10 @@ python3 -m unittest discover -s tests
 - Google/Microsoft OAuth kulcsok megadása, ha kétirányú naptárszinkron szükséges;
 - HTTPS reverse proxy és rendszeres adatbázismentés beállítása.
 
+## Ingyenes éles szerver
+
+A teljes alkalmazás nem tölthető fel Google Sites-ba, mert a Google Sites nem futtat Python szervert vagy SQLite-adatbázist. A jelenlegi, belépéses ügyfélportálhoz az ingyenes Oracle Cloud Always Free Ubuntu VM-re való telepítés előkészítve megtalálható a [deploy/oracle-deployment.md](deploy/oracle-deployment.md) útmutatóban. A `deploy/oracle-bootstrap.sh` telepíti az alkalmazást, Nginxet és a HTTPS-t; közben a szolgáltatás csak belső hálózati porton marad elérhető.
+
 ## Személyes ügyfélfiók
 
 A `fiok.html` oldalon regisztráció, bejelentkezés, név/telefonszám szerkesztés és kijelentkezés érhető el. A fiók különálló a foglalási tokenes ügyfélportáltól; regisztrációval nem kapcsolunk össze korábbi foglalásokat ellenőrizetlen e-mail-cím alapján. A jelszó scrypt kivonatként, egyedi sóval tárolódik. A szerver által ellenőrzött munkamenet 8 órás, HttpOnly és SameSite=Lax sütivel; HTTPS publikus URL esetén Secure attribútummal.

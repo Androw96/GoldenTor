@@ -1,5 +1,6 @@
 import tempfile
 import unittest
+import sqlite3
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
@@ -101,6 +102,13 @@ class GoldenTorBackendTest(unittest.TestCase):
         basic = "Basic YWRtaW46Y2hhbmdlLW1lLWxvY2Fs"
         basic_handler = FakeAuthHandler({"Authorization": basic})
         self.assertFalse(server.GoldenTorHandler.admin_authorized(basic_handler))
+
+    def test_database_context_releases_connection(self):
+        connection = server.db()
+        with connection:
+            connection.execute("SELECT 1")
+        with self.assertRaises(sqlite3.ProgrammingError):
+            connection.execute("SELECT 1")
 
 
 if __name__ == "__main__":
