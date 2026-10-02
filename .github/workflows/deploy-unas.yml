@@ -39,33 +39,33 @@ jobs:
           EOF
           sed "s/__GOLDENTOR_SETUP_KEY__/$UNAS_SETUP_KEY/g" unas/setup.php.template > unas/setup.php
 
-      - name: Sync release over FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          server: ${{ secrets.UNAS_FTP_HOST }}
-          username: ${{ secrets.UNAS_FTP_USERNAME }}
-          password: ${{ secrets.UNAS_FTP_PASSWORD }}
-          port: 21
-          protocol: ftp
-          local-dir: ./
-          server-dir: ./
-          state-name: .goldentor-deploy-state.json
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*/**
-            **/.github/**
-            **/__pycache__/**
-            .env
-            .env.example
-            Dockerfile
-            HASZNALATI_UTMUTATO.md
-            README.md
-            accounts.py
-            server.py
-            data/**
-            deploy/**
-            scripts/**
-            tests/**
-            unas/config.php.example
-            unas/DEPLOYMENT.md
-            unas/setup.php.template
+      - name: Sync release over FTP
+        env:
+          UNAS_FTP_HOST: ${{ secrets.UNAS_FTP_HOST }}
+          UNAS_FTP_USERNAME: ${{ secrets.UNAS_FTP_USERNAME }}
+          UNAS_FTP_PASSWORD: ${{ secrets.UNAS_FTP_PASSWORD }}
+        run: |
+          test -n "$UNAS_FTP_HOST"
+          test -n "$UNAS_FTP_USERNAME"
+          test -n "$UNAS_FTP_PASSWORD"
+          netrc_file="$(mktemp)"
+          trap 'rm -f "$netrc_file"' EXIT
+          umask 077
+          cat > "$netrc_file" <<EOF
+          machine $UNAS_FTP_HOST
+          login $UNAS_FTP_USERNAME
+          password $UNAS_FTP_PASSWORD
+          EOF
+          find . \
+            \( -path './.git' -o -path './.github' -o -path './__pycache__' \
+              -o -path './data' -o -path './deploy' -o -path './scripts' -o -path './tests' \) -prune -o \
+            -type f -print0 | while IFS= read -r -d '' source; do
+              relative_path=${source#./}
+              case "$relative_path" in
+                .env|.env.example|Dockerfile|HASZNALATI_UTMUTATO.md|README.md|accounts.py|server.py|unas/config.php.example|unas/DEPLOYMENT.md|unas/setup.php.template)
+                  continue
+                  ;;
+              esac
+              curl --fail --silent --show-error --retry 3 --retry-all-errors --ftp-pasv --ftp-create-dirs \
+                --netrc-file "$netrc_file" --upload-file "$source" "ftp://$UNAS_FTP_HOST/$relative_path"
+            done
