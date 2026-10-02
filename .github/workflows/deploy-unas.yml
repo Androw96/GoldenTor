@@ -66,6 +66,7 @@ jobs:
                   continue
                   ;;
               esac
-              curl --fail --silent --show-error --retry 3 --retry-all-errors --ftp-pasv --ftp-create-dirs \
+              curl --fail --silent --show-error --retry 2 --retry-all-errors --connect-timeout 15 --max-time 90 \
+                --ftp-pasv --disable-epsv --ftp-skip-pasv-ip --ftp-create-dirs \
                 --netrc-file "$netrc_file" --upload-file "$source" "ftp://$UNAS_FTP_HOST/$relative_path"
             done
