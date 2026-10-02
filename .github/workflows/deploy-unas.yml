@@ -1,0 +1,72 @@
+name: Deploy Golden Tor to UNAS
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Create private runtime files
+        env:
+          UNAS_DB_PASSWORD: ${{ secrets.UNAS_DB_PASSWORD }}
+          UNAS_ADMIN_KEY: ${{ secrets.UNAS_ADMIN_KEY }}
+          UNAS_SETUP_KEY: ${{ secrets.UNAS_SETUP_KEY }}
+        run: |
+          test -n "$UNAS_DB_PASSWORD"
+          test -n "$UNAS_ADMIN_KEY"
+          test -n "$UNAS_SETUP_KEY"
+          umask 077
+          cat > unas/config.php <<EOF
+          <?php
+          return [
+              'database' => [
+                  'host' => 'localhost',
+                  'name' => 'smokebros_goldentor',
+                  'user' => 'smokebros_golden',
+                  'password' => '$UNAS_DB_PASSWORD',
+              ],
+              'public_url' => 'https://goldentor.hu',
+              'admin_key' => '$UNAS_ADMIN_KEY',
+              'contact_recipient' => 'info@goldentor.hu',
+              'mail_from' => 'info@goldentor.hu',
+          ];
+          EOF
+          sed "s/__GOLDENTOR_SETUP_KEY__/$UNAS_SETUP_KEY/g" unas/setup.php.template > unas/setup.php
+
+      - name: Sync release over FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.UNAS_FTP_HOST }}
+          username: ${{ secrets.UNAS_FTP_USERNAME }}
+          password: ${{ secrets.UNAS_FTP_PASSWORD }}
+          port: 21
+          protocol: ftps
+          security: loose
+          local-dir: ./
+          server-dir: ./
+          state-name: .goldentor-deploy-state.json
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*/**
+            **/.github/**
+            **/__pycache__/**
+            .env
+            .env.example
+            Dockerfile
+            HASZNALATI_UTMUTATO.md
+            README.md
+            accounts.py
+            server.py
+            data/**
+            deploy/**
+            scripts/**
+            tests/**
+            unas/config.php.example
+            unas/DEPLOYMENT.md
+            unas/setup.php.template
