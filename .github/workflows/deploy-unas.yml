@@ -46,8 +46,7 @@ jobs:
           username: ${{ secrets.UNAS_FTP_USERNAME }}
           password: ${{ secrets.UNAS_FTP_PASSWORD }}
           port: 21
-          protocol: ftps
-          security: loose
+          protocol: ftp
           local-dir: ./
           server-dir: ./
           state-name: .goldentor-deploy-state.json
