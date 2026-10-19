@@ -11,9 +11,10 @@
     } catch { return null; }
   }
   async function post(url, payload) {
-    const response = await fetch(url, {method:'POST', headers:{'Content-Type':'application/json', 'X-GoldenTor-Request':'1'}, body:JSON.stringify(payload)});
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'A művelet nem sikerült.');
+    const response = await fetch(url, {method:'POST', credentials:'same-origin', headers:{'Content-Type':'application/json', 'X-GoldenTor-Request':'1'}, body:JSON.stringify(payload)});
+    let data = {};
+    try { data = await response.json(); } catch { data = {}; }
+    if (!response.ok) throw new Error(data.error || `A művelet nem sikerült (hibakód: ${response.status}). Kérjük, próbálja újra.`);
     return data;
   }
   async function submit(form, status, operation) {
@@ -98,7 +99,10 @@
               const card = document.createElement('article'); const title = document.createElement('strong'); const detail = document.createElement('span');
               title.textContent = labels[item.calculator_type] || 'Kalkuláció';
               const value = item.calculator_type === 'loan' ? item.results.payment : item.calculator_type === 'reserve' ? item.results.target : item.results.total;
-              detail.textContent = `${money.format(value)} · ${new Date(item.created_at).toLocaleDateString('hu-HU')}`;
+              // MySQL returns "YYYY-MM-DD HH:MM:SS" in UTC; Safari cannot parse that form without the "T".
+              const created = new Date(String(item.created_at || '').replace(' ', 'T') + (/[zZ]|[+-]\d\d:?\d\d$/.test(item.created_at || '') ? '' : 'Z'));
+              const createdLabel = Number.isNaN(created.getTime()) ? '' : ` · ${created.toLocaleDateString('hu-HU')}`;
+              detail.textContent = `${money.format(Number(value) || 0)}${createdLabel}`;
               card.append(title, detail); list.append(card);
             });
           }

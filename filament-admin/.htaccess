@@ -1,0 +1,9 @@
+# Deployed as /admin-panel/.htaccess on the UNAS host: nothing in the Laravel app folder is
+# directly reachable (vendor, storage, .env, ...). public/ has its own .htaccess and stays reachable.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^ - [F,L]
+</IfModule>
+<IfModule !mod_rewrite.c>
+    Deny from all
+</IfModule>

@@ -1,0 +1,8 @@
+-- SQLite version of unas/schema.sql, used only by the CI smoke test.
+CREATE TABLE contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, created_at TEXT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL, phone TEXT NOT NULL DEFAULT '', topic TEXT NOT NULL, message TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'new');
+CREATE TABLE bookings (id INTEGER PRIMARY KEY AUTOINCREMENT, public_token TEXT NOT NULL UNIQUE, created_at TEXT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL, phone TEXT NOT NULL DEFAULT '', topic TEXT NOT NULL, meeting TEXT NOT NULL, booking_date TEXT NOT NULL, booking_time TEXT NOT NULL, message TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'requested', active_slot TEXT NULL UNIQUE, reminder_sent_at TEXT NULL);
+CREATE TABLE content (content_key TEXT NOT NULL, language TEXT NOT NULL, title TEXT NOT NULL, payload TEXT NOT NULL, updated_at TEXT NOT NULL, PRIMARY KEY (content_key, language));
+CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT NOT NULL UNIQUE, name TEXT NOT NULL, phone TEXT NOT NULL DEFAULT '', password_hash TEXT NOT NULL, created_at TEXT NOT NULL);
+CREATE TABLE feedback (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE, expert TEXT NOT NULL, rating INTEGER NOT NULL, message TEXT NOT NULL, created_at TEXT NOT NULL);
+CREATE TABLE calculations (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE, calculator_type TEXT NOT NULL, inputs_json TEXT NOT NULL, results_json TEXT NOT NULL, created_at TEXT NOT NULL);
+CREATE TABLE rate_limits (rate_key TEXT PRIMARY KEY, window_started TEXT NOT NULL, request_count INTEGER NOT NULL);

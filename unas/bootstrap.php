@@ -35,6 +35,7 @@ function db(): PDO {
 function start_session(): void {
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_name('goldentor_session');
+        ini_set('session.gc_maxlifetime', (string) (8 * 60 * 60));
         session_set_cookie_params([
             'lifetime' => 0,
             'path' => '/',
@@ -69,7 +70,7 @@ function request_json(): array {
     return $payload;
 }
 
-function clean_text(mixed $value, int $limit, bool $required = true): string {
+function clean_text($value, int $limit, bool $required = true): string {
     $value = preg_replace('/\s+/u', ' ', trim((string) ($value ?? '')));
     if ($required && $value === '') {
         throw new InvalidArgumentException('Kötelező mező hiányzik.');
@@ -104,11 +105,34 @@ function require_user(): array {
     return $user;
 }
 
+/**
+ * Origins accepted for account API calls: the configured public URL, its www / non-www
+ * twin, and the origin of the host that actually served this request.
+ */
+function allowed_origins(): array {
+    $origins = [];
+    $public = parse_url((string) config()['public_url']);
+    if (!empty($public['scheme']) && !empty($public['host'])) {
+        $scheme = strtolower($public['scheme']);
+        $host = strtolower($public['host']);
+        $port = isset($public['port']) ? ':' . $public['port'] : '';
+        $bare = preg_replace('/^www\./', '', $host);
+        $origins[] = "{$scheme}://{$bare}{$port}";
+        $origins[] = "{$scheme}://www.{$bare}{$port}";
+    }
+    $requestHost = strtolower((string) ($_SERVER['HTTP_HOST'] ?? ''));
+    if ($requestHost !== '' && preg_match('/^[a-z0-9.-]+(:\d+)?$/', $requestHost)) {
+        $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+            || strtolower((string) ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '')) === 'https';
+        $origins[] = ($https ? 'https' : 'http') . '://' . $requestHost;
+    }
+    return array_values(array_unique($origins));
+}
+
 function require_same_origin(): void {
-    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-    $expected = rtrim(config()['public_url'], '/');
-    if (($_SERVER['HTTP_X_GOLDENTOR_REQUEST'] ?? '') !== '1' || ($origin !== '' && !hash_equals($expected, $origin))) {
-        json_response(['error' => 'Érvénytelen kérés eredete.'], 403);
+    $origin = strtolower(rtrim((string) ($_SERVER['HTTP_ORIGIN'] ?? ''), '/'));
+    if (($_SERVER['HTTP_X_GOLDENTOR_REQUEST'] ?? '') !== '1' || ($origin !== '' && !in_array($origin, allowed_origins(), true))) {
+        json_response(['error' => 'Érvénytelen kérés eredete. Kérjük, frissítse az oldalt, és próbálja újra.'], 403);
     }
 }
 

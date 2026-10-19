@@ -1,0 +1,154 @@
+<?php
+declare(strict_types=1);
+
+/*
+ * Golden Tor – Filament admin installer on the UNAS host.
+ * Uploaded by .github/workflows/deploy-admin.yml together with data/admin-panel.tar.gz,
+ * then called once over HTTPS with the setup key header. It:
+ *   1. checks the PHP requirements (nothing is touched if they are not met),
+ *   2. unpacks the release next to the live copy,
+ *   3. carries over storage/ (sessions, logs, uploads),
+ *   4. swaps the folders and runs the database migrations (admin tables only).
+ */
+
+const SETUP_KEY = '__GOLDENTOR_SETUP_KEY__';
+
+header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
+
+function finish(array $payload, int $status = 200): void
+{
+    http_response_code($status);
+    echo json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+    exit;
+}
+
+function remove_tree(string $path): void
+{
+    if (!file_exists($path) && !is_link($path)) {
+        return;
+    }
+    if (is_file($path) || is_link($path)) {
+        @unlink($path);
+        return;
+    }
+    $items = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS),
+        RecursiveIteratorIterator::CHILD_FIRST
+    );
+    foreach ($items as $item) {
+        $item->isDir() && !$item->isLink() ? @rmdir($item->getPathname()) : @unlink($item->getPathname());
+    }
+    @rmdir($path);
+}
+
+$providedKey = (string) ($_SERVER['HTTP_X_GOLDENTOR_SETUP_KEY'] ?? '');
+if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST' || SETUP_KEY === '' || strpos(SETUP_KEY, '__GOLDENTOR') === 0 || !hash_equals(SETUP_KEY, $providedKey)) {
+    http_response_code(404);
+    exit;
+}
+
+@set_time_limit(600);
+@ini_set('memory_limit', '512M');
+ignore_user_abort(true);
+
+$root = dirname(__DIR__);
+$archive = $root . '/data/admin-panel.tar.gz';
+$live = $root . '/admin-panel';
+$next = $root . '/admin-panel-next';
+$previous = $root . '/admin-panel-previous';
+$log = [];
+
+// 1. Requirements of Laravel 10 + Filament 3.
+$missing = [];
+if (PHP_VERSION_ID < 80100) {
+    $missing[] = 'PHP >= 8.1 (most: ' . PHP_VERSION . ')';
+}
+foreach (['ctype', 'fileinfo', 'filter', 'hash', 'intl', 'json', 'mbstring', 'openssl', 'pdo', 'pdo_mysql', 'session', 'tokenizer', 'xml', 'dom', 'zlib', 'phar'] as $extension) {
+    if (!extension_loaded($extension)) {
+        $missing[] = 'ext-' . $extension;
+    }
+}
+if ($missing) {
+    finish(['ok' => false, 'step' => 'requirements', 'missing' => $missing, 'php' => PHP_VERSION], 500);
+}
+if (!is_file($archive)) {
+    finish(['ok' => false, 'step' => 'archive', 'error' => 'data/admin-panel.tar.gz nem található.'], 500);
+}
+
+try {
+    // 2. Unpack the new release.
+    remove_tree($next);
+    $phar = new PharData($archive);
+    $phar->extractTo($next, null, true);
+    unset($phar);
+    if (!is_file($next . '/public/index.php') || !is_file($next . '/vendor/autoload.php')) {
+        throw new RuntimeException('A kicsomagolt csomag hiányos.');
+    }
+    $log[] = 'kicsomagolva';
+
+    // 3. Keep runtime data from the live copy.
+    if (is_dir($live . '/storage')) {
+        remove_tree($next . '/storage');
+        if (!@rename($live . '/storage', $next . '/storage')) {
+            throw new RuntimeException('A storage mappa nem helyezhető át.');
+        }
+        $log[] = 'storage megtartva';
+    }
+    foreach (['storage/app/public', 'storage/app/livewire-tmp', 'storage/framework/cache/data', 'storage/framework/sessions', 'storage/framework/views', 'storage/logs', 'bootstrap/cache'] as $directory) {
+        if (!is_dir($next . '/' . $directory)) {
+            @mkdir($next . '/' . $directory, 0775, true);
+        }
+    }
+    foreach (glob($next . '/storage/framework/views/*.php') ?: [] as $compiled) {
+        @unlink($compiled);
+    }
+    foreach (glob($next . '/bootstrap/cache/*.php') ?: [] as $cached) {
+        @unlink($cached);
+    }
+
+    // 4. Swap folders.
+    remove_tree($previous);
+    if (is_dir($live) && !@rename($live, $previous)) {
+        throw new RuntimeException('Az élő admin mappa nem nevezhető át.');
+    }
+    if (!@rename($next, $live)) {
+        if (is_dir($previous)) {
+            @rename($previous, $live);
+        }
+        throw new RuntimeException('Az új admin mappa nem élesíthető.');
+    }
+    $log[] = 'élesítve';
+
+    // 5. Migrations + caches, inside the freshly deployed Laravel app.
+    require $live . '/vendor/autoload.php';
+    $app = require $live . '/bootstrap/app.php';
+    $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+    $kernel->bootstrap();
+    $exit = $kernel->call('migrate', ['--force' => true]);
+    $log[] = 'migrate: ' . trim($kernel->output());
+    if ($exit !== 0) {
+        throw new RuntimeException('A migráció sikertelen.');
+    }
+    foreach (['filament:optimize', 'view:cache'] as $command) {
+        try {
+            $kernel->call($command);
+            $log[] = $command . ' kész';
+        } catch (Throwable $error) {
+            $log[] = $command . ' kihagyva: ' . $error->getMessage();
+        }
+    }
+
+    @unlink($archive);
+    remove_tree($previous);
+
+    $hasAdmin = (bool) Illuminate\Support\Facades\DB::table('admin_users')->exists();
+    finish([
+        'ok' => true,
+        'php' => PHP_VERSION,
+        'log' => $log,
+        'next' => $hasAdmin ? 'https://goldentor.hu/admin' : 'https://goldentor.hu/admin/setup',
+    ]);
+} catch (Throwable $error) {
+    finish(['ok' => false, 'error' => get_class($error) . ': ' . $error->getMessage(), 'log' => $log], 500);
+}

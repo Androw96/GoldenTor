@@ -1,0 +1,90 @@
+{
+  "blog_posts": {
+    "posts": [
+      {
+        "category": "Befektetés",
+        "date": "2026. július",
+        "title": "Mit jelent, ha a pénznek nem csak helye, hanem iránya is van?",
+        "excerpt": "Sok megtakarítás azért veszít lendületet, mert nincs mögötte kimondott cél. Egy portfólió akkor válik valódi stratégiává, ha látható benne az időtáv, a kockázati határ, a likviditási tartalék és az a pont, ahol a döntést újra kell vizsgálni.",
+        "points": [
+          "Miért nem elég egyetlen hozamelvárás alapján dönteni?",
+          "Hogyan érdemes külön kezelni a biztonsági, növekedési és lehetőségkereső tőkét?",
+          "Mikor jelez problémát, ha a portfólió túl bonyolult vagy túl egyszerű?"
+        ]
+      },
+      {
+        "category": "Élethelyzet",
+        "date": "2026. július",
+        "title": "Öröklés, cégeladás vagy nagyobb bevétel után: mi legyen az első lépés?",
+        "excerpt": "Nagyobb vagyonmozgás után természetes, hogy gyors döntésekre érkeznek ajánlatok. A felelős sorrend mégis az, hogy először a célokat, adózási és családi szempontokat, majd a kockázatokat tisztázzuk.",
+        "points": []
+      },
+      {
+        "category": "Finanszírozás",
+        "date": "2026. július",
+        "title": "Mikor segít a hitel, és mikor szűkíti be a mozgásteret?",
+        "excerpt": "A finanszírozás nem önmagában jó vagy rossz. A kérdés az, hogy a törlesztési struktúra mennyi szabadságot hagy váratlan helyzetekre, beruházásra vagy családi döntésekre.",
+        "points": []
+      },
+      {
+        "category": "Biztosítás",
+        "date": "2026. július",
+        "title": "Vagyonvédelem: nem félelemből, hanem tervezésből",
+        "excerpt": "Egy biztosítási portfólió akkor hasznos, ha valós kockázatokra ad választ. A cél nem a túlbiztosítás, hanem annak felismerése, hol sérülhet a családi vagyon vagy vállalkozás folytonossága.",
+        "points": []
+      },
+      {
+        "category": "Ingatlan",
+        "date": "2026. július",
+        "title": "Ingatlanvásárlás előtt: lokáció, likviditás, élethelyzet",
+        "excerpt": "Egy ingatlan értéke nem csak a négyzetméterárban látszik. Fontos, hogy mennyire könnyen értékesíthető, milyen finanszírozási terhet hoz, és hogyan illeszkedik a teljes vagyoni képbe.",
+        "points": []
+      }
+    ]
+  },
+  "site_texts": {
+    "home": {
+      "eyebrow": "Személyes pénzügyi tanácsadás",
+      "title": "Tisztán látni. Jól dönteni.",
+      "lead": "Segítünk átlátni, hogyan érdemes bánni a megtakarítással, ingatlannal, hitellel vagy biztosítással. Nem terméket erőltetünk, hanem érthető döntési sorrendet adunk."
+    },
+    "befektetes": {
+      "title": "Befektetés",
+      "lead": "Ne hagyja, hogy a pénze csak parkoljon. A befektetési stratégia célja, hogy a vagyonának iránya, ritmusa és védelme is legyen - nem találgatással, hanem tudatos rendszerben."
+    },
+    "ingatlan": {
+      "title": "Ingatlan",
+      "lead": "Az ingatlan akkor válik valódi vagyonelemmé, ha nem csak szép vagy jó helyen van, hanem illeszkedik a céljaihoz, finanszírozásához és hosszú távú stratégiájához."
+    },
+    "finanszirozas": {
+      "title": "Finanszírozás",
+      "lead": "A jó finanszírozás nem egyszerűen hitel. Olyan struktúra, amely gyorsítja a célokat, miközben kontroll alatt tartja a terheket, kockázatokat és mozgásteret."
+    },
+    "biztositas": {
+      "title": "Biztosítás",
+      "lead": "A biztosítás akkor értékes, ha pontosan arra ad választ, ami valóban veszélyeztetheti a családot, vállalkozást vagy felépített vagyont."
+    },
+    "szakertoink": {
+      "title": "Szakértőink",
+      "lead": "A szakértői átvilágítás célja, hogy ne maradjanak vakfoltok: lássa a rejtett kockázatokat, a kihagyott lehetőségeket és a következő felelős lépést."
+    },
+    "blog": {
+      "eyebrow": "Golden Tor Blog",
+      "title": "Pénzügyi döntések érthetően.",
+      "lead": "Rövid, áttekinthető írások azoknak, akik nagy döntések előtt nem zajt, hanem tiszta gondolatokat keresnek."
+    },
+    "idopont": {
+      "eyebrow": "Privát konzultáció",
+      "title": "Foglaljon időpontot",
+      "lead": "Válasszon témát, találkozási formát és egy Önnek megfelelő időpontot. A végleges időpontot munkatársunk visszaigazolja."
+    }
+  },
+  "site_design": {
+    "navy": "#1b251e",
+    "gold": "#668272",
+    "goldLight": "#ebf150",
+    "panel": "#263c2e",
+    "heroDarkness": "0.78",
+    "goldGlow": "0.14"
+  }
+}

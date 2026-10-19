@@ -107,8 +107,21 @@ function account_post(string $path, array $payload): void {
             if (($payload['privacy'] ?? false) !== true) {
                 throw new InvalidArgumentException('Kérjük, olvassa el az adatkezelési tájékoztatót.');
             }
-            $statement = db()->prepare('INSERT INTO users(email,name,password_hash,created_at) VALUES(?,?,?,?)');
-            $statement->execute([$email, $name, password_hash($password, PASSWORD_DEFAULT), now()]);
+            $duplicate = 'Ezzel az e-mail-címmel már létezik fiók. Kérjük, jelentkezzen be.';
+            $statement = db()->prepare('SELECT 1 FROM users WHERE email=?');
+            $statement->execute([$email]);
+            if ($statement->fetchColumn()) {
+                json_response(['error' => $duplicate], 409);
+            }
+            try {
+                $statement = db()->prepare('INSERT INTO users(email,name,password_hash,created_at) VALUES(?,?,?,?)');
+                $statement->execute([$email, $name, password_hash($password, PASSWORD_DEFAULT), now()]);
+            } catch (PDOException $error) {
+                if ($error->getCode() === '23000') {
+                    json_response(['error' => $duplicate], 409);
+                }
+                throw $error;
+            }
             $id = (int) db()->lastInsertId();
         } else {
             $statement = db()->prepare('SELECT id,password_hash FROM users WHERE email=?');
@@ -170,7 +183,9 @@ function get_availability(): void {
     $statement = db()->prepare("SELECT TIME_FORMAT(booking_time, '%H:%i') AS booking_time FROM bookings WHERE booking_date=? AND status!='cancelled'");
     $statement->execute([$date]);
     $busy = array_column($statement->fetchAll(), 'booking_time');
-    $slots = array_map(static fn(string $time): array => ['time' => $time, 'available' => !in_array($time, $busy, true)], GOLDENTOR_SLOTS);
+    $slots = array_map(static function (string $time) use ($busy): array {
+        return ['time' => $time, 'available' => !in_array($time, $busy, true)];
+    }, GOLDENTOR_SLOTS);
     json_response(['date' => $date, 'slots' => $slots]);
 }
 
@@ -205,7 +220,9 @@ function get_calendar(): void {
     }
     $start = new DateTimeImmutable("{$row['booking_date']} {$row['booking_time']}", new DateTimeZone('Europe/Budapest'));
     $end = $start->modify('+45 minutes');
-    $escape = static fn(string $value): string => str_replace(["\\", ";", ",", "\r", "\n"], ["\\\\", "\\;", "\\,", '', "\\n"], $value);
+    $escape = static function (string $value): string {
+        return str_replace(["\\", ";", ",", "\r", "\n"], ["\\\\", "\\;", "\\,", '', "\\n"], $value);
+    };
     $ics = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Golden Tor Consulting//HU\r\nBEGIN:VEVENT\r\n"
         . 'UID:' . substr(hash('sha256', $token), 0, 24) . "@goldentor.hu\r\n"
         . 'DTSTAMP:' . gmdate('Ymd\\THis\\Z') . "\r\n"
@@ -223,13 +240,15 @@ function get_calculations(): void {
     $user = require_user();
     $statement = db()->prepare('SELECT id,calculator_type,inputs_json,results_json,created_at FROM calculations WHERE user_id=? ORDER BY id DESC LIMIT 100');
     $statement->execute([$user['id']]);
-    $items = array_map(static fn(array $row): array => [
-        'id' => (int) $row['id'],
-        'calculator_type' => $row['calculator_type'],
-        'created_at' => $row['created_at'],
-        'inputs' => json_decode($row['inputs_json'], true),
-        'results' => json_decode($row['results_json'], true),
-    ], $statement->fetchAll());
+    $items = array_map(static function (array $row): array {
+        return [
+            'id' => (int) $row['id'],
+            'calculator_type' => $row['calculator_type'],
+            'created_at' => $row['created_at'],
+            'inputs' => json_decode($row['inputs_json'], true),
+            'results' => json_decode($row['results_json'], true),
+        ];
+    }, $statement->fetchAll());
     json_response(['items' => $items]);
 }
 
@@ -368,7 +387,7 @@ try {
         if ($path === 'calendar.ics') {
             get_calendar();
         }
-        if (str_starts_with($path, 'content/')) {
+        if (strpos($path, 'content/') === 0) {
             get_content(substr($path, strlen('content/')));
         }
         if ($path === 'admin/stats') {
@@ -390,7 +409,7 @@ try {
 
     if ($method === 'POST') {
         $payload = request_json();
-        if (str_starts_with($path, 'auth/') || in_array($path, ['profile', 'feedback', 'calculations'], true)) {
+        if (strpos($path, 'auth/') === 0 || in_array($path, ['profile', 'feedback', 'calculations'], true)) {
             account_post($path, $payload);
         }
         if (rate_limited('public')) {
@@ -410,10 +429,10 @@ try {
         }
     }
 
-    if ($method === 'PATCH' && str_starts_with($path, 'admin/')) {
+    if ($method === 'PATCH' && strpos($path, 'admin/') === 0) {
         update_admin_status($path, request_json());
     }
-    if ($method === 'PUT' && str_starts_with($path, 'admin/content/')) {
+    if ($method === 'PUT' && strpos($path, 'admin/content/') === 0) {
         put_content($path, request_json());
     }
     json_response(['error' => 'Ismeretlen végpont.'], 404);
@@ -424,5 +443,9 @@ try {
         json_response(['error' => 'Ez az időpont időközben foglalttá vált. Kérjük, válasszon másikat.'], 409);
     }
     error_log('Golden Tor database error: ' . $error->getMessage());
+    json_response(['error' => 'Átmeneti szerverhiba. Kérjük, próbálja később.'], 500);
+} catch (Throwable $error) {
+    // Never let a PHP error leak out as an HTML page: the browser code expects JSON.
+    error_log('Golden Tor API error: ' . get_class($error) . ': ' . $error->getMessage());
     json_response(['error' => 'Átmeneti szerverhiba. Kérjük, próbálja később.'], 500);
 }
