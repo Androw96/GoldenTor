@@ -107,6 +107,19 @@ function extract_release(string $archive, string $target): void
                 continue;
             }
 
+            // GNU tar writes the archive root as "./". It carries no data
+            // and must not become a target path itself.
+            if ($path === '.' || $path === './') {
+                if ($size > 0) {
+                    gz_read_exact($handle, $size);
+                }
+                $padding = (512 - ($size % 512)) % 512;
+                if ($padding) {
+                    gz_read_exact($handle, $padding);
+                }
+                continue;
+            }
+
             $path = safe_archive_path($path);
             $destination = $target . '/' . $path;
             if ($type === '5') {
