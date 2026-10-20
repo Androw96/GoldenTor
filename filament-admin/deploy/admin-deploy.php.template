@@ -42,6 +42,110 @@ function remove_tree(string $path): void
     @rmdir($path);
 }
 
+/**
+ * Extract the GNU tar.gz release without relying on ext-phar, which is not
+ * enabled by every shared-hosting PHP build. The archive is created by our
+ * deployment workflow, but paths are still validated defensively here.
+ */
+function gz_read_exact($handle, int $length): string
+{
+    $data = '';
+    while (strlen($data) < $length && !gzeof($handle)) {
+        $chunk = gzread($handle, $length - strlen($data));
+        if ($chunk === false) {
+            throw new RuntimeException('A kiadási csomag nem olvasható.');
+        }
+        $data .= $chunk;
+    }
+    if (strlen($data) !== $length) {
+        throw new RuntimeException('A kiadási csomag hiányos.');
+    }
+    return $data;
+}
+
+function safe_archive_path(string $path): string
+{
+    $path = str_replace('\\', '/', $path);
+    $path = ltrim($path, '/');
+    if ($path === '' || str_contains($path, "\0") || preg_match('#(^|/)\.\.?($|/)#', $path)) {
+        throw new RuntimeException('Érvénytelen útvonal a kiadási csomagban.');
+    }
+    return $path;
+}
+
+function extract_release(string $archive, string $target): void
+{
+    $handle = @gzopen($archive, 'rb');
+    if ($handle === false) {
+        throw new RuntimeException('A kiadási csomag nem nyitható meg.');
+    }
+
+    $longName = null;
+    try {
+        while (true) {
+            $header = gz_read_exact($handle, 512);
+            if ($header === str_repeat("\0", 512)) {
+                break;
+            }
+            $name = rtrim(substr($header, 0, 100), "\0");
+            $prefix = rtrim(substr($header, 345, 155), "\0");
+            $sizeText = trim(rtrim(substr($header, 124, 12), "\0 "));
+            $size = $sizeText === '' ? 0 : octdec($sizeText);
+            $type = $header[156] ?? "\0";
+            $path = $longName ?? ($prefix === '' ? $name : $prefix . '/' . $name);
+            $longName = null;
+
+            if ($type === 'L' || $type === 'x') {
+                $payload = gz_read_exact($handle, $size);
+                $padding = (512 - ($size % 512)) % 512;
+                if ($padding) {
+                    gz_read_exact($handle, $padding);
+                }
+                if ($type === 'L') {
+                    $longName = rtrim($payload, "\0\n");
+                }
+                continue;
+            }
+
+            $path = safe_archive_path($path);
+            $destination = $target . '/' . $path;
+            if ($type === '5') {
+                if (!@mkdir($destination, 0775, true) && !is_dir($destination)) {
+                    throw new RuntimeException('A kiadási mappa nem hozható létre.');
+                }
+            } elseif ($type === "\0" || $type === '0') {
+                $directory = dirname($destination);
+                if (!@mkdir($directory, 0775, true) && !is_dir($directory)) {
+                    throw new RuntimeException('A kiadási mappa nem hozható létre.');
+                }
+                $output = @fopen($destination, 'wb');
+                if ($output === false) {
+                    throw new RuntimeException('A kiadási fájl nem írható.');
+                }
+                $remaining = $size;
+                while ($remaining > 0) {
+                    $chunk = gz_read_exact($handle, min(1048576, $remaining));
+                    if (fwrite($output, $chunk) !== strlen($chunk)) {
+                        fclose($output);
+                        throw new RuntimeException('A kiadási fájl írása sikertelen.');
+                    }
+                    $remaining -= strlen($chunk);
+                }
+                fclose($output);
+            } else {
+                throw new RuntimeException('Nem támogatott fájltípus a kiadási csomagban.');
+            }
+
+            $padding = (512 - ($size % 512)) % 512;
+            if ($padding) {
+                gz_read_exact($handle, $padding);
+            }
+        }
+    } finally {
+        gzclose($handle);
+    }
+}
+
 $providedKey = (string) ($_SERVER['HTTP_X_GOLDENTOR_SETUP_KEY'] ?? '');
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST' || SETUP_KEY === '' || strpos(SETUP_KEY, '__GOLDENTOR') === 0 || !hash_equals(SETUP_KEY, $providedKey)) {
     http_response_code(404);
@@ -64,7 +168,7 @@ $missing = [];
 if (PHP_VERSION_ID < 80401) {
     $missing[] = 'PHP >= 8.4 (most: ' . PHP_VERSION . ')';
 }
-foreach (['ctype', 'fileinfo', 'filter', 'hash', 'intl', 'json', 'mbstring', 'openssl', 'pdo', 'pdo_mysql', 'session', 'tokenizer', 'xml', 'dom', 'zlib', 'phar'] as $extension) {
+foreach (['ctype', 'fileinfo', 'filter', 'hash', 'json', 'mbstring', 'openssl', 'pdo', 'pdo_mysql', 'session', 'tokenizer', 'xml', 'dom', 'zlib'] as $extension) {
     if (!extension_loaded($extension)) {
         $missing[] = 'ext-' . $extension;
     }
@@ -79,9 +183,8 @@ if (!is_file($archive)) {
 try {
     // 2. Unpack the new release.
     remove_tree($next);
-    $phar = new PharData($archive);
-    $phar->extractTo($next, null, true);
-    unset($phar);
+    @mkdir($next, 0775, true);
+    extract_release($archive, $next);
     if (!is_file($next . '/public/index.php') || !is_file($next . '/vendor/autoload.php')) {
         throw new RuntimeException('A kicsomagolt csomag hiányos.');
     }

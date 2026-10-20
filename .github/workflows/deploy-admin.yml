@@ -82,7 +82,7 @@ jobs:
           php ../filament-admin/build/write-env.php .env
           rm -rf tests phpunit.xml node_modules package.json vite.config.js .git .github .editorconfig .gitattributes README.md
           find storage -type f ! -name .gitignore -delete
-          tar -czf ../admin-panel.tar.gz .
+          tar --format=gnu -czf ../admin-panel.tar.gz .
           ls -lh ../admin-panel.tar.gz
 
       - name: Feltöltés és telepítés UNAS-ra
