@@ -4,7 +4,7 @@ namespace App\Filament\Resources\CalculationResource\Pages;
 
 use App\Filament\Resources\CalculationResource;
 use App\Models\Calculation;
-use Filament\Resources\Components\Tab;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Resources\Pages\ManageRecords;
 use Illuminate\Database\Eloquent\Builder;
 

@@ -8,7 +8,7 @@ class Dashboard extends BaseDashboard
 {
     protected static ?string $title = 'Áttekintés';
 
-    public function getColumns(): int | string | array
+    public function getColumns(): int | array
     {
         return ['md' => 3];
     }

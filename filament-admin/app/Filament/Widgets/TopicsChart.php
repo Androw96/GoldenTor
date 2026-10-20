@@ -7,11 +7,11 @@ use Filament\Widgets\ChartWidget;
 
 class TopicsChart extends ChartWidget
 {
-    protected static ?string $heading = 'Foglalások témák szerint';
+    protected ?string $heading = 'Foglalások témák szerint';
 
     protected static ?int $sort = 3;
 
-    protected static ?string $maxHeight = '280px';
+    protected ?string $maxHeight = '280px';
 
     protected function getData(): array
     {

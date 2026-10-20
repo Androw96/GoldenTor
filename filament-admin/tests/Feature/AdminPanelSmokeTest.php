@@ -34,6 +34,7 @@ class AdminPanelSmokeTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        config(['goldentor.mail_enabled' => false]);
 
         DB::unprepared((string) file_get_contents(base_path('tests/fixtures/legacy_schema.sqlite.sql')));
         Artisan::call('migrate', ['--force' => true]);
@@ -145,7 +146,7 @@ class AdminPanelSmokeTest extends TestCase
             ->assertHasNoFormErrors();
 
         $payload = SiteContent::get('blog_posts', 'hu');
-        $this->assertSame('uj-cikk-az-orokleserol', $payload['posts'][0]['slug']);
+        $this->assertSame('uj-cikk-az-oroklesrol', $payload['posts'][0]['slug']);
         $this->assertSame(['Első bekezdés.', 'Második bekezdés.'], $payload['posts'][0]['body']);
         $this->assertSame('Golden Tor', $payload['posts'][0]['category']);
     }

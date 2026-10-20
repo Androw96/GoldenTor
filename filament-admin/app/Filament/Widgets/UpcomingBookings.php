@@ -34,12 +34,12 @@ class UpcomingBookings extends BaseWidget
                     ->color(fn (string $state) => Booking::STATUS_COLORS[$state] ?? 'gray'),
             ])
             ->actions([
-                Tables\Actions\Action::make('confirm')->label('Visszaigazol')->icon('heroicon-m-check')->color('success')
+                \Filament\Actions\Action::make('confirm')->label('Visszaigazol')->icon('heroicon-m-check')->color('success')
                     ->visible(fn (Booking $record) => $record->status === 'requested')
                     ->requiresConfirmation()
                     ->modalDescription('Az ügyfél e-mailben értesítést kap a visszaigazolásról.')
                     ->action(fn (Booking $record) => BookingResource::changeStatus($record, 'confirmed')),
-                Tables\Actions\Action::make('open')->label('Megnyitás')->icon('heroicon-m-arrow-right')->color('gray')
+                \Filament\Actions\Action::make('open')->label('Megnyitás')->icon('heroicon-m-arrow-right')->color('gray')
                     ->url(fn () => BookingResource::getUrl('index')),
             ])
             ->emptyStateHeading('Nincs közelgő konzultáció')

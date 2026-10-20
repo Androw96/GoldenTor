@@ -32,22 +32,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # The UNAS host runs PHP 8.1 – build with the same version so composer picks compatible packages.
+      # The UNAS host runs PHP 8.4 – build with the same version so composer picks compatible packages.
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.1"
+          php-version: "8.4"
           extensions: intl, mbstring, pdo_sqlite, pdo_mysql, fileinfo, zip, dom, xml
           tools: composer:v2
           coverage: none
 
-      - name: Laravel 10 + Filament 3 összeállítása
+      - name: Laravel 12 + Filament 5 összeállítása
         run: |
           set -euo pipefail
-          composer create-project laravel/laravel:^10.0 build --prefer-dist --no-interaction --no-progress
+          composer create-project laravel/laravel:^12.0 build --prefer-dist --no-interaction --no-progress
           cd build
-          composer config platform.php 8.1.33
+          composer config platform.php 8.4.1
           composer remove laravel/sanctum --no-update --no-interaction
-          composer require "filament/filament:^3.2" --no-update --no-interaction
+          composer require "filament/filament:^5.0" --no-update --no-interaction
           composer update --with-all-dependencies --no-interaction --no-progress
           php ../filament-admin/build/patch-skeleton.php
           rsync -a --exclude 'build/' --exclude 'deploy/' --exclude 'README.md' ../filament-admin/ ./

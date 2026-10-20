@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\FeedbackResource\Pages;
 use App\Models\Feedback;
 use Filament\Infolists;
-use Filament\Infolists\Infolist;
+use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -15,9 +15,9 @@ class FeedbackResource extends Resource
 {
     protected static ?string $model = Feedback::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-star';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-star';
 
-    protected static ?string $navigationGroup = 'Ügyfélkapcsolat';
+    protected static string|\UnitEnum|null $navigationGroup = 'Ügyfélkapcsolat';
 
     protected static ?int $navigationSort = 5;
 
@@ -37,10 +37,10 @@ class FeedbackResource extends Resource
         return str_repeat('★', $rating) . str_repeat('☆', 5 - $rating);
     }
 
-    public static function infolist(Infolist $infolist): Infolist
+    public static function infolist(Schema $schema): Schema
     {
-        return $infolist->schema([
-            Infolists\Components\Section::make()->columns(3)->schema([
+        return $schema->components([
+            \Filament\Schemas\Components\Section::make()->columns(3)->schema([
                 Infolists\Components\TextEntry::make('customer.name')->label('Ügyfél')->weight('bold'),
                 Infolists\Components\TextEntry::make('customer.email')->label('E-mail')->copyable(),
                 Infolists\Components\TextEntry::make('created_at')->label('Dátum')->dateTime('Y. m. d. H:i')->timezone('Europe/Budapest'),
@@ -73,11 +73,11 @@ class FeedbackResource extends Resource
                     ->options(fn () => Feedback::query()->distinct()->orderBy('expert')->pluck('expert', 'expert')->all()),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                \Filament\Actions\ViewAction::make(),
+                \Filament\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                \Filament\Actions\DeleteBulkAction::make(),
             ])
             ->emptyStateHeading('Még nincs visszajelzés');
     }

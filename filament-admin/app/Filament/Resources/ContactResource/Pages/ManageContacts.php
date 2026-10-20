@@ -5,7 +5,7 @@ namespace App\Filament\Resources\ContactResource\Pages;
 use App\Filament\Resources\ContactResource;
 use App\Models\Contact;
 use Filament\Actions;
-use Filament\Resources\Components\Tab;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Resources\Pages\ManageRecords;
 use Illuminate\Database\Eloquent\Builder;
 

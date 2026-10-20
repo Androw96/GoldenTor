@@ -1,0 +1,129 @@
+name: Filament admin – build, teszt, UNAS telepítés
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: "Telepítés az éles UNAS tárhelyre (kikapcsolva csak build + teszt fut)"
+        type: boolean
+        default: true
+  push:
+    paths:
+      - "filament-admin/**"
+      - ".github/workflows/deploy-admin.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-admin
+  cancel-in-progress: false
+
+env:
+  # Same database as .github/workflows/deploy-unas.yml.
+  UNAS_DB_NAME: smokebros_goldentor
+  UNAS_DB_USER: smokebros_golden
+  GOLDENTOR_PUBLIC_URL: https://goldentor.hu
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      # The UNAS host runs PHP 8.4 – build with the same version so composer picks compatible packages.
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: intl, mbstring, pdo_sqlite, pdo_mysql, fileinfo, zip, dom, xml
+          tools: composer:v2
+          coverage: none
+
+      - name: Laravel 12 + Filament 5 összeállítása
+        run: |
+          set -euo pipefail
+          composer create-project laravel/laravel:^12.0 build --prefer-dist --no-interaction --no-progress
+          cd build
+          composer config platform.php 8.4.1
+          composer remove laravel/sanctum --no-update --no-interaction
+          composer require "filament/filament:^5.0" --no-update --no-interaction
+          composer update --with-all-dependencies --no-interaction --no-progress
+          php ../filament-admin/build/patch-skeleton.php
+          rsync -a --exclude 'build/' --exclude 'deploy/' --exclude 'README.md' ../filament-admin/ ./
+          composer dump-autoload --optimize
+          php artisan filament:assets
+          php artisan about --only=environment
+
+      - name: Füstteszt (minden admin oldal + fő műveletek)
+        working-directory: build
+        env:
+          APP_ENV: testing
+          APP_URL: http://localhost
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ":memory:"
+          CACHE_DRIVER: array
+          SESSION_DRIVER: array
+          QUEUE_CONNECTION: sync
+          GOLDENTOR_MAIL_ENABLED: "false"
+          GOLDENTOR_ADMIN_KEY: ci-only-admin-key
+        run: php artisan test
+
+      - name: Éles csomag készítése
+        if: github.event_name == 'workflow_dispatch' && inputs.deploy
+        working-directory: build
+        env:
+          UNAS_DB_PASSWORD: ${{ secrets.UNAS_DB_PASSWORD }}
+          UNAS_ADMIN_KEY: ${{ secrets.UNAS_ADMIN_KEY }}
+        run: |
+          set -euo pipefail
+          composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+          umask 077
+          php ../filament-admin/build/write-env.php .env
+          rm -rf tests phpunit.xml node_modules package.json vite.config.js .git .github .editorconfig .gitattributes README.md
+          find storage -type f ! -name .gitignore -delete
+          tar -czf ../admin-panel.tar.gz .
+          ls -lh ../admin-panel.tar.gz
+
+      - name: Feltöltés és telepítés UNAS-ra
+        if: github.event_name == 'workflow_dispatch' && inputs.deploy
+        env:
+          UNAS_FTP_HOST: ${{ secrets.UNAS_FTP_HOST }}
+          UNAS_FTP_USERNAME: ${{ secrets.UNAS_FTP_USERNAME }}
+          UNAS_FTP_PASSWORD: ${{ secrets.UNAS_FTP_PASSWORD }}
+          UNAS_SETUP_KEY: ${{ secrets.UNAS_SETUP_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$UNAS_FTP_HOST"; test -n "$UNAS_FTP_USERNAME"; test -n "$UNAS_FTP_PASSWORD"; test -n "$UNAS_SETUP_KEY"
+          umask 077
+          php -r '$t = file_get_contents("filament-admin/deploy/admin-deploy.php.template"); file_put_contents("admin-deploy.php", str_replace("__GOLDENTOR_SETUP_KEY__", getenv("UNAS_SETUP_KEY"), $t));'
+          netrc_file="$(mktemp)"
+          trap 'rm -f "$netrc_file" admin-deploy.php' EXIT
+          printf 'machine %s\nlogin %s\npassword %s\n' "$UNAS_FTP_HOST" "$UNAS_FTP_USERNAME" "$UNAS_FTP_PASSWORD" > "$netrc_file"
+          upload() {
+            curl --fail --silent --show-error --retry 3 --retry-all-errors --connect-timeout 20 --max-time 900 \
+              --ftp-pasv --disable-epsv --ftp-skip-pasv-ip --ftp-create-dirs \
+              --netrc-file "$netrc_file" --upload-file "$1" "ftp://$UNAS_FTP_HOST/$2"
+          }
+          upload admin-panel.tar.gz data/admin-panel.tar.gz
+          upload admin-deploy.php unas/admin-deploy.php
+          upload .htaccess .htaccess
+          echo "Telepítés a szerveren…"
+          status=$(curl --silent --show-error --max-time 900 -o result.json -w '%{http_code}' -X POST \
+            -H "X-GoldenTor-Setup-Key: $UNAS_SETUP_KEY" "$GOLDENTOR_PUBLIC_URL/unas/admin-deploy.php")
+          cat result.json; echo
+          test "$status" = "200"
+          grep -q '"ok": true' result.json
+
+      - name: Élő ellenőrzés
+        if: github.event_name == 'workflow_dispatch' && inputs.deploy
+        run: |
+          set -euo pipefail
+          for path in /admin/login /api/health; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$GOLDENTOR_PUBLIC_URL$path")
+            echo "$path -> $code"
+            test "$code" = "200"
+          done
+          code=$(curl -s -o /dev/null -w '%{http_code}' "$GOLDENTOR_PUBLIC_URL/admin-panel/.env")
+          echo "/admin-panel/.env -> $code (403/404 elvárt)"
+          test "$code" = "403" -o "$code" = "404"

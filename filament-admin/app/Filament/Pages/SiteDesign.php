@@ -7,7 +7,7 @@ use Filament\Forms;
 
 class SiteDesign extends ContentPage
 {
-    protected static ?string $navigationIcon = 'heroicon-o-swatch';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-swatch';
 
     protected static ?string $navigationLabel = 'Design';
 
@@ -35,13 +35,13 @@ class SiteDesign extends ContentPage
     protected function contentSchema(): array
     {
         return [
-            Forms\Components\Section::make('Színek')->columns(4)->schema([
+            \Filament\Schemas\Components\Section::make('Színek')->columns(4)->schema([
                 Forms\Components\ColorPicker::make('navy')->label('Alap sötét')->required(),
                 Forms\Components\ColorPicker::make('gold')->label('Kiemelő')->required(),
                 Forms\Components\ColorPicker::make('goldLight')->label('Világos kiemelő')->required(),
                 Forms\Components\ColorPicker::make('panel')->label('Panel háttér')->required(),
             ]),
-            Forms\Components\Section::make('Fejléc hangulata')->columns(2)->schema([
+            \Filament\Schemas\Components\Section::make('Fejléc hangulata')->columns(2)->schema([
                 Forms\Components\TextInput::make('heroDarkness')->label('Fejléc sötétítése (0–1)')
                     ->numeric()->minValue(0)->maxValue(1)->step(0.01)->required(),
                 Forms\Components\TextInput::make('goldGlow')->label('Kiemelő fény erőssége (0–1)')

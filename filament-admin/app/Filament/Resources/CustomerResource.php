@@ -6,9 +6,8 @@ use App\Filament\Resources\CustomerResource\Pages;
 use App\Filament\Resources\CustomerResource\RelationManagers;
 use App\Models\Customer;
 use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Infolists;
-use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -20,9 +19,9 @@ class CustomerResource extends Resource
 {
     protected static ?string $model = Customer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationGroup = 'Ügyfélkapcsolat';
+    protected static string|\UnitEnum|null $navigationGroup = 'Ügyfélkapcsolat';
 
     protected static ?int $navigationSort = 3;
 
@@ -37,10 +36,10 @@ class CustomerResource extends Resource
         return ['name', 'email', 'phone'];
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
-            Forms\Components\Section::make('Fiókadatok')->columns(3)->schema([
+        return $schema->components([
+            \Filament\Schemas\Components\Section::make('Fiókadatok')->columns(3)->schema([
                 Forms\Components\TextInput::make('name')->label('Név')->required()->maxLength(120),
                 Forms\Components\TextInput::make('email')->label('E-mail')->email()->required()->maxLength(254)
                     ->unique(table: 'users', column: 'email', ignoreRecord: true)
@@ -50,10 +49,10 @@ class CustomerResource extends Resource
         ]);
     }
 
-    public static function infolist(Infolist $infolist): Infolist
+    public static function infolist(Schema $schema): Schema
     {
-        return $infolist->schema([
-            Infolists\Components\Section::make()->columns(4)->schema([
+        return $schema->components([
+            \Filament\Schemas\Components\Section::make()->columns(4)->schema([
                 Infolists\Components\TextEntry::make('name')->label('Név')->weight('bold'),
                 Infolists\Components\TextEntry::make('email')->label('E-mail')->copyable()
                     ->url(fn (Customer $record) => 'mailto:' . $record->email),
@@ -86,17 +85,17 @@ class CustomerResource extends Resource
                     ->query(fn (Builder $query) => $query->where('created_at', '>=', now('UTC')->subDays(30))),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\EditAction::make(),
-                    static::setPasswordAction(Tables\Actions\Action::make('setPassword')),
-                    Tables\Actions\DeleteAction::make()
+                \Filament\Actions\ViewAction::make(),
+                \Filament\Actions\ActionGroup::make([
+                    \Filament\Actions\EditAction::make(),
+                    static::setPasswordAction(\Filament\Actions\Action::make('setPassword')),
+                    \Filament\Actions\DeleteAction::make()
                         ->modalDescription('A fiók, a mentett kalkulációk és a visszajelzések véglegesen törlődnek.'),
                 ]),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                \Filament\Actions\BulkActionGroup::make([
+                    \Filament\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -105,7 +104,7 @@ class CustomerResource extends Resource
      * Sets a new password the customer can use on fiok.html. The website verifies with
      * PHP password_verify(), which accepts Laravel's bcrypt hashes.
      *
-     * @template T of \Filament\Actions\Action|\Filament\Tables\Actions\Action
+     * @template T of \Filament\Actions\Action|\Filament\\Filament\Actions\Action
      *
      * @param  T  $action
      * @return T

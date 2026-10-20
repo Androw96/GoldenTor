@@ -59,10 +59,10 @@ $next = $root . '/admin-panel-next';
 $previous = $root . '/admin-panel-previous';
 $log = [];
 
-// 1. Requirements of Laravel 10 + Filament 3.
+// 1. Requirements of Laravel 12 + Filament 5.
 $missing = [];
-if (PHP_VERSION_ID < 80100) {
-    $missing[] = 'PHP >= 8.1 (most: ' . PHP_VERSION . ')';
+if (PHP_VERSION_ID < 80401) {
+    $missing[] = 'PHP >= 8.4 (most: ' . PHP_VERSION . ')';
 }
 foreach (['ctype', 'fileinfo', 'filter', 'hash', 'intl', 'json', 'mbstring', 'openssl', 'pdo', 'pdo_mysql', 'session', 'tokenizer', 'xml', 'dom', 'zlib', 'phar'] as $extension) {
     if (!extension_loaded($extension)) {

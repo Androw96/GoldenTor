@@ -1,6 +1,6 @@
 # Golden Tor – Filament admin
 
-Laravel 10 + Filament 3 adminfelület a meglévő UNAS MySQL adatbázisra.
+Laravel 12 + Filament 5 adminfelület a meglévő UNAS MySQL adatbázisra.
 Elérés élesítés után: **https://goldentor.hu/admin**
 
 ## Mit tud
@@ -22,8 +22,8 @@ Minden tartalom ugyanabba a `content` táblába kerül, amit a nyilvános oldal 
 
 ## Felépítés
 
-- Ez a mappa csak a saját kódot tartalmazza (*overlay*). A teljes Laravel alkalmazást a GitHub Actions rakja össze: `composer create-project laravel/laravel:^10`, + `filament/filament:^3.2`, + ez a mappa.
-- Az UNAS-on PHP 8.1 fut, ezért Laravel 10. Ha a tárhelyen PHP 8.2+-ra váltasz, a workflow-ban a `php-version`, a `platform.php` és a `laravel/laravel:^10.0` átírható (Laravel 11-hez a skeleton eltér, ilyenkor a `build/patch-skeleton.php` is igazítandó).
+- Ez a mappa csak a saját kódot tartalmazza (*overlay*). A teljes Laravel alkalmazást a GitHub Actions rakja össze: `composer create-project laravel/laravel:^12.0`, + `filament/filament:^5.0`, + ez a mappa.
+- Az UNAS-on PHP 8.1 fut, ezért Laravel 10. Ha a tárhelyen PHP 8.2+-ra váltasz, a workflow-ban a `php-version`, a `platform.php` és a `laravel/laravel:^12.0.0` átírható (Laravel 11-hez a skeleton eltér, ilyenkor a `build/patch-skeleton.php` is igazítandó).
 - Szerveren: `/admin-panel/` (Laravel), ebből csak a `public/` érhető el kívülről. A gyökér `.htaccess` a `/admin` és `/livewire` címeket irányítja ide.
 - Admin felhasználók külön táblában vannak (`admin_users`), a weboldal ügyfélfiókjaitól (`users`) függetlenül.
 
@@ -40,8 +40,8 @@ Ha a szerveren hiányzik egy PHP-bővítmény (pl. `intl`), a telepítő a csere
 ## Helyi fejlesztés (opcionális)
 
 ```bash
-composer create-project laravel/laravel:^10.0 admin-local && cd admin-local
-composer remove laravel/sanctum && composer require filament/filament:^3.2
+composer create-project laravel/laravel:^12.0.0 admin-local && cd admin-local
+composer remove laravel/sanctum && composer require filament/filament:^5.0
 php ../filament-admin/build/patch-skeleton.php && rsync -a --exclude build/ --exclude deploy/ ../filament-admin/ ./
 php artisan filament:assets && php artisan test
 ```

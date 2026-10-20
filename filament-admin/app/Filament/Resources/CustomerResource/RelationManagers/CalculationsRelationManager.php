@@ -4,7 +4,7 @@ namespace App\Filament\Resources\CustomerResource\RelationManagers;
 
 use App\Filament\Resources\CalculationResource;
 use App\Models\Calculation;
-use Filament\Infolists\Infolist;
+use Filament\Schemas\Schema;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -24,9 +24,9 @@ class CalculationsRelationManager extends RelationManager
         return true;
     }
 
-    public function infolist(Infolist $infolist): Infolist
+    public function infolist(Schema $schema): Schema
     {
-        return CalculationResource::infolist($infolist);
+        return CalculationResource::infolist($schema);
     }
 
     public function table(Table $table): Table
@@ -43,8 +43,8 @@ class CalculationsRelationManager extends RelationManager
                     ->timezone('Europe/Budapest')->sortable(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                \Filament\Actions\ViewAction::make(),
+                \Filament\Actions\DeleteAction::make(),
             ]);
     }
 }

@@ -7,7 +7,7 @@ use Filament\Forms;
 
 class SiteTexts extends ContentPage
 {
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
     protected static ?string $navigationLabel = 'Oldalszövegek';
 
@@ -43,7 +43,7 @@ class SiteTexts extends ContentPage
     {
         $tabs = [];
         foreach (self::PAGES as $key => $label) {
-            $tabs[] = Forms\Components\Tabs\Tab::make($label)->schema([
+            $tabs[] = \Filament\Schemas\Components\Tabs\Tab::make($label)->schema([
                 Forms\Components\TextInput::make("pages.{$key}.eyebrow")->label('Felső kis cím')->maxLength(120),
                 Forms\Components\TextInput::make("pages.{$key}.title")->label('Főcím')->maxLength(180),
                 Forms\Components\Textarea::make("pages.{$key}.lead")->label('Bevezető')->rows(4)->maxLength(800),
@@ -51,9 +51,9 @@ class SiteTexts extends ContentPage
         }
 
         return [
-            Forms\Components\Placeholder::make('hint')->hiddenLabel()
+            \Filament\Schemas\Components\Text::make('hint')
                 ->content('Az üresen hagyott mező esetén az oldal a beépített szöveget mutatja.'),
-            Forms\Components\Tabs::make('pages_tabs')->tabs($tabs)->persistTabInQueryString(),
+            \Filament\Schemas\Components\Tabs::make('pages_tabs')->tabs($tabs)->persistTabInQueryString(),
         ];
     }
 

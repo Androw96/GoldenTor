@@ -11,7 +11,7 @@ use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Support\Enums\MaxWidth;
+use Filament\Support\Enums\Width;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -61,7 +61,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->font('Montserrat', provider: GoogleFontProvider::class)
             ->defaultThemeMode(\Filament\Enums\ThemeMode::Dark)
-            ->maxContentWidth(MaxWidth::SevenExtraLarge)
+            ->maxContentWidth(Width::SevenExtraLarge)
             ->sidebarCollapsibleOnDesktop()
             ->navigationGroups([
                 NavigationGroup::make('Ügyfélkapcsolat'),

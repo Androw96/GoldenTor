@@ -5,9 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ContactResource\Pages;
 use App\Models\Contact;
 use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Infolists;
-use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,9 +16,9 @@ class ContactResource extends Resource
 {
     protected static ?string $model = Contact::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-inbox-arrow-down';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-inbox-arrow-down';
 
-    protected static ?string $navigationGroup = 'Ügyfélkapcsolat';
+    protected static string|\UnitEnum|null $navigationGroup = 'Ügyfélkapcsolat';
 
     protected static ?int $navigationSort = 2;
 
@@ -46,9 +45,9 @@ class ContactResource extends Resource
         return ['name', 'email', 'topic', 'message'];
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             Forms\Components\TextInput::make('name')->label('Név')->required()->maxLength(120),
             Forms\Components\TextInput::make('email')->label('E-mail')->email()->required()->maxLength(254),
             Forms\Components\TextInput::make('phone')->label('Telefon')->tel()->maxLength(60),
@@ -58,10 +57,10 @@ class ContactResource extends Resource
         ])->columns(2);
     }
 
-    public static function infolist(Infolist $infolist): Infolist
+    public static function infolist(Schema $schema): Schema
     {
-        return $infolist->schema([
-            Infolists\Components\Section::make()->columns(3)->schema([
+        return $schema->components([
+            \Filament\Schemas\Components\Section::make()->columns(3)->schema([
                 Infolists\Components\TextEntry::make('name')->label('Név')->weight('bold'),
                 Infolists\Components\TextEntry::make('email')->label('E-mail')->copyable()
                     ->url(fn (Contact $record) => 'mailto:' . $record->email),
@@ -96,29 +95,29 @@ class ContactResource extends Resource
                 Tables\Filters\SelectFilter::make('status')->label('Állapot')->options(Contact::STATUSES)->multiple(),
             ])
             ->actions([
-                Tables\Actions\Action::make('reply')->label('Válasz')->icon('heroicon-m-envelope')->color('primary')
+                \Filament\Actions\Action::make('reply')->label('Válasz')->icon('heroicon-m-envelope')->color('primary')
                     ->url(fn (Contact $record) => 'mailto:' . $record->email . '?subject=' . rawurlencode('Re: ' . $record->topic . ' – Golden Tor Consulting')),
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\Action::make('done')->label('Lezárás')->icon('heroicon-m-check')->color('success')
+                \Filament\Actions\ViewAction::make(),
+                \Filament\Actions\ActionGroup::make([
+                    \Filament\Actions\EditAction::make(),
+                    \Filament\Actions\Action::make('done')->label('Lezárás')->icon('heroicon-m-check')->color('success')
                         ->visible(fn (Contact $record) => $record->status !== 'done')
                         ->action(fn (Contact $record) => $record->update(['status' => 'done'])),
-                    Tables\Actions\Action::make('archive')->label('Archiválás')->icon('heroicon-m-archive-box')->color('gray')
+                    \Filament\Actions\Action::make('archive')->label('Archiválás')->icon('heroicon-m-archive-box')->color('gray')
                         ->visible(fn (Contact $record) => $record->status !== 'archived')
                         ->action(fn (Contact $record) => $record->update(['status' => 'archived'])),
-                    Tables\Actions\DeleteAction::make(),
+                    \Filament\Actions\DeleteAction::make(),
                 ]),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\BulkAction::make('markDone')->label('Lezárás')->icon('heroicon-m-check')
+                \Filament\Actions\BulkActionGroup::make([
+                    \Filament\Actions\BulkAction::make('markDone')->label('Lezárás')->icon('heroicon-m-check')
                         ->deselectRecordsAfterCompletion()
                         ->action(fn (Collection $records) => $records->each->update(['status' => 'done'])),
-                    Tables\Actions\BulkAction::make('markArchived')->label('Archiválás')->icon('heroicon-m-archive-box')
+                    \Filament\Actions\BulkAction::make('markArchived')->label('Archiválás')->icon('heroicon-m-archive-box')
                         ->deselectRecordsAfterCompletion()
                         ->action(fn (Collection $records) => $records->each->update(['status' => 'archived'])),
-                    Tables\Actions\DeleteBulkAction::make(),
+                    \Filament\Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->emptyStateHeading('Még nincs megkeresés')

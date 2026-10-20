@@ -6,7 +6,7 @@ use Filament\Forms;
 
 class ExpertProfiles extends ContentPage
 {
-    protected static ?string $navigationIcon = 'heroicon-o-identification';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-identification';
 
     protected static ?string $navigationLabel = 'Szakértők';
 
@@ -29,7 +29,7 @@ class ExpertProfiles extends ContentPage
     protected function contentSchema(): array
     {
         return [
-            Forms\Components\Placeholder::make('hint')->hiddenLabel()
+            \Filament\Schemas\Components\Text::make('hint')
                 ->content('Csak ellenőrzött, publikálható adatot adjon meg. A szakertoink.html azokat a profilokat mutatja, ahol a név, a szerep és a bemutatkozás is ki van töltve.'),
             Forms\Components\Repeater::make('profiles')
                 ->hiddenLabel()

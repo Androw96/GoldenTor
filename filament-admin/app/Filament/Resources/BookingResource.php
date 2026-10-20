@@ -6,10 +6,9 @@ use App\Filament\Resources\BookingResource\Pages;
 use App\Models\Booking;
 use Closure;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Forms\Get;
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Infolists;
-use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -22,9 +21,9 @@ class BookingResource extends Resource
 {
     protected static ?string $model = Booking::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-calendar-days';
 
-    protected static ?string $navigationGroup = 'Ügyfélkapcsolat';
+    protected static string|\UnitEnum|null $navigationGroup = 'Ügyfélkapcsolat';
 
     protected static ?int $navigationSort = 1;
 
@@ -62,21 +61,21 @@ class BookingResource extends Resource
         return ['Időpont' => $record->slotLabel(), 'Állapot' => Booking::STATUSES[$record->status] ?? $record->status];
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
         $slots = array_combine(config('goldentor.slots'), config('goldentor.slots'));
         $topics = array_combine(config('goldentor.topics'), config('goldentor.topics'));
         $meetings = array_combine(config('goldentor.meetings'), config('goldentor.meetings'));
 
-        return $form->schema([
-            Forms\Components\Section::make('Ügyfél')
+        return $schema->components([
+            \Filament\Schemas\Components\Section::make('Ügyfél')
                 ->columns(3)
                 ->schema([
                     Forms\Components\TextInput::make('name')->label('Név')->required()->maxLength(120),
                     Forms\Components\TextInput::make('email')->label('E-mail')->email()->required()->maxLength(254),
                     Forms\Components\TextInput::make('phone')->label('Telefon')->tel()->maxLength(60),
                 ]),
-            Forms\Components\Section::make('Konzultáció')
+            \Filament\Schemas\Components\Section::make('Konzultáció')
                 ->columns(2)
                 ->schema([
                     Forms\Components\Select::make('topic')->label('Téma')->required()->native(false)
@@ -110,10 +109,10 @@ class BookingResource extends Resource
         ]);
     }
 
-    public static function infolist(Infolist $infolist): Infolist
+    public static function infolist(Schema $schema): Schema
     {
-        return $infolist->schema([
-            Infolists\Components\Section::make()
+        return $schema->components([
+            \Filament\Schemas\Components\Section::make()
                 ->columns(3)
                 ->schema([
                     Infolists\Components\TextEntry::make('name')->label('Név')->weight('bold'),
@@ -170,39 +169,39 @@ class BookingResource extends Resource
                     ->options(fn () => Booking::query()->distinct()->orderBy('topic')->pluck('topic', 'topic')->all()),
             ])
             ->actions([
-                Tables\Actions\Action::make('confirm')->label('Visszaigazol')->icon('heroicon-m-check')->color('success')
+                \Filament\Actions\Action::make('confirm')->label('Visszaigazol')->icon('heroicon-m-check')->color('success')
                     ->visible(fn (Booking $record) => $record->status === 'requested')
                     ->requiresConfirmation()
                     ->modalDescription('Az ügyfél e-mailben értesítést kap a visszaigazolásról.')
                     ->action(fn (Booking $record) => static::changeStatus($record, 'confirmed')),
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\ViewAction::make(),
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\Action::make('complete')->label('Lezárás')->icon('heroicon-m-archive-box')->color('gray')
+                \Filament\Actions\ActionGroup::make([
+                    \Filament\Actions\ViewAction::make(),
+                    \Filament\Actions\EditAction::make(),
+                    \Filament\Actions\Action::make('complete')->label('Lezárás')->icon('heroicon-m-archive-box')->color('gray')
                         ->visible(fn (Booking $record) => $record->status === 'confirmed')
                         ->requiresConfirmation()
                         ->action(fn (Booking $record) => static::changeStatus($record, 'completed')),
-                    Tables\Actions\Action::make('cancel')->label('Lemondás')->icon('heroicon-m-x-mark')->color('danger')
+                    \Filament\Actions\Action::make('cancel')->label('Lemondás')->icon('heroicon-m-x-mark')->color('danger')
                         ->visible(fn (Booking $record) => in_array($record->status, ['requested', 'confirmed'], true))
                         ->requiresConfirmation()
                         ->modalDescription('Az időpont felszabadul, az ügyfél e-mailben értesítést kap.')
                         ->action(fn (Booking $record) => static::changeStatus($record, 'cancelled')),
-                    Tables\Actions\Action::make('portal')->label('Ügyfélportál')->icon('heroicon-m-arrow-top-right-on-square')
+                    \Filament\Actions\Action::make('portal')->label('Ügyfélportál')->icon('heroicon-m-arrow-top-right-on-square')
                         ->url(fn (Booking $record) => $record->portalUrl(), shouldOpenInNewTab: true),
-                    Tables\Actions\DeleteAction::make(),
+                    \Filament\Actions\DeleteAction::make(),
                 ]),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\BulkAction::make('bulkConfirm')->label('Visszaigazolás')->icon('heroicon-m-check')->color('success')
+                \Filament\Actions\BulkActionGroup::make([
+                    \Filament\Actions\BulkAction::make('bulkConfirm')->label('Visszaigazolás')->icon('heroicon-m-check')->color('success')
                         ->requiresConfirmation()->deselectRecordsAfterCompletion()
                         ->action(fn (Collection $records) => $records->where('status', 'requested')
                             ->each(fn (Booking $record) => static::changeStatus($record, 'confirmed', notify: false))),
-                    Tables\Actions\BulkAction::make('bulkComplete')->label('Lezárás')->icon('heroicon-m-archive-box')
+                    \Filament\Actions\BulkAction::make('bulkComplete')->label('Lezárás')->icon('heroicon-m-archive-box')
                         ->requiresConfirmation()->deselectRecordsAfterCompletion()
                         ->action(fn (Collection $records) => $records->where('status', 'confirmed')
                             ->each(fn (Booking $record) => static::changeStatus($record, 'completed', notify: false))),
-                    Tables\Actions\DeleteBulkAction::make(),
+                    \Filament\Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->emptyStateHeading('Nincs megjeleníthető foglalás')

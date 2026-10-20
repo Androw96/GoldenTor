@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CalculationResource\Pages;
 use App\Models\Calculation;
 use Filament\Infolists;
-use Filament\Infolists\Infolist;
+use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -15,9 +15,9 @@ class CalculationResource extends Resource
 {
     protected static ?string $model = Calculation::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-calculator';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-calculator';
 
-    protected static ?string $navigationGroup = 'Ügyfélkapcsolat';
+    protected static string|\UnitEnum|null $navigationGroup = 'Ügyfélkapcsolat';
 
     protected static ?int $navigationSort = 4;
 
@@ -30,17 +30,17 @@ class CalculationResource extends Resource
         return false;
     }
 
-    public static function infolist(Infolist $infolist): Infolist
+    public static function infolist(Schema $schema): Schema
     {
-        return $infolist->schema([
-            Infolists\Components\Section::make()->columns(3)->schema([
+        return $schema->components([
+            \Filament\Schemas\Components\Section::make()->columns(3)->schema([
                 Infolists\Components\TextEntry::make('customer.name')->label('Ügyfél')->weight('bold')->placeholder('-'),
                 Infolists\Components\TextEntry::make('calculator_type')->label('Kalkulátor')->badge()
                     ->formatStateUsing(fn (string $state) => Calculation::TYPES[$state] ?? $state)
                     ->color(fn (string $state) => Calculation::TYPE_COLORS[$state] ?? 'gray'),
                 Infolists\Components\TextEntry::make('created_at')->label('Mentve')->dateTime('Y. m. d. H:i')->timezone('Europe/Budapest'),
             ]),
-            Infolists\Components\Grid::make(2)->schema([
+            \Filament\Schemas\Components\Grid::make(2)->schema([
                 Infolists\Components\KeyValueEntry::make('inputs_json')->label('Megadott adatok')
                     ->keyLabel('Mező')->valueLabel('Érték')
                     ->state(fn (Calculation $record) => Calculation::formatFields($record->inputs_json)),
@@ -71,8 +71,8 @@ class CalculationResource extends Resource
                 Tables\Filters\SelectFilter::make('calculator_type')->label('Kalkulátor')->options(Calculation::TYPES),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\Action::make('customer')->label('Ügyfél')->icon('heroicon-m-user')
+                \Filament\Actions\ViewAction::make(),
+                \Filament\Actions\Action::make('customer')->label('Ügyfél')->icon('heroicon-m-user')
                     ->visible(fn (Calculation $record) => $record->user_id !== null)
                     ->url(fn (Calculation $record) => CustomerResource::getUrl('view', ['record' => $record->user_id])),
             ])

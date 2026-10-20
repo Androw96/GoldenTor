@@ -7,7 +7,7 @@ use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Carbon;
@@ -16,15 +16,15 @@ use Illuminate\Support\Carbon;
  * Base for pages that edit one JSON record of the legacy `content` table
  * (the same records the old admin.html wrote through /api/admin/content/...).
  *
- * @property Form $form
+ * @property Schema $form
  */
 abstract class ContentPage extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static string $view = 'filament.pages.content-page';
+    protected string $view = 'filament.pages.content-page';
 
-    protected static ?string $navigationGroup = 'Tartalom';
+    protected static string|\UnitEnum|null $navigationGroup = 'Tartalom';
 
     /** Form state. */
     public ?array $data = [];
@@ -62,7 +62,7 @@ abstract class ContentPage extends Page implements HasForms
         $this->form->fill(['language' => $this->language] + $this->toFormState($payload, $this->language));
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
         $languageField = Forms\Components\ToggleButtons::make('language')
             ->label('Nyelv')
@@ -73,8 +73,8 @@ abstract class ContentPage extends Page implements HasForms
             ->helperText('Nyelvváltáskor a nem mentett módosítások elvesznek.')
             ->visible(static::isTranslatable());
 
-        return $form
-            ->schema([$languageField, ...$this->contentSchema()])
+        return $schema
+            ->components([$languageField, ...$this->contentSchema()])
             ->statePath('data');
     }
 

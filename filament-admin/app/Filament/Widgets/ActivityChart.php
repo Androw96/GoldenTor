@@ -10,13 +10,13 @@ use Illuminate\Support\Carbon;
 
 class ActivityChart extends ChartWidget
 {
-    protected static ?string $heading = 'Érdeklődés az elmúlt 12 hónapban';
+    protected ?string $heading = 'Érdeklődés az elmúlt 12 hónapban';
 
     protected static ?int $sort = 2;
 
     protected int | string | array $columnSpan = ['md' => 2];
 
-    protected static ?string $maxHeight = '280px';
+    protected ?string $maxHeight = '280px';
 
     protected function getData(): array
     {
