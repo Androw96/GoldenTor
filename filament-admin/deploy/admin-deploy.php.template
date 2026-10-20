@@ -66,6 +66,9 @@ function gz_read_exact($handle, int $length): string
 function safe_archive_path(string $path): string
 {
     $path = str_replace('\\', '/', $path);
+    while (str_starts_with($path, './')) {
+        $path = substr($path, 2);
+    }
     $path = ltrim($path, '/');
     if ($path === '' || str_contains($path, "\0") || preg_match('#(^|/)\.\.?($|/)#', $path)) {
         throw new RuntimeException('Érvénytelen útvonal a kiadási csomagban.');
