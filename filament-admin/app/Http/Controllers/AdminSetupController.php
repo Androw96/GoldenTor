@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\AdminUser;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
 
 class AdminSetupController extends Controller
 {
-    public function show(): View
+    public function show(): Response
     {
         abort_if(AdminUser::query()->exists(), 404);
 
-        return view('setup');
+        return response()->view('setup')->header('Cache-Control', 'no-store, private, max-age=0');
     }
 
     public function store(Request $request): RedirectResponse

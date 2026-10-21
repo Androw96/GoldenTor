@@ -63,7 +63,7 @@ jobs:
           APP_URL: http://localhost
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
-          CACHE_DRIVER: array
+          CACHE_STORE: array
           SESSION_DRIVER: array
           QUEUE_CONNECTION: sync
           GOLDENTOR_MAIL_ENABLED: "false"
@@ -132,3 +132,5 @@ jobs:
           code=$(curl -s -o /dev/null -w '%{http_code}' "$GOLDENTOR_PUBLIC_URL/admin-panel/.env")
           echo "/admin-panel/.env -> $code (403/404 elvárt)"
           test "$code" = "403" -o "$code" = "404"
+
+          python3 filament-admin/deploy/smoke-live.py

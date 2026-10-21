@@ -104,6 +104,16 @@ class AdminPanelSmokeTest extends TestCase
         $this->get('/admin/setup')->assertNotFound();
     }
 
+    public function test_setup_form_is_not_cached_and_empty_submission_is_validated(): void
+    {
+        $this->admin->delete();
+        $response = $this->get('/admin/setup')->assertOk();
+        $this->assertStringContainsString('no-store', $response->headers->get('Cache-Control'));
+        $this->postJson('/admin/setup', [])->assertUnprocessable()
+            ->assertJsonValidationErrors(['admin_key', 'name', 'email', 'password']);
+        $this->assertSame(0, AdminUser::query()->count());
+    }
+
     public function test_confirming_a_booking_updates_status_and_slot(): void
     {
         $booking = Booking::query()->firstOrFail();
