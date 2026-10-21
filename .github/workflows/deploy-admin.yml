@@ -99,7 +99,7 @@ jobs:
           php -r '$t = file_get_contents("filament-admin/deploy/admin-deploy.php.template"); file_put_contents("admin-deploy.php", str_replace("__GOLDENTOR_SETUP_KEY__", getenv("UNAS_SETUP_KEY"), $t));'
           sudo apt-get update -qq
           sudo apt-get install -y -qq lftp
-          lftp -u "$UNAS_FTP_USERNAME","$UNAS_FTP_PASSWORD" -e 'set ftp:ssl-allow no; set net:max-retries 3; set net:timeout 30; put -O unas admin-deploy.php; put -O . .htaccess; mirror -R --delete --verbose=1 build admin-panel-next; bye' "ftp://$UNAS_FTP_HOST"
+          lftp -u "$UNAS_FTP_USERNAME","$UNAS_FTP_PASSWORD" -e 'set ftp:ssl-allow no; set net:max-retries 3; set net:timeout 30; put -O unas admin-deploy.php; put -O . .htaccess; mirror -R --parallel=4 --delete --verbose=1 build admin-panel-next; bye' "ftp://$UNAS_FTP_HOST"
           echo "Telepítés a szerveren…"
           status=$(curl --silent --show-error --max-time 900 -o result.json -w '%{http_code}' -X POST \
             -H "X-GoldenTor-Setup-Key: $UNAS_SETUP_KEY" -H "X-GoldenTor-Deploy-Action: activate" "$GOLDENTOR_PUBLIC_URL/unas/admin-deploy.php")
