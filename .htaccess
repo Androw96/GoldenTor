@@ -1,4 +1,5 @@
-Options -Indexes
+# MultiViews otherwise maps /admin to the legacy admin.html before routing runs.
+Options -Indexes -MultiViews
 RewriteEngine On
 
 # One canonical origin: www.goldentor.hu -> goldentor.hu (session cookie and API origin check match).
