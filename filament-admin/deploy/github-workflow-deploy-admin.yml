@@ -82,8 +82,8 @@ jobs:
           php ../filament-admin/build/write-env.php .env
           rm -rf tests phpunit.xml node_modules package.json vite.config.js .git .github .editorconfig .gitattributes README.md
           find storage -type f ! -name .gitignore -delete
-          tar --format=gnu -czf ../admin-panel.tar.gz .
-          ls -lh ../admin-panel.tar.gz
+          zip -qr ../admin-panel.zip .
+          ls -lh ../admin-panel.zip
 
       - name: Feltöltés és telepítés UNAS-ra
         if: github.event_name == 'workflow_dispatch' && inputs.deploy
@@ -97,12 +97,20 @@ jobs:
           test -n "$UNAS_FTP_HOST"; test -n "$UNAS_FTP_USERNAME"; test -n "$UNAS_FTP_PASSWORD"; test -n "$UNAS_SETUP_KEY"
           umask 077
           php -r '$t = file_get_contents("filament-admin/deploy/admin-deploy.php.template"); file_put_contents("admin-deploy.php", str_replace("__GOLDENTOR_SETUP_KEY__", getenv("UNAS_SETUP_KEY"), $t));'
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq lftp
-          lftp -u "$UNAS_FTP_USERNAME","$UNAS_FTP_PASSWORD" -e 'set ftp:ssl-allow no; set net:max-retries 3; set net:timeout 30; put -O unas admin-deploy.php; put -O . .htaccess; mirror -R --parallel=4 --delete --verbose=1 build admin-panel-next; bye' "ftp://$UNAS_FTP_HOST"
+          netrc_file="$(mktemp)"
+          trap 'rm -f "$netrc_file" admin-deploy.php' EXIT
+          printf 'machine %s\nlogin %s\npassword %s\n' "$UNAS_FTP_HOST" "$UNAS_FTP_USERNAME" "$UNAS_FTP_PASSWORD" > "$netrc_file"
+          upload() {
+            curl --fail --silent --show-error --retry 3 --retry-all-errors --connect-timeout 20 --max-time 900 \
+              --ftp-pasv --disable-epsv --ftp-skip-pasv-ip --ftp-create-dirs \
+              --netrc-file "$netrc_file" --upload-file "$1" "ftp://$UNAS_FTP_HOST/$2"
+          }
+          upload admin-panel.zip data/admin-panel.zip
+          upload admin-deploy.php unas/admin-deploy.php
+          upload .htaccess .htaccess
           echo "Telepítés a szerveren…"
           status=$(curl --silent --show-error --max-time 900 -o result.json -w '%{http_code}' -X POST \
-            -H "X-GoldenTor-Setup-Key: $UNAS_SETUP_KEY" -H "X-GoldenTor-Deploy-Action: activate" "$GOLDENTOR_PUBLIC_URL/unas/admin-deploy.php")
+            -H "X-GoldenTor-Setup-Key: $UNAS_SETUP_KEY" "$GOLDENTOR_PUBLIC_URL/unas/admin-deploy.php")
           cat result.json; echo
           test "$status" = "200"
           grep -q '"ok": true' result.json

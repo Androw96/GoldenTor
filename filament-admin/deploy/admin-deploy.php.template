@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 /*
  * Golden Tor – Filament admin installer on the UNAS host.
- * Uploaded by .github/workflows/deploy-admin.yml together with data/admin-panel.tar.gz,
+ * Uploaded by .github/workflows/deploy-admin.yml together with data/admin-panel.zip,
  * then called once over HTTPS with the setup key header. It:
  *   1. checks the PHP requirements (nothing is touched if they are not met),
  *   2. unpacks the release next to the live copy,
@@ -42,126 +42,6 @@ function remove_tree(string $path): void
     @rmdir($path);
 }
 
-/**
- * Extract the GNU tar.gz release without relying on ext-phar, which is not
- * enabled by every shared-hosting PHP build. The archive is created by our
- * deployment workflow, but paths are still validated defensively here.
- */
-function gz_read_exact($handle, int $length): string
-{
-    $data = '';
-    while (strlen($data) < $length && !gzeof($handle)) {
-        $chunk = gzread($handle, $length - strlen($data));
-        if ($chunk === false) {
-            throw new RuntimeException('A kiadási csomag nem olvasható.');
-        }
-        $data .= $chunk;
-    }
-    if (strlen($data) !== $length) {
-        throw new RuntimeException('A kiadási csomag hiányos.');
-    }
-    return $data;
-}
-
-function safe_archive_path(string $path): string
-{
-    $path = str_replace('\\', '/', $path);
-    while (str_starts_with($path, './')) {
-        $path = substr($path, 2);
-    }
-    $path = ltrim($path, '/');
-    if ($path === '' || str_contains($path, "\0") || preg_match('#(^|/)\.\.?($|/)#', $path)) {
-        throw new RuntimeException('Érvénytelen útvonal a kiadási csomagban.');
-    }
-    return $path;
-}
-
-function extract_release(string $archive, string $target): void
-{
-    $handle = @gzopen($archive, 'rb');
-    if ($handle === false) {
-        throw new RuntimeException('A kiadási csomag nem nyitható meg.');
-    }
-
-    $longName = null;
-    try {
-        while (true) {
-            $header = gz_read_exact($handle, 512);
-            if ($header === str_repeat("\0", 512)) {
-                break;
-            }
-            $name = rtrim(substr($header, 0, 100), "\0");
-            $prefix = rtrim(substr($header, 345, 155), "\0");
-            $sizeText = trim(rtrim(substr($header, 124, 12), "\0 "));
-            $size = $sizeText === '' ? 0 : octdec($sizeText);
-            $type = $header[156] ?? "\0";
-            $path = $longName ?? ($prefix === '' ? $name : $prefix . '/' . $name);
-            $longName = null;
-
-            if ($type === 'L' || $type === 'x') {
-                $payload = gz_read_exact($handle, $size);
-                $padding = (512 - ($size % 512)) % 512;
-                if ($padding) {
-                    gz_read_exact($handle, $padding);
-                }
-                if ($type === 'L') {
-                    $longName = rtrim($payload, "\0\n");
-                }
-                continue;
-            }
-
-            // GNU tar writes the archive root as "./". It carries no data
-            // and must not become a target path itself.
-            if ($path === '.' || $path === './') {
-                if ($size > 0) {
-                    gz_read_exact($handle, $size);
-                }
-                $padding = (512 - ($size % 512)) % 512;
-                if ($padding) {
-                    gz_read_exact($handle, $padding);
-                }
-                continue;
-            }
-
-            $path = safe_archive_path($path);
-            $destination = $target . '/' . $path;
-            if ($type === '5') {
-                if (!@mkdir($destination, 0775, true) && !is_dir($destination)) {
-                    throw new RuntimeException('A kiadási mappa nem hozható létre.');
-                }
-            } elseif ($type === "\0" || $type === '0') {
-                $directory = dirname($destination);
-                if (!@mkdir($directory, 0775, true) && !is_dir($directory)) {
-                    throw new RuntimeException('A kiadási mappa nem hozható létre.');
-                }
-                $output = @fopen($destination, 'wb');
-                if ($output === false) {
-                    throw new RuntimeException('A kiadási fájl nem írható.');
-                }
-                $remaining = $size;
-                while ($remaining > 0) {
-                    $chunk = gz_read_exact($handle, min(1048576, $remaining));
-                    if (fwrite($output, $chunk) !== strlen($chunk)) {
-                        fclose($output);
-                        throw new RuntimeException('A kiadási fájl írása sikertelen.');
-                    }
-                    $remaining -= strlen($chunk);
-                }
-                fclose($output);
-            } else {
-                throw new RuntimeException('Nem támogatott fájltípus a kiadási csomagban.');
-            }
-
-            $padding = (512 - ($size % 512)) % 512;
-            if ($padding) {
-                gz_read_exact($handle, $padding);
-            }
-        }
-    } finally {
-        gzclose($handle);
-    }
-}
-
 $providedKey = (string) ($_SERVER['HTTP_X_GOLDENTOR_SETUP_KEY'] ?? '');
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST' || SETUP_KEY === '' || strpos(SETUP_KEY, '__GOLDENTOR') === 0 || !hash_equals(SETUP_KEY, $providedKey)) {
     http_response_code(404);
@@ -174,7 +54,7 @@ $activateUploadedRelease = ($_SERVER['HTTP_X_GOLDENTOR_DEPLOY_ACTION'] ?? '') ==
 ignore_user_abort(true);
 
 $root = dirname(__DIR__);
-$archive = $root . '/data/admin-panel.tar.gz';
+$archive = $root . '/data/admin-panel.zip';
 $live = $root . '/admin-panel';
 $next = $root . '/admin-panel-next';
 $previous = $root . '/admin-panel-previous';
@@ -193,8 +73,11 @@ foreach (['ctype', 'fileinfo', 'filter', 'hash', 'json', 'mbstring', 'openssl', 
 if ($missing) {
     finish(['ok' => false, 'step' => 'requirements', 'missing' => $missing, 'php' => PHP_VERSION], 500);
 }
+if (!class_exists('ZipArchive')) {
+    finish(['ok' => false, 'step' => 'requirements', 'missing' => ['ext-zip'], 'php' => PHP_VERSION], 500);
+}
 if (!$activateUploadedRelease && !is_file($archive)) {
-    finish(['ok' => false, 'step' => 'archive', 'error' => 'data/admin-panel.tar.gz nem található.'], 500);
+    finish(['ok' => false, 'step' => 'archive', 'error' => 'data/admin-panel.zip nem található.'], 500);
 }
 
 try {
@@ -204,7 +87,27 @@ try {
     } else {
         remove_tree($next);
         @mkdir($next, 0775, true);
-        extract_release($archive, $next);
+        $zip = new ZipArchive();
+        if ($zip->open($archive) !== true) {
+            throw new RuntimeException('A kiadási ZIP-csomag nem nyitható meg.');
+        }
+        // Validate every entry before extracting anything, including Unix symlinks.
+        for ($index = 0; $index < $zip->numFiles; $index++) {
+            $entry = $zip->getNameIndex($index);
+            $opsys = $attributes = 0;
+            $zip->getExternalAttributesIndex($index, $opsys, $attributes);
+            if ($entry === false || str_contains($entry, "\0") || str_contains($entry, '\\')
+                || str_starts_with($entry, '/') || preg_match('#(^|/)\.\.?(/|$)|^[A-Za-z]:#', $entry)
+                || ($opsys === 3 && (($attributes >> 16) & 0170000) === 0120000)) {
+                $zip->close();
+                throw new RuntimeException('Érvénytelen útvonal a kiadási ZIP-csomagban.');
+            }
+        }
+        if (!$zip->extractTo($next)) {
+            $zip->close();
+            throw new RuntimeException('A kiadási ZIP-csomag nem bontható ki.');
+        }
+        $zip->close();
     }
     if (!is_file($next . '/public/index.php') || !is_file($next . '/vendor/autoload.php')) {
         throw new RuntimeException('A kicsomagolt csomag hiányos.');
