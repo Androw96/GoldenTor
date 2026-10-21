@@ -167,6 +167,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST' || SETUP_KEY === '' || strpos(
     http_response_code(404);
     exit;
 }
+$activateUploadedRelease = ($_SERVER['HTTP_X_GOLDENTOR_DEPLOY_ACTION'] ?? '') === 'activate';
 
 @set_time_limit(600);
 @ini_set('memory_limit', '512M');
@@ -192,15 +193,19 @@ foreach (['ctype', 'fileinfo', 'filter', 'hash', 'json', 'mbstring', 'openssl', 
 if ($missing) {
     finish(['ok' => false, 'step' => 'requirements', 'missing' => $missing, 'php' => PHP_VERSION], 500);
 }
-if (!is_file($archive)) {
+if (!$activateUploadedRelease && !is_file($archive)) {
     finish(['ok' => false, 'step' => 'archive', 'error' => 'data/admin-panel.tar.gz nem található.'], 500);
 }
 
 try {
     // 2. Unpack the new release.
-    remove_tree($next);
-    @mkdir($next, 0775, true);
-    extract_release($archive, $next);
+    if ($activateUploadedRelease) {
+        $log[] = 'feltöltött kiadás ellenőrizve';
+    } else {
+        remove_tree($next);
+        @mkdir($next, 0775, true);
+        extract_release($archive, $next);
+    }
     if (!is_file($next . '/public/index.php') || !is_file($next . '/vendor/autoload.php')) {
         throw new RuntimeException('A kicsomagolt csomag hiányos.');
     }
