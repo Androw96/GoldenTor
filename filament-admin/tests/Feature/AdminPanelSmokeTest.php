@@ -114,6 +114,22 @@ class AdminPanelSmokeTest extends TestCase
         $this->assertSame(0, AdminUser::query()->count());
     }
 
+    public function test_separate_setup_code_creates_only_the_first_admin(): void
+    {
+        $this->admin->delete();
+        config(['goldentor.admin_key' => 'legacy-test-key', 'goldentor.admin_setup_key' => 'new-test-setup-key']);
+        $data = ['admin_key' => 'legacy-test-key', 'name' => 'Setup Test', 'email' => 'setup@example.test',
+            'password' => 'only-a-test-password', 'password_confirmation' => 'only-a-test-password'];
+        $this->postJson('/admin/setup', $data)->assertUnprocessable()->assertJsonValidationErrors('admin_key');
+        $this->assertSame(0, AdminUser::query()->count());
+        $data['admin_key'] = 'new-test-setup-key';
+        $this->post('/admin/setup', $data)->assertRedirect('/admin');
+        $this->assertSame(1, AdminUser::query()->count());
+        $this->assertTrue(\Illuminate\Support\Facades\Hash::check($data['password'], AdminUser::query()->first()->password));
+        $this->get('/admin/setup')->assertNotFound();
+        $this->post('/admin/setup', $data)->assertNotFound();
+    }
+
     public function test_confirming_a_booking_updates_status_and_slot(): void
     {
         $booking = Booking::query()->firstOrFail();

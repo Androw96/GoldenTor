@@ -29,9 +29,9 @@ class AdminSetupController extends Controller
             'password' => ['required', 'string', 'min:12', 'max:128', 'confirmed'],
         ]);
 
-        $expected = (string) config('goldentor.admin_key');
+        $expected = (string) config('goldentor.admin_setup_key');
         if ($expected === '' || ! hash_equals($expected, (string) $data['admin_key'])) {
-            throw ValidationException::withMessages(['admin_key' => 'Hibás admin kód.']);
+            throw ValidationException::withMessages(['admin_key' => 'Hibás kezdőkód.']);
         }
 
         $admin = AdminUser::query()->create([

@@ -76,6 +76,7 @@ jobs:
         env:
           UNAS_DB_PASSWORD: ${{ secrets.UNAS_DB_PASSWORD }}
           UNAS_ADMIN_KEY: ${{ secrets.UNAS_ADMIN_KEY }}
+          UNAS_ADMIN_SETUP_KEY: ${{ secrets.UNAS_ADMIN_SETUP_KEY }}
         run: |
           set -euo pipefail
           composer install --no-dev --optimize-autoloader --no-interaction --no-progress

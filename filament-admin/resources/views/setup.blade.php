@@ -28,9 +28,9 @@
     <p>Ez az oldal csak addig érhető el, amíg nincs egyetlen admin felhasználó sem.</p>
     <form method="post" action="{{ url('/admin/setup') }}">
         @csrf
-        <label>Jelenlegi admin kód
+        <label>Admin kezdőkód
             <input name="admin_key" type="password" required autocomplete="off">
-            <small>Ugyanaz a kód, amivel eddig az admin.html-be lépett.</small>
+            <small>Az első adminfiók létrehozásához kapott kód. Később az e-mail-címével és jelszavával léphet be.</small>
         </label>
         @error('admin_key')<div class="error">{{ $message }}</div>@enderror
         <label>Név<input name="name" value="{{ old('name') }}" required maxlength="120" autocomplete="name"></label>

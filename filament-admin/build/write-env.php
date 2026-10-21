@@ -58,6 +58,8 @@ $values = [
     'QUEUE_CONNECTION' => 'sync',
     'FILESYSTEM_DISK' => 'local',
     'GOLDENTOR_ADMIN_KEY' => $adminKey,
+    // A separately rotatable first-account code; the existing app encryption key stays stable.
+    'GOLDENTOR_ADMIN_SETUP_KEY' => getenv('UNAS_ADMIN_SETUP_KEY') ?: $adminKey,
     'GOLDENTOR_PUBLIC_URL' => $publicUrl,
     'GOLDENTOR_MAIL_FROM' => getenv('GOLDENTOR_MAIL_FROM') ?: 'info@goldentor.hu',
     'GOLDENTOR_CONTACT_RECIPIENT' => getenv('GOLDENTOR_CONTACT_RECIPIENT') ?: 'info@goldentor.hu',
