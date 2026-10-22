@@ -1,0 +1,54 @@
+name: Provision requested Filament admin
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-admin
+  cancel-in-progress: false
+
+jobs:
+  provision:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+      - name: Create requested account without changing an existing account
+        env:
+          UNAS_FTP_HOST: ${{ secrets.UNAS_FTP_HOST }}
+          UNAS_FTP_USERNAME: ${{ secrets.UNAS_FTP_USERNAME }}
+          UNAS_FTP_PASSWORD: ${{ secrets.UNAS_FTP_PASSWORD }}
+          UNAS_SETUP_KEY: ${{ secrets.UNAS_SETUP_KEY }}
+          UNAS_PROVISION_ADMIN_EMAIL: ${{ secrets.UNAS_PROVISION_ADMIN_EMAIL }}
+          UNAS_PROVISION_ADMIN_PASSWORD: ${{ secrets.UNAS_PROVISION_ADMIN_PASSWORD }}
+        run: |
+          set -euo pipefail
+          umask 077
+          netrc_file="$(mktemp)"
+          remote="unas/admin-provision-${GITHUB_RUN_ID}.php"
+          printf 'machine %s\nlogin %s\npassword %s\n' "$UNAS_FTP_HOST" "$UNAS_FTP_USERNAME" "$UNAS_FTP_PASSWORD" > "$netrc_file"
+          cleanup() {
+            curl --silent --show-error --max-time 30 --ftp-pasv --disable-epsv --ftp-skip-pasv-ip \
+              --netrc-file "$netrc_file" --quote "*DELE $remote" "ftp://$UNAS_FTP_HOST/" -o /dev/null || true
+            rm -f "$netrc_file" provision.php
+          }
+          trap cleanup EXIT
+          php filament-admin/build/write-admin-provision.php provision.php
+          php -l provision.php
+          curl --fail --silent --show-error --max-time 60 --connect-timeout 20 \
+            --ftp-pasv --disable-epsv --ftp-skip-pasv-ip --netrc-file "$netrc_file" \
+            --upload-file provision.php "ftp://$UNAS_FTP_HOST/$remote"
+          status=$(curl --silent --show-error --max-time 60 -o result.json -w '%{http_code}' \
+            -X POST -H "X-GoldenTor-Setup-Key: $UNAS_SETUP_KEY" "https://goldentor.hu/$remote")
+          cat result.json
+          test "$status" = "200"
+          php -r '$r = json_decode(file_get_contents("result.json"), true, 512, JSON_THROW_ON_ERROR); exit(($r["ok"] ?? false) ? 0 : 1);'
+          code=$(curl --silent --show-error --max-time 30 -o /dev/null -w '%{http_code}' "https://goldentor.hu/$remote")
+          test "$code" = "404"
