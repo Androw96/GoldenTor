@@ -68,7 +68,9 @@ jobs:
           QUEUE_CONNECTION: sync
           GOLDENTOR_MAIL_ENABLED: "false"
           GOLDENTOR_ADMIN_KEY: ci-only-admin-key
-        run: php artisan test
+        run: |
+          php artisan test
+          php ../filament-admin/build/check-routing.php ../.htaccess
 
       - name: Éles csomag készítése
         if: github.event_name == 'workflow_dispatch' && inputs.deploy

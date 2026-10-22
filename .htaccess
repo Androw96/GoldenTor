@@ -16,7 +16,7 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 </IfModule>
 
 # Filament admin (Laravel app in /admin-panel): Alpine.js needs 'unsafe-eval', uploads use blob: previews.
-<If "%{REQUEST_URI} =~ m#^/(?:admin|livewire)(?:/|$)|^/admin-panel/public/#">
+<If "%{REQUEST_URI} =~ m#^/(?:admin|livewire(?:-[a-f0-9]{8})?)(?:/|$)|^/admin-panel/public/#">
     <IfModule mod_headers.c>
         Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: blob: https://ui-avatars.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self'; worker-src 'self' blob:; frame-src 'self'; form-action 'self'; base-uri 'self'"
         Header always set X-Robots-Tag "noindex, nofollow"
@@ -25,7 +25,8 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
 # Filament admin routes -> Laravel front controller. The rest of /admin-panel is blocked
 # by admin-panel/.htaccess; only its public/ folder (built CSS/JS) is reachable.
-RewriteRule ^(?:admin|livewire)(?:/.*)?$ admin-panel/public/index.php [QSA,L]
+# Livewire 4 adds an installation-specific eight-character hash to its endpoint prefix.
+RewriteRule ^(?:admin|livewire(?:-[a-f0-9]{8})?)(?:/.*)?$ admin-panel/public/index.php [QSA,L]
 
 # Preserve the existing /api/... URLs while running the API on PHP/MySQL.
 RewriteRule ^api/(.*)$ unas/api.php?route=$1 [QSA,L]
