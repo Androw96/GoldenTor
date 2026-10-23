@@ -42,21 +42,23 @@ jobs:
           remote="unas/admin-provision-${GITHUB_RUN_ID}.php"
           printf 'machine %s\nlogin %s\npassword %s\n' "$UNAS_FTP_HOST" "$UNAS_FTP_USERNAME" "$UNAS_FTP_PASSWORD" > "$netrc_file"
           cleanup() {
-            curl --silent --show-error --max-time 30 --ftp-pasv --disable-epsv --ftp-skip-pasv-ip \
+            curl --ipv4 --silent --show-error --connect-timeout 15 --max-time 30 --ftp-pasv --disable-epsv --ftp-skip-pasv-ip \
               --netrc-file "$netrc_file" --quote "*DELE $remote" "ftp://$UNAS_FTP_HOST/" -o /dev/null || true
             rm -f "$netrc_file" provision.php provision-request.json
           }
           trap cleanup EXIT
           php filament-admin/build/write-admin-provision.php provision.php provision-request.json
           php -l provision.php
-          curl --fail --silent --show-error --max-time 60 --connect-timeout 20 \
+          echo 'Uploading temporary account maintenance file'
+          curl --ipv4 --fail --silent --show-error --retry 2 --retry-all-errors --max-time 60 --connect-timeout 20 \
             --ftp-pasv --disable-epsv --ftp-skip-pasv-ip --netrc-file "$netrc_file" \
             --upload-file provision.php "ftp://$UNAS_FTP_HOST/$remote"
-          status=$(curl --silent --show-error --max-time 60 -o result.json -w '%{http_code}' \
+          echo 'Applying account operation over HTTPS'
+          status=$(curl --ipv4 --silent --show-error --connect-timeout 15 --max-time 120 -o result.json -w '%{http_code}' \
             -X POST -H "X-GoldenTor-Setup-Key: $UNAS_SETUP_KEY" -H 'Content-Type: application/json' \
             --data-binary @provision-request.json "https://goldentor.hu/$remote")
           cat result.json
           test "$status" = "200"
           php -r '$r = json_decode(file_get_contents("result.json"), true, 512, JSON_THROW_ON_ERROR); exit(($r["ok"] ?? false) ? 0 : 1);'
-          code=$(curl --silent --show-error --max-time 30 -o /dev/null -w '%{http_code}' "https://goldentor.hu/$remote")
+          code=$(curl --ipv4 --silent --show-error --connect-timeout 15 --max-time 30 -o /dev/null -w '%{http_code}' "https://goldentor.hu/$remote")
           test "$code" = "404"
