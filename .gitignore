@@ -6,3 +6,4 @@ data/outbox.log
 __pycache__/
 tests/__pycache__/
 .DS_Store
+/private/admin-credentials/

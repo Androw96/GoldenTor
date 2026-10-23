@@ -14,11 +14,16 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     throw new RuntimeException('Invalid admin email');
 }
 $password = required_provision_value('UNAS_PROVISION_ADMIN_PASSWORD');
+$mode = getenv('UNAS_PROVISION_MODE') ?: 'create';
+if (!in_array($mode, ['create', 'reset'], true)) {
+    throw new RuntimeException('Invalid provisioning mode');
+}
 if (strlen($password) < 20) {
     throw new RuntimeException('Provisioning password must contain at least 20 characters');
 }
 $settings = [
     'email' => $email,
+    'mode' => $mode,
     'password_hash' => password_hash($password, PASSWORD_BCRYPT),
     'key' => required_provision_value('UNAS_SETUP_KEY'),
     'expires' => time() + 900,
@@ -26,3 +31,5 @@ $settings = [
 $template = file_get_contents(__DIR__ . '/../deploy/admin-provision.php.template');
 file_put_contents($argv[1], str_replace('__PROVISION_SETTINGS__', base64_encode(json_encode($settings, JSON_THROW_ON_ERROR)), $template));
 chmod($argv[1], 0600);
+file_put_contents($argv[2], json_encode(['password' => $password], JSON_THROW_ON_ERROR));
+chmod($argv[2], 0600);

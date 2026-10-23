@@ -21,13 +21,33 @@ try {
     require $live . '/vendor/autoload.php';
     $app = require $live . '/bootstrap/app.php';
     $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
-    $admin = App\Models\AdminUser::query()->firstOrCreate(
-        ['email' => $settings['email']],
-        ['name' => 'Golden Tor Admin', 'password' => $settings['password_hash']],
-    );
-    // Existing account passwords and profile data must never be overwritten.
-    $created = $admin->wasRecentlyCreated;
-    echo json_encode(['ok' => true, 'created' => $created, 'existing_account_preserved' => !$created]);
+    $payload = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
+    $password = (string) ($payload['password'] ?? '');
+    if (!password_verify($password, $settings['password_hash']) || !in_array($settings['mode'], ['create', 'reset'], true)) {
+        throw new RuntimeException('Invalid provisioning credentials or mode');
+    }
+    $result = Illuminate\Support\Facades\DB::transaction(function () use ($settings, $password): array {
+        $admin = App\Models\AdminUser::query()->where('email', $settings['email'])->lockForUpdate()->first();
+        if ($settings['mode'] === 'reset' && !$admin) {
+            throw new RuntimeException('Requested account does not exist');
+        }
+        if ($admin && $settings['mode'] === 'create') {
+            return ['created' => false, 'password_reset' => false, 'existing_account_preserved' => true];
+        }
+        $created = !$admin;
+        if ($created) {
+            $admin = new App\Models\AdminUser(['email' => $settings['email'], 'name' => 'Golden Tor Admin']);
+        }
+        $admin->password = $settings['password_hash'];
+        $admin->setRememberToken(bin2hex(random_bytes(30)));
+        $admin->save();
+        // Check through the application's actual authentication provider before committing.
+        if (!Illuminate\Support\Facades\Auth::validate(['email' => $settings['email'], 'password' => $password])) {
+            throw new RuntimeException('New login credentials failed verification');
+        }
+        return ['created' => $created, 'password_reset' => !$created, 'credentials_verified' => true];
+    });
+    echo json_encode(['ok' => true] + $result);
 } catch (Throwable $error) {
     if (function_exists('report')) {
         report($error);
