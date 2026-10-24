@@ -19,7 +19,7 @@ header('Cache-Control: no-store');
 function finish(array $payload, int $status = 200): void
 {
     http_response_code($status);
-    echo json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+    echo json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR);
     exit;
 }
 
@@ -48,6 +48,59 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST' || SETUP_KEY === '' || strpos(
     exit;
 }
 $activateUploadedRelease = ($_SERVER['HTTP_X_GOLDENTOR_DEPLOY_ACTION'] ?? '') === 'activate';
+$diagnoseOnly = ($_SERVER['HTTP_X_GOLDENTOR_DEPLOY_ACTION'] ?? '') === 'diagnose';
+
+/** Runs `goldentor:diagnose` in the live app and condenses the problems for the workflow log. */
+function run_diagnostics($kernel): array
+{
+    try {
+        $kernel->call('goldentor:diagnose');
+        $output = trim($kernel->output());
+        $report = json_decode(substr($output, (int) strpos($output, '{')), true);
+        if (!is_array($report)) {
+            return ['problems' => ['A diagnosztika kimenete nem értelmezhető.'], 'raw' => mb_substr($output, 0, 4000)];
+        }
+    } catch (Throwable $error) {
+        return ['problems' => ['A diagnosztika nem futott le: ' . get_class($error) . ': ' . $error->getMessage()]];
+    }
+    $problems = [];
+    foreach (($report['pages'] ?? []) as $page => $result) {
+        if (($result['status'] ?? null) !== 200) {
+            $problems[] = 'OLDAL ' . $page . ' -> ' . ($result['status'] ?? 'kivétel') . (isset($result['error']) ? ': ' . $result['error'] : '');
+        }
+    }
+    foreach (($report['tables'] ?? []) as $table => $info) {
+        if (!is_array($info)) {
+            continue;
+        }
+        if (!($info['exists'] ?? false)) {
+            $problems[] = 'TÁBLA hiányzik: ' . $table . (isset($info['error']) ? ' (' . $info['error'] . ')' : '');
+        } elseif (!empty($info['missing_columns'])) {
+            $problems[] = 'TÁBLA ' . $table . ' hiányzó oszlopok: ' . implode(', ', $info['missing_columns']);
+        }
+    }
+    foreach (($report['writable'] ?? []) as $folder => $writable) {
+        if ($writable !== true) {
+            $problems[] = 'MAPPA nem írható: ' . $folder;
+        }
+    }
+    if (!empty($report['environment']['missing_extensions'])) {
+        $problems[] = 'Hiányzó PHP-bővítmények: ' . implode(', ', $report['environment']['missing_extensions']);
+    }
+    return ['problems' => $problems ?: ['Nem találtam hibát.']] + $report;
+}
+
+if ($diagnoseOnly) {
+    try {
+        require dirname(__DIR__) . '/admin-panel/vendor/autoload.php';
+        $app = require dirname(__DIR__) . '/admin-panel/bootstrap/app.php';
+        $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+        $kernel->bootstrap();
+        finish(['ok' => true, 'mode' => 'diagnose', 'diagnostics' => run_diagnostics($kernel)]);
+    } catch (Throwable $error) {
+        finish(['ok' => false, 'mode' => 'diagnose', 'error' => get_class($error) . ': ' . $error->getMessage()], 500);
+    }
+}
 
 @set_time_limit(600);
 @ini_set('memory_limit', '512M');
@@ -170,10 +223,13 @@ try {
     remove_tree($previous);
 
     $hasAdmin = (bool) Illuminate\Support\Facades\DB::table('admin_users')->exists();
+    $diagnostics = run_diagnostics($kernel);
     finish([
         'ok' => true,
         'php' => PHP_VERSION,
+        'problems' => $diagnostics['problems'] ?? [],
         'log' => $log,
+        'diagnostics' => $diagnostics,
         'next' => $hasAdmin ? 'https://goldentor.hu/admin' : 'https://goldentor.hu/admin/setup',
     ]);
 } catch (Throwable $error) {

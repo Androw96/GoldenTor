@@ -6,6 +6,7 @@ use App\Filament\Pages\BlogPosts;
 use App\Filament\Pages\ExpertProfiles;
 use App\Filament\Pages\SiteDesign;
 use App\Filament\Pages\SiteTexts;
+use App\Filament\Pages\SystemStatus;
 use App\Filament\Resources\BookingResource;
 use App\Filament\Resources\BookingResource\Pages\ManageBookings;
 use App\Filament\Resources\CalculationResource;
@@ -15,6 +16,7 @@ use App\Filament\Resources\FeedbackResource;
 use App\Models\AdminUser;
 use App\Models\Booking;
 use App\Models\Customer;
+use App\Support\Diagnostics;
 use App\Support\SiteContent;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -92,11 +94,57 @@ class AdminPanelSmokeTest extends TestCase
             SiteTexts::getUrl(),
             SiteDesign::getUrl(),
             ExpertProfiles::getUrl(),
+            SystemStatus::getUrl(),
         ];
 
         foreach ($urls as $url) {
             $this->get($url)->assertOk();
         }
+    }
+
+    public function test_diagnostics_report_tables_and_render_every_page(): void
+    {
+        $report = Diagnostics::report();
+
+        foreach (array_keys(Diagnostics::TABLES) as $table) {
+            $this->assertTrue($report['tables'][$table]['exists'], "missing table {$table}");
+            $this->assertSame([], $report['tables'][$table]['missing_columns'], "missing columns in {$table}");
+        }
+        $this->assertArrayNotHasKey('error', $report['environment']);
+        $this->assertGreaterThanOrEqual(10, count($report['pages']));
+        foreach ($report['pages'] as $label => $result) {
+            $this->assertSame(200, $result['status'], "{$label}: " . ($result['error'] ?? ''));
+        }
+
+        $this->assertSame(0, \Illuminate\Support\Facades\Artisan::call('goldentor:diagnose', ['--no-probe' => true]));
+        $this->assertStringContainsString('"tables"', \Illuminate\Support\Facades\Artisan::output());
+    }
+
+    public function test_recent_errors_are_read_from_the_log_with_emails_masked(): void
+    {
+        $file = storage_path('logs/laravel-smoke-test.log');
+        @mkdir(dirname($file), 0775, true);
+        file_put_contents($file, "[2026-10-24 20:00:00] testing.ERROR: Teszt hiba anna@example.test címmel {\"exception\":\"x\"}\n#0 trace line\n");
+        touch($file, time() + 60);
+        try {
+            $errors = Diagnostics::recentErrors();
+            $this->assertNotEmpty($errors);
+            $this->assertStringContainsString('Teszt hiba', $errors[0]['message']);
+            $this->assertStringNotContainsString('anna@example.test', $errors[0]['message']);
+        } finally {
+            @unlink($file);
+        }
+    }
+
+    public function test_admins_see_the_real_error_and_guests_do_not(): void
+    {
+        config(['app.debug' => false]);
+        \Illuminate\Support\Facades\Route::middleware('web')->get('/admin/_smoke-error', fn () => throw new \RuntimeException('Szándékos teszthiba'));
+
+        $this->get('/admin/_smoke-error')->assertStatus(500)->assertSee('Szándékos teszthiba');
+
+        auth()->logout();
+        $this->get('/admin/_smoke-error')->assertStatus(500)->assertDontSee('Szándékos teszthiba');
     }
 
     public function test_setup_page_is_hidden_once_an_admin_exists(): void

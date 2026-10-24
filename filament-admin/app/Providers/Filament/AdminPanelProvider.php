@@ -34,6 +34,12 @@ class AdminPanelProvider extends PanelProvider
         if ($appUrl !== '' && ! app()->runningUnitTests()) {
             URL::forceRootUrl($appUrl);
         }
+
+        // Logged-in admins see the real error instead of a bare "Server Error" page.
+        $handler = $this->app->make(\Illuminate\Contracts\Debug\ExceptionHandler::class);
+        if (method_exists($handler, 'renderable')) {
+            $handler->renderable(fn (\Throwable $error, \Illuminate\Http\Request $request) => \App\Support\AdminErrorPage::render($error, $request));
+        }
     }
 
     public function panel(Panel $panel): Panel
