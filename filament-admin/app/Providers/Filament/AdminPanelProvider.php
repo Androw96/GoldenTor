@@ -35,6 +35,9 @@ class AdminPanelProvider extends PanelProvider
             URL::forceRootUrl($appUrl);
         }
 
+        // The public pages read this plain hint to show the text editor (see EditorHintCookie).
+        EncryptCookies::except(['gt_editor']);
+
         // Hungarian number format in tables and counters (1 234 instead of 1,234).
         \Illuminate\Support\Number::useLocale('hu');
 
@@ -108,6 +111,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                \App\Http\Middleware\EditorHintCookie::class,
             ]);
     }
 }

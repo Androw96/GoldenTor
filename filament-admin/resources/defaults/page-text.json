@@ -1,0 +1,5012 @@
+{
+ "adatkezeles.1": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Golden Tor Consulting"
+ },
+ "adatkezeles.2": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Jogi információ"
+ },
+ "adatkezeles.3": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Adatkezelési tájékoztató"
+ },
+ "adatkezeles.4": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Hatályos: 2026. június 22."
+ },
+ "adatkezeles.5": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Az adatkezelő"
+ },
+ "adatkezeles.6": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "p",
+  "rich": true,
+  "text": "Golden Tor Consulting<br>9023 Győr, Bartók Béla út 44.<br><a href=\"mailto:info@goldentor.hu\">info@goldentor.hu</a><br><a href=\"tel:+36207456490\">+36 20 745 6490</a>"
+ },
+ "adatkezeles.7": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Kezelt adatok és célok"
+ },
+ "adatkezeles.8": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Kapcsolatfelvétel vagy időpontkérés esetén a név, e-mail-cím, telefonszám, választott téma, preferált időpont és az üzenet tartalma kerülhet kezelésre. Az adatkezelés célja a megkeresés megválaszolása, a konzultáció egyeztetése és az ügyféllel való kapcsolattartás."
+ },
+ "adatkezeles.9": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Az adatkezelés jogalapja"
+ },
+ "adatkezeles.10": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Az adatkezelés az érintett önkéntes hozzájárulásán, illetve szerződéskötést megelőző lépések megtételén alapulhat. A hozzájárulás bármikor visszavonható az adatkezelő elérhetőségein."
+ },
+ "adatkezeles.11": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Megőrzés és továbbítás"
+ },
+ "adatkezeles.12": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A megkeresések adatait csak a kapcsolattartáshoz szükséges ideig, illetve az alkalmazandó jogi kötelezettségek időtartamáig őrizzük. A weboldal a megkereséseket, foglalásokat, profiladatokat és visszajelzéseket a saját szerverének adatbázisában rögzíti."
+ },
+ "adatkezeles.13": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Személyes ügyfélfiók"
+ },
+ "adatkezeles.14": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A regisztrációhoz nevet, e-mail-címet és jelszót kérünk. A jelszót sózott, egyirányú scrypt kivonatként tároljuk. A profilhoz opcionálisan telefonszám adható meg. A szakértői visszajelzések a fiókhoz kapcsolódnak, és nem kerülnek automatikusan nyilvánosságra. A kalkulátorokba írt összegeket a böngésző számítja ki, azokat nem tároljuk a profilban."
+ },
+ "adatkezeles.15": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Helyi tárolás és cookie-k"
+ },
+ "adatkezeles.16": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A bejelentkezést a működéshez szükséges, HttpOnly gt_session süti biztosítja, legfeljebb 8 óráig. Kijelentkezéskor a szerver érvényteleníti a munkamenetet."
+ },
+ "adatkezeles.17": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Az oldal a cookie-beállítás és az előkészített időpontkérés összegzésének megjegyzésére helyi böngészőtárolást használhat. Marketing- és analitikai cookie jelenleg nincs bekapcsolva."
+ },
+ "adatkezeles.18": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Az érintett jogai"
+ },
+ "adatkezeles.19": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Az érintett kérheti a rá vonatkozó adatokhoz való hozzáférést, azok helyesbítését, törlését, kezelésük korlátozását, és tiltakozhat az adatkezelés ellen. Jogorvoslati lehetőségként az illetékes felügyeleti hatósághoz is fordulhat."
+ },
+ "adatkezeles.20": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Fontos publikálási megjegyzés"
+ },
+ "adatkezeles.21": {
+  "page": "adatkezeles",
+  "pages": [
+   "adatkezeles"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Éles közzététel előtt a tájékoztatót a tényleges vállalkozási forma, adatfeldolgozók, tárhelyszolgáltató, megőrzési idők és alkalmazott mérési rendszerek alapján jogi szakértővel szükséges véglegesíteni."
+ },
+ "befektetes.1": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ugrás a tartalomra"
+ },
+ "befektetes.2": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Befektetés"
+ },
+ "befektetes.3": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Ne hagyja, hogy a pénze csak parkoljon. A befektetési stratégia célja, hogy a vagyonának iránya, ritmusa és védelme is legyen - nem találgatással, hanem tudatos rendszerben."
+ },
+ "befektetes.4": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "strong",
+  "rich": false,
+  "text": "Fókusz"
+ },
+ "befektetes.5": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "portfóliótervezés"
+ },
+ "befektetes.6": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "kockázati profil"
+ },
+ "befektetes.7": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "nemzetközi lehetőségek"
+ },
+ "befektetes.8": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "vagyonvédelem"
+ },
+ "befektetes.9": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "strong",
+  "rich": false,
+  "text": "Tartalom"
+ },
+ "befektetes.10": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Szemlélet"
+ },
+ "befektetes.11": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Portfólióépítés"
+ },
+ "befektetes.12": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Kockázatkezelés"
+ },
+ "befektetes.13": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Gyors ábra"
+ },
+ "befektetes.14": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Tanácsadási folyamat"
+ },
+ "befektetes.15": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ügyfélhelyzetek"
+ },
+ "befektetes.16": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A befektetési döntés röviden"
+ },
+ "befektetes.17": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Cél</span>\n                  <strong>Mit akar elérni?</strong>\n                  <small>vagyonépítés, tartalék, hozam, védelem</small>"
+ },
+ "befektetes.18": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Profil</span>\n                  <strong>Mekkora kockázat fér bele?</strong>\n                  <small>időtáv, likviditás, döntési komfort</small>"
+ },
+ "befektetes.19": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Portfólió</span>\n                  <strong>Hova kerüljön a tőke?</strong>\n                  <small>eszközosztályok, piacok, arany, ingatlan</small>"
+ },
+ "befektetes.20": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Kontroll</span>\n                  <strong>Mikor kell belenyúlni?</strong>\n                  <small>felülvizsgálat, új cél, piaci változás</small>"
+ },
+ "befektetes.21": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A befektetés, ahol eldől a jövőbeli mozgástér"
+ },
+ "befektetes.22": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A befektetési döntések akkor működnek jól, ha nem elszigetelt termékválasztásként, hanem teljes pénzügyi rendszerként kezeljük őket. Egy ügyfél számára mást jelenthet a biztonság, a hozam, a likviditás vagy a növekedés: van, aki hosszú távú családi vagyonban gondolkodik, más vállalkozói tőkét szeretne parkoltatni, megint más rendszeres megtakarításból építene jövőt."
+ },
+ "befektetes.23": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A Golden Tor Consulting befektetési szemlélete ezért először az ügyfél céljait, időtávját, kockázattűrését, élethelyzetét és pénzügyi mozgásterét térképezi fel. Ebből épül fel az a stratégia, amely nem csak papíron mutat jól, hanem a mindennapi döntésekben is követhető."
+ },
+ "befektetes.24": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Portfólió, amely nem egy lapra tesz fel mindent"
+ },
+ "befektetes.25": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A portfólió célja, hogy különböző eszközosztályok, földrajzi kitettségek és időtávok között teremtsen egyensúlyt. A megfelelő szerkezetben helyet kaphatnak likvid tartalékok, értékpapír alapú megoldások, nemzetközi befektetések, arany, ingatlanhoz kapcsolódó lehetőségek vagy más, az ügyfél céljaihoz illeszkedő eszközök."
+ },
+ "befektetes.26": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Likviditás"
+ },
+ "befektetes.27": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A rövid távon hozzáférhető tartalék stabilitást ad, és csökkenti a kényszerű rossz időzítés kockázatát."
+ },
+ "befektetes.28": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Növekedés"
+ },
+ "befektetes.29": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A hosszabb távú elemek célja a vagyon értékének építése, tudatosan vállalt kockázati szint mellett."
+ },
+ "befektetes.30": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Védelem"
+ },
+ "befektetes.31": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A portfólió ellenálló képessége legalább olyan fontos, mint a hozampotenciál."
+ },
+ "befektetes.32": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A kockázat nem ellenség - a kontroll hiánya az"
+ },
+ "befektetes.33": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A kockázat nem ellenség, hanem olyan tényező, amelyet meg kell érteni és megfelelő arányban kell vállalni. A túl óvatos stratégia hosszú távon értékvesztést okozhat, a túl agresszív stratégia pedig felesleges stresszt és rossz időzítésű döntéseket eredményezhet."
+ },
+ "befektetes.34": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A tanácsadás során külön figyelmet kap a kockázati profil, az árfolyam-ingadozás tűrése, a várható pénzáramlás, a tartalékok szintje és az, hogy az ügyfél mennyire szeretne aktívan részt venni a döntések követésében. A cél egy olyan befektetési struktúra, amely nem csak ideális piaci környezetben, hanem bizonytalanabb időszakokban is vállalható."
+ },
+ "befektetes.35": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Így lesz a bizonytalanságból befektetési terv"
+ },
+ "befektetes.36": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Célfelmérés:</strong> vagyonhelyzet, időtáv, likviditási igény és személyes prioritások áttekintése."
+ },
+ "befektetes.37": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Stratégiai vázlat:</strong> kockázati profilhoz illeszkedő portfóliólogika kialakítása."
+ },
+ "befektetes.38": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Megoldások szűrése:</strong> elérhető lehetőségek összevetése költség, rugalmasság és célilleszkedés alapján."
+ },
+ "befektetes.39": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Utánkövetés:</strong> rendszeres felülvizsgálat élethelyzet, piac és célváltozás esetén."
+ },
+ "befektetes.40": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Amikor már túl nagy a tét az ösztönös döntésekhez"
+ },
+ "befektetes.41": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Befektetési tanácsadásra gyakran akkor van szükség, amikor az ügyfél nagyobb megtakarítással, vállalkozásból származó szabad forrással, ingatlanértékesítésből kapott összeggel vagy hosszú távú családi vagyontervezési igénnyel rendelkezik. Ilyenkor a legfontosabb kérdés nem az, hogy \"mibe tegyük a pénzt\", hanem az, hogy milyen szerepet kell betöltenie ennek a vagyonnak."
+ },
+ "befektetes.42": {
+  "page": "befektetes",
+  "pages": [
+   "befektetes"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Kérem a befektetési stratégiai konzultációt"
+ },
+ "biztositas.1": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ugrás a tartalomra"
+ },
+ "biztositas.2": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Biztosítás"
+ },
+ "biztositas.3": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A baj ritkán szól előre. A biztosítási stratégia célja, hogy egy váratlan esemény ne rombolja le azt, amit évek alatt épített fel."
+ },
+ "biztositas.4": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "strong",
+  "rich": false,
+  "text": "Fókusz"
+ },
+ "biztositas.5": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "élethelyzet-elemzés"
+ },
+ "biztositas.6": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "vagyonvédelem"
+ },
+ "biztositas.7": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "egészség és család"
+ },
+ "biztositas.8": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "portfólió-optimalizálás"
+ },
+ "biztositas.9": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "strong",
+  "rich": false,
+  "text": "Tartalom"
+ },
+ "biztositas.10": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "A biztosítás szerepe"
+ },
+ "biztositas.11": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Biztosítási területek"
+ },
+ "biztositas.12": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Piackutatási algoritmus"
+ },
+ "biztositas.13": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Gyors ábra"
+ },
+ "biztositas.14": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Optimalizálás"
+ },
+ "biztositas.15": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Folyamat"
+ },
+ "biztositas.16": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ügyfélhelyzetek"
+ },
+ "biztositas.17": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A biztosítási védelem röviden"
+ },
+ "biztositas.18": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Kitettség</span>\n                  <strong>Mi sérülhet?</strong>\n                  <small>jövedelem, család, ingatlan, vállalkozás</small>"
+ },
+ "biztositas.19": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Hiány</span>\n                  <strong>Hol nincs valódi fedezet?</strong>\n                  <small>kizárások, alulbiztosítás, elavult szerződés</small>"
+ },
+ "biztositas.20": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Védelem</span>\n                  <strong>Mire kell biztosítás?</strong>\n                  <small>élet, egészség, vagyon, felelősség</small>"
+ },
+ "biztositas.21": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Kontroll</span>\n                  <strong>Mikor kell frissíteni?</strong>\n                  <small>vagyonváltozás, hitel, család, céghelyzet</small>"
+ },
+ "biztositas.22": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A védelem, ami csak akkor hiányzik igazán, amikor már késő"
+ },
+ "biztositas.23": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A biztosítás gyakran csak akkor kerül előtérbe, amikor már megtörtént a baj. Pedig stratégiai szinten a biztosítás feladata az, hogy védje azt, amit az ügyfél felépített: a család pénzügyi biztonságát, a vállalkozás működését, az ingatlanokat, a jövedelmet és a hosszú távú terveket."
+ },
+ "biztositas.24": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Független tanácsadói szemlélettel nem az a cél, hogy minél több szerződés szülessen, hanem hogy a megfelelő kockázatokra legyen megfelelő fedezet. Ezért a biztosítási stratégia mindig az élethelyzetből, a vagyoni struktúrából és a valódi felelősségi pontokból indul ki."
+ },
+ "biztositas.25": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A legfontosabb védelmi pontok"
+ },
+ "biztositas.26": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Élet és család"
+ },
+ "biztositas.27": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Családfenntartói kockázatok, jövedelemkiesés, hosszú távú biztonság és öröklési szempontok."
+ },
+ "biztositas.28": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Egészség"
+ },
+ "biztositas.29": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Egészségügyi ellátáshoz kapcsolódó megoldások, váratlan betegségek és kezelési helyzetek kezelése."
+ },
+ "biztositas.30": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Vagyon"
+ },
+ "biztositas.31": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Ingatlanok, értéktárgyak, vállalkozási eszközök és felelősségi kockázatok védelme."
+ },
+ "biztositas.32": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Ügyfélfiókkal elérhető"
+ },
+ "biztositas.33": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Valiora módszertan"
+ },
+ "biztositas.34": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A biztosítási összehasonlító eszközt bejelentkezés után használhatja."
+ },
+ "biztositas.35": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Bejelentkezés / Regisztráció"
+ },
+ "biztositas.36": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A meglévő szerződésekben rejtőzhet a legnagyobb kockázat"
+ },
+ "biztositas.37": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Sok ügyfél rendelkezik több biztosítással, de nem biztos abban, hogy azok valóban lefedik-e a legfontosabb kockázatokat. Előfordulhat átfedés, túl alacsony fedezet, elavult szerződés, indokolatlan költség vagy olyan kizárás, amely csak káreseménykor derülne ki."
+ },
+ "biztositas.38": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A biztosítási portfólió áttekintése során rendszerezzük a meglévő szerződéseket, megvizsgáljuk a fedezeti szinteket, az önrészeket, kizárásokat, díjakat és azt, hogy a szerződések illeszkednek-e az ügyfél jelenlegi élethelyzetéhez."
+ },
+ "biztositas.39": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Így derül ki, mire van valóban szükség"
+ },
+ "biztositas.40": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Kockázatfelmérés:</strong> családi, vagyoni, egészségügyi és vállalkozási kitettségek áttekintése."
+ },
+ "biztositas.41": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Meglévő szerződések elemzése:</strong> fedezetek, díjak, kizárások és hiányosságok vizsgálata."
+ },
+ "biztositas.42": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Védelmi stratégia:</strong> szükséges fedezeti szintek és prioritások meghatározása."
+ },
+ "biztositas.43": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Utánkövetés:</strong> élethelyzet-változás, vagyonváltozás vagy új kockázat esetén felülvizsgálat."
+ },
+ "biztositas.44": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Élethelyzetek, amikor nem érdemes várni"
+ },
+ "biztositas.45": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Biztosítási tanácsadás különösen fontos családalapítás, ingatlanvásárlás, vállalkozásindítás, jelentős vagyongyarapodás, hitelfelvétel, külföldi élethelyzet vagy meglévő szerződések felülvizsgálata esetén. Ilyenkor a biztosítás nem adminisztratív teher, hanem a pénzügyi stratégia egyik stabilizáló eleme."
+ },
+ "biztositas.46": {
+  "page": "biztositas",
+  "pages": [
+   "biztositas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Kérem a biztosítási kockázatátvilágítást"
+ },
+ "blog.1": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ugrás a tartalomra"
+ },
+ "blog.2": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Golden Tor Blog"
+ },
+ "blog.3": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "h1",
+  "rich": true,
+  "text": "Pénzügyi döntések.<br>Érthetően."
+ },
+ "blog.4": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Rövid, áttekinthető írások azoknak, akik nem hangzatos ígéretekből, hanem jól feltett kérdésekből szeretnének kiindulni."
+ },
+ "blog.5": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<strong>Hasznos nézőpontok.</strong>\n            <span>Kérdések és szempontok, amelyek segítenek felkészülni a következő döntésre.</span>"
+ },
+ "blog.6": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span>Befektetés</span><time datetime=\"2026-07-16\">2026. július</time>"
+ },
+ "blog.7": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Mit jelent, ha a pénznek nem csak helye, hanem iránya is van?"
+ },
+ "blog.8": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Sok megtakarítás azért veszít lendületet, mert nincs mögötte kimondott cél. Egy portfólió akkor válik valódi stratégiává, ha látható benne az időtáv, a kockázati határ, a likviditási tartalék és az a pont, ahol a döntést újra kell vizsgálni."
+ },
+ "blog.9": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "li",
+  "rich": false,
+  "text": "Miért nem elég egyetlen hozamelvárás alapján dönteni?"
+ },
+ "blog.10": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "li",
+  "rich": false,
+  "text": "Hogyan érdemes külön kezelni a biztonsági, növekedési és lehetőségkereső tőkét?"
+ },
+ "blog.11": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "li",
+  "rich": false,
+  "text": "Mikor jelez problémát, ha a portfólió túl bonyolult vagy túl egyszerű?"
+ },
+ "blog.12": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span>Élethelyzet</span><time datetime=\"2026-07-16\">2026. július</time>"
+ },
+ "blog.13": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Öröklés, cégeladás vagy nagyobb bevétel után: mi legyen az első lépés?"
+ },
+ "blog.14": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Nagyobb vagyonmozgás után természetes, hogy gyors döntésekre érkeznek ajánlatok. A felelős sorrend mégis az, hogy először a célokat, adózási és családi szempontokat, majd a kockázatokat tisztázzuk. Csak ezután érdemes konkrét termékekről beszélni."
+ },
+ "blog.15": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span>Finanszírozás</span><time datetime=\"2026-07-16\">2026. július</time>"
+ },
+ "blog.16": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Mikor segít a hitel, és mikor szűkíti be a mozgásteret?"
+ },
+ "blog.17": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A finanszírozás nem önmagában jó vagy rossz. A kérdés az, hogy a törlesztési struktúra mennyi szabadságot hagy váratlan helyzetekre, beruházásra vagy családi döntésekre. Egy jó konstrukció nem csak olcsóbb, hanem kezelhetőbb is."
+ },
+ "blog.18": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span>Biztosítás</span><time datetime=\"2026-07-16\">2026. július</time>"
+ },
+ "blog.19": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Vagyonvédelem: nem félelemből, hanem tervezésből"
+ },
+ "blog.20": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Egy biztosítási portfólió akkor hasznos, ha valós kockázatokra ad választ. A cél nem a túlbiztosítás, hanem annak felismerése, hol sérülhet a családi vagyon, a jövedelem vagy a vállalkozás folytonossága."
+ },
+ "blog.21": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span>Ingatlan</span><time datetime=\"2026-07-16\">2026. július</time>"
+ },
+ "blog.22": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Ingatlanvásárlás előtt: lokáció, likviditás, élethelyzet"
+ },
+ "blog.23": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Egy ingatlan értéke nem csak a négyzetméterárban látszik. Fontos, hogy mennyire könnyen értékesíthető, milyen finanszírozási terhet hoz, és hogyan illeszkedik a teljes vagyoni képbe."
+ },
+ "blog.24": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Következő lépés"
+ },
+ "blog.25": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Olvasás után érdemes a saját számokra is ránézni."
+ },
+ "blog.26": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Ha egy témánál magára ismert, egy rövid konzultáción áttekintjük, melyik döntési sorrend lehet felelős."
+ },
+ "blog.27": {
+  "page": "blog",
+  "pages": [
+   "blog"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Időpontot kérek"
+ },
+ "finanszirozas.1": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ugrás a tartalomra"
+ },
+ "finanszirozas.2": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Finanszírozás"
+ },
+ "finanszirozas.3": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Egy rosszul választott finanszírozás évekre bezárhatja a mozgásteret. Egy jól felépített konstrukció viszont gyorsíthatja a célokat, miközben kontroll alatt tartja a terheket."
+ },
+ "finanszirozas.4": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "strong",
+  "rich": false,
+  "text": "Fókusz"
+ },
+ "finanszirozas.5": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "hitelképesség"
+ },
+ "finanszirozas.6": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "konstrukcióválasztás"
+ },
+ "finanszirozas.7": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "törlesztési stratégia"
+ },
+ "finanszirozas.8": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "banki összehasonlítás"
+ },
+ "finanszirozas.9": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "strong",
+  "rich": false,
+  "text": "Tartalom"
+ },
+ "finanszirozas.10": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Szemlélet"
+ },
+ "finanszirozas.11": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Lakossági finanszírozás"
+ },
+ "finanszirozas.12": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Gyors ábra"
+ },
+ "finanszirozas.13": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Vállalati finanszírozás"
+ },
+ "finanszirozas.14": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Folyamat"
+ },
+ "finanszirozas.15": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Kalkulátor"
+ },
+ "finanszirozas.16": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Kockázatok"
+ },
+ "finanszirozas.17": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A finanszírozási döntés röviden"
+ },
+ "finanszirozas.18": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Cél</span>\n                  <strong>Mire kell a forrás?</strong>\n                  <small>ingatlan, beruházás, kiváltás, likviditás</small>"
+ },
+ "finanszirozas.19": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Teher</span>\n                  <strong>Mit bír el biztonsággal?</strong>\n                  <small>jövedelem, fedezet, önerő, tartalék</small>"
+ },
+ "finanszirozas.20": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Ajánlat</span>\n                  <strong>Melyik konstrukció a legjobb?</strong>\n                  <small>kamat, díj, futamidő, rugalmasság</small>"
+ },
+ "finanszirozas.21": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Stressz</span>\n                  <strong>Mi történik rosszabb helyzetben?</strong>\n                  <small>kamatváltozás, bevételkiesés, előtörlesztés</small>"
+ },
+ "finanszirozas.22": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Nem a kamat az egyetlen csapda"
+ },
+ "finanszirozas.23": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A finanszírozás nem pusztán arról szól, hogy melyik ajánlatban alacsonyabb a kamat. Legalább ilyen fontos a futamidő, a törlesztési struktúra, az önerő mértéke, a jövőbeni bevételek stabilitása, az előtörlesztési lehetőség, a rugalmasság és az, hogy a konstrukció hogyan hat a teljes pénzügyi élethelyzetre."
+ },
+ "finanszirozas.24": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A Golden Tor Consulting célja, hogy az ügyfél ne csak hitelt kapjon, hanem olyan finanszírozási döntést hozzon, amely illeszkedik az életcéljaihoz, beruházási terveihez és kockázati komfortjához."
+ },
+ "finanszirozas.25": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Tervezzen számokkal"
+ },
+ "finanszirozas.26": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Finanszírozási kalkulátor"
+ },
+ "finanszirozas.27": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Számolja ki a becsült havi törlesztőt és a teljes visszafizetést. Az eszköz bejelentkezés után érhető el."
+ },
+ "finanszirozas.28": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Hitelkalkulátor megnyitása"
+ },
+ "finanszirozas.29": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Lakossági finanszírozás, ahol a havi törlesztő csak a kezdet"
+ },
+ "finanszirozas.30": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Lakossági oldalon gyakori cél az ingatlanvásárlás, felújítás, hitelkiváltás, nagyobb családi beruházás vagy vagyonrendezés. Ezeknél a döntéseknél fontos, hogy a törlesztés hosszú távon is kényelmesen vállalható legyen, és ne szűkítse le indokolatlanul az ügyfél pénzügyi mozgásterét."
+ },
+ "finanszirozas.31": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Terhelhetőség"
+ },
+ "finanszirozas.32": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A havi törlesztésnek a bevételi szerkezethez és tartalékokhoz kell igazodnia."
+ },
+ "finanszirozas.33": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Rugalmasság"
+ },
+ "finanszirozas.34": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Előtörlesztés, kamatperiódus, futamidő és későbbi élethelyzet-változás figyelembevétele."
+ },
+ "finanszirozas.35": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Összköltség"
+ },
+ "finanszirozas.36": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Nem csak a kamat, hanem díjak, biztosítások, feltételek és hosszú távú költségek vizsgálata."
+ },
+ "finanszirozas.37": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Vállalati finanszírozás, ami növekedést adhat - vagy féket"
+ },
+ "finanszirozas.38": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Vállalkozásoknál a finanszírozás lehet növekedési eszköz, beruházási háttér, likviditási tartalék vagy átmeneti pénzáramlási megoldás. A döntésnél a vállalkozás bevételi ciklusa, szerződésállománya, fedezeti háttere, beruházási megtérülése és jövőbeni tervei egyaránt meghatározóak."
+ },
+ "finanszirozas.39": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Segítünk átlátni, hogy egy adott konstrukció hogyan hat a vállalkozás működésére, mennyi tartalékot hagy, milyen kötelezettségeket teremt, és milyen alternatív lehetőségek léteznek."
+ },
+ "finanszirozas.40": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A finanszírozási folyamat, ahol előre kiderülnek a buktatók"
+ },
+ "finanszirozas.41": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Célmeghatározás:</strong> a finanszírozás céljának, összegének és időtávjának pontosítása."
+ },
+ "finanszirozas.42": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Előkalkuláció:</strong> jövedelem, fedezet, önerő, terhelhetőség és lehetséges banki feltételek áttekintése."
+ },
+ "finanszirozas.43": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Ajánlatok összevetése:</strong> kamat, THM, díjak, rugalmasság, futamidő és teljes költség vizsgálata."
+ },
+ "finanszirozas.44": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Döntéstámogatás:</strong> az ügyfél számára leginkább vállalható struktúra kiválasztása."
+ },
+ "finanszirozas.45": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A kérdés: elbírja-e a jövő is?"
+ },
+ "finanszirozas.46": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Egy jó finanszírozási döntés nem feszíti túl az ügyfél pénzügyeit. Figyelni kell a kamatkörnyezet változására, a jövedelem stabilitására, a vállalkozási bevételek ingadozására, az ingatlanpiaci kockázatokra és arra, hogy váratlan helyzetekben is maradjon megfelelő tartalék."
+ },
+ "finanszirozas.47": {
+  "page": "finanszirozas",
+  "pages": [
+   "finanszirozas"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Kérem a finanszírozási átvilágítást"
+ },
+ "fiok.1": {
+  "page": "fiok",
+  "pages": [
+   "fiok"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ugrás a tartalomra"
+ },
+ "fiok.2": {
+  "page": "fiok",
+  "pages": [
+   "fiok"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Golden Tor · Személyes fiók"
+ },
+ "fiok.3": {
+  "page": "fiok",
+  "pages": [
+   "fiok"
+  ],
+  "tag": "h1",
+  "rich": true,
+  "text": "Tisztább kép.<br>Tudatosabb döntések."
+ },
+ "fiok.4": {
+  "page": "fiok",
+  "pages": [
+   "fiok"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Egy fiók a pénzügyi tervezéshez. Kalkulátorok, Valiora módszertan és személyes profil egy helyen."
+ },
+ "fiok.5": {
+  "page": "fiok",
+  "pages": [
+   "fiok"
+  ],
+  "tag": "small",
+  "rich": false,
+  "text": "Legalább 10 karakter."
+ },
+ "fiok.6": {
+  "page": "fiok",
+  "pages": [
+   "fiok"
+  ],
+  "tag": "span",
+  "rich": true,
+  "text": "Elolvastam az <a href=\"adatkezeles.html\" target=\"_blank\" rel=\"noopener\">adatkezelési tájékoztatót</a>."
+ },
+ "fiok.7": {
+  "page": "fiok",
+  "pages": [
+   "fiok"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Személyes profil"
+ },
+ "fiok.8": {
+  "page": "fiok",
+  "pages": [
+   "fiok"
+  ],
+  "tag": "button",
+  "rich": false,
+  "text": "Profil mentése"
+ },
+ "fiok.9": {
+  "page": "fiok",
+  "pages": [
+   "fiok"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<a href=\"kalkulatorok.html\">Pénzügyi kalkulátorok ↗</a><a href=\"biztositas.html#piackutatas\">Valiora módszertan ↗</a><a href=\"szakertoink.html#visszajelzes\">Visszajelzés küldése ↗</a>"
+ },
+ "footer.1": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Golden Tor Consulting"
+ },
+ "footer.2": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": true,
+  "text": "Átlátható pénzügyi döntések.<br>Személyes figyelem, hosszú távú szemlélet."
+ },
+ "footer.3": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Szolgáltatások"
+ },
+ "footer.4": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Befektetés"
+ },
+ "footer.5": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ingatlan"
+ },
+ "footer.6": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Finanszírozás"
+ },
+ "footer.7": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Biztosítás"
+ },
+ "footer.8": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Golden Tor"
+ },
+ "footer.9": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Rólunk"
+ },
+ "footer.10": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Szakértőink"
+ },
+ "footer.11": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Blog"
+ },
+ "footer.12": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Személyes fiók"
+ },
+ "footer.13": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Kalkulátor"
+ },
+ "footer.14": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Kapcsolat"
+ },
+ "footer.15": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "info@goldentor.hu"
+ },
+ "footer.16": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "+36 20 745 6490"
+ },
+ "footer.17": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "9023 Győr, Bartók Béla út 44."
+ },
+ "footer.18": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Időpontfoglalás ↗"
+ },
+ "footer.19": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "© 2026 Golden Tor Consulting. Minden jog fenntartva."
+ },
+ "footer.20": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Impresszum"
+ },
+ "footer.21": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Adatkezelés"
+ },
+ "footer.22": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Jogi nyilatkozat"
+ },
+ "footer.23": {
+  "page": "footer",
+  "pages": [
+   "adatkezeles",
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "impresszum",
+   "index",
+   "ingatlan",
+   "jogi-nyilatkozat",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "button",
+  "rich": false,
+  "text": "Cookie-beállítások"
+ },
+ "header.1": {
+  "page": "header",
+  "pages": [
+   "befektetes",
+   "biztositas",
+   "blog",
+   "finanszirozas",
+   "fiok",
+   "idopont",
+   "index",
+   "ingatlan",
+   "kalkulatorok",
+   "szakertoink"
+  ],
+  "tag": "span",
+  "rich": true,
+  "text": "Golden Tor<small>CONSULTING</small>"
+ },
+ "idopont.1": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ugrás a tartalomra"
+ },
+ "idopont.2": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Privát konzultáció"
+ },
+ "idopont.3": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Foglaljon időpontot"
+ },
+ "idopont.4": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Válassza ki a témát, a találkozás módját és az Önnek megfelelő időpontot. A kérését rögzítjük, munkatársunk pedig visszaigazolja a végleges időpontot."
+ },
+ "idopont.5": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span>30-45 perc</span>\n            <span>Online vagy személyesen</span>\n            <span>Kötelezettségmentes első egyeztetés</span>"
+ },
+ "idopont.6": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Időpontkérés"
+ },
+ "idopont.7": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Adja meg a konzultáció részleteit"
+ },
+ "idopont.8": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Név *"
+ },
+ "idopont.9": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "E-mail *"
+ },
+ "idopont.10": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Telefonszám"
+ },
+ "idopont.11": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Konzultáció témája *"
+ },
+ "idopont.12": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Találkozás módja *"
+ },
+ "idopont.13": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Nap *"
+ },
+ "idopont.14": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "legend",
+  "rich": false,
+  "text": "Preferált időpont *"
+ },
+ "idopont.15": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "09:00"
+ },
+ "idopont.16": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "11:00"
+ },
+ "idopont.17": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "14:00"
+ },
+ "idopont.18": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "16:00"
+ },
+ "idopont.19": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Röviden miről szeretne beszélni?"
+ },
+ "idopont.20": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "span",
+  "rich": true,
+  "text": "Elolvastam és elfogadom az <a href=\"adatkezeles.html\">adatkezelési tájékoztatót</a>. *"
+ },
+ "idopont.21": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "button",
+  "rich": false,
+  "text": "Időpontkérés elküldése"
+ },
+ "idopont.22": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Mi történik ezután?"
+ },
+ "idopont.23": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "li",
+  "rich": false,
+  "text": "Rögzítjük a kérését, és elküldjük a foglalási adatlap elérhetőségét."
+ },
+ "idopont.24": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "li",
+  "rich": false,
+  "text": "Munkatársunk ellenőrzi a szakértő elérhetőségét."
+ },
+ "idopont.25": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "li",
+  "rich": false,
+  "text": "E-mailben vagy telefonon visszaigazoljuk a végleges időpontot."
+ },
+ "idopont.26": {
+  "page": "idopont",
+  "pages": [
+   "idopont"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A beküldés önmagában még nem jelent végleges foglalást."
+ },
+ "impresszum.1": {
+  "page": "impresszum",
+  "pages": [
+   "impresszum"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Golden Tor Consulting"
+ },
+ "impresszum.2": {
+  "page": "impresszum",
+  "pages": [
+   "impresszum"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Jogi információ"
+ },
+ "impresszum.3": {
+  "page": "impresszum",
+  "pages": [
+   "impresszum"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Impresszum"
+ },
+ "impresszum.4": {
+  "page": "impresszum",
+  "pages": [
+   "impresszum"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A weboldal üzemeltetője"
+ },
+ "impresszum.5": {
+  "page": "impresszum",
+  "pages": [
+   "impresszum"
+  ],
+  "tag": "p",
+  "rich": true,
+  "text": "Golden Tor Consulting<br>Székhely/kapcsolati cím: 9023 Győr, Bartók Béla út 44.<br>E-mail: <a href=\"mailto:info@goldentor.hu\">info@goldentor.hu</a><br>Telefon: <a href=\"tel:+36207456490\">+36 20 745 6490</a>"
+ },
+ "impresszum.6": {
+  "page": "impresszum",
+  "pages": [
+   "impresszum"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A weboldal célja"
+ },
+ "impresszum.7": {
+  "page": "impresszum",
+  "pages": [
+   "impresszum"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A weboldal a Golden Tor Consulting szolgáltatásainak bemutatását, kapcsolatfelvételt és konzultációs időpontkérést szolgálja."
+ },
+ "impresszum.8": {
+  "page": "impresszum",
+  "pages": [
+   "impresszum"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Hiányzó hivatalos adatok"
+ },
+ "impresszum.9": {
+  "page": "impresszum",
+  "pages": [
+   "impresszum"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Éles közzététel előtt fel kell tüntetni a szolgáltató hivatalos teljes nevét, jogi formáját, nyilvántartási/cégjegyzékszámát, adószámát, képviselőjét, tárhelyszolgáltatóját és az esetlegesen szükséges szakmai engedélyezési adatokat."
+ },
+ "impresszum.10": {
+  "page": "impresszum",
+  "pages": [
+   "impresszum"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Szerzői jog"
+ },
+ "impresszum.11": {
+  "page": "impresszum",
+  "pages": [
+   "impresszum"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A weboldal szövegei, arculati elemei és saját képi anyagai szerzői jogi védelem alatt állhatnak. Felhasználásuk előzetes írásbeli engedélyhez köthető."
+ },
+ "index.1": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ugrás a tartalomra"
+ },
+ "index.2": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Személyes pénzügyi tanácsadás"
+ },
+ "index.3": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h1",
+  "rich": true,
+  "text": "Tisztán látni.<br><em>Jól dönteni.</em>"
+ },
+ "index.4": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": true,
+  "text": "Átlátható stratégia a vagyonához.<br>Személyes figyelem a döntéseihez."
+ },
+ "index.5": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "a",
+  "rich": true,
+  "text": "Beszéljük át a terveit <span aria-hidden=\"true\">↗</span>"
+ },
+ "index.6": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "GOLDEN TOR CONSULTING · GYŐR"
+ },
+ "index.7": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Négy terület. Egy átgondolt stratégia."
+ },
+ "index.8": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<a href=\"befektetes.html\">Befektetés</a><a href=\"ingatlan.html\">Ingatlan</a><a href=\"finanszirozas.html\">Finanszírozás</a><a href=\"biztositas.html\">Biztosítás</a>"
+ },
+ "index.9": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span>01 / Rólunk</span><span class=\"gt-small-rule\"></span>"
+ },
+ "index.10": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h2",
+  "rich": true,
+  "text": "Átlátható pénzügyi<br><em>döntési rend.</em>"
+ },
+ "index.11": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A jó döntés azzal kezdődik, hogy a teljes képet látjuk."
+ },
+ "index.12": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Befektetés, ingatlan, finanszírozás és biztosítás: összefüggő kérdések, amelyek közös figyelmet érdemelnek. Segítünk rendet tenni a lehetőségek között, és megtalálni az Ön céljaihoz illő következő lépést."
+ },
+ "index.13": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "01"
+ },
+ "index.14": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Teljes kép"
+ },
+ "index.15": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A vagyon, a célok és a kötelezettségek egy rendszerben."
+ },
+ "index.16": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "02"
+ },
+ "index.17": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Érthető lehetőségek"
+ },
+ "index.18": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Összehasonlítható alternatívák, világos szempontok."
+ },
+ "index.19": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "03"
+ },
+ "index.20": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Személyes figyelem"
+ },
+ "index.21": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Az Ön élethelyzetéhez igazodó lépések, nyomás nélkül."
+ },
+ "index.22": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": true,
+  "text": "Időtálló pénzügyi rend,<br>személyes figyelemmel."
+ },
+ "index.23": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Olyan döntésekben gondolkodunk, amelyek évekkel később is vállalhatók. A cél a családi vagyon védelme, a mozgástér megőrzése és a nyugodtabb tervezés."
+ },
+ "index.24": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span>02 / Szolgáltatások</span><span class=\"gt-small-rule\"></span>"
+ },
+ "index.25": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h2",
+  "rich": true,
+  "text": "A részletekben szakértelem.<br><em>Az egészben szemlélet.</em>"
+ },
+ "index.26": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": true,
+  "text": "Négy pénzügyi terület,<br>az Ön céljai köré rendezve."
+ },
+ "index.27": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "01"
+ },
+ "index.28": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": true,
+  "text": "Befektetés<span aria-hidden=\"true\">↗</span>"
+ },
+ "index.29": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Megtakarítás és portfólió, amely a céljaihoz és az időtávjához igazodik."
+ },
+ "index.30": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Részletek megismerése"
+ },
+ "index.31": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "02"
+ },
+ "index.32": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": true,
+  "text": "Ingatlan<span aria-hidden=\"true\">↗</span>"
+ },
+ "index.33": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Érték, elhelyezkedés és megtérülés — együtt a finanszírozási háttérrel."
+ },
+ "index.34": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Részletek megismerése"
+ },
+ "index.35": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "03"
+ },
+ "index.36": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": true,
+  "text": "Finanszírozás<span aria-hidden=\"true\">↗</span>"
+ },
+ "index.37": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Átgondolt hitelkonstrukciók, vállalható terhek és megőrzött mozgástér."
+ },
+ "index.38": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Részletek megismerése"
+ },
+ "index.39": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "04"
+ },
+ "index.40": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": true,
+  "text": "Biztosítás<span aria-hidden=\"true\">↗</span>"
+ },
+ "index.41": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A család, a vagyon és a vállalkozás védelme, a valódi kockázatok mentén."
+ },
+ "index.42": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Részletek megismerése"
+ },
+ "index.43": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "03 / Kalkulátor"
+ },
+ "index.44": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h2",
+  "rich": true,
+  "text": "A tervei.<br><em>Számokban is.</em>"
+ },
+ "index.45": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Nézze meg, mit jelenthet egy megtakarítás, egy hitel vagy egy biztonsági tartalék a saját élethelyzetében."
+ },
+ "index.46": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "a",
+  "rich": true,
+  "text": "Kalkulátor megnyitása <span aria-hidden=\"true\">↗</span>"
+ },
+ "index.47": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Ingyenes regisztráció és bejelentkezés után elérhető."
+ },
+ "index.48": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "01"
+ },
+ "index.49": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Vagyonépítés"
+ },
+ "index.50": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Megtakarítás, időtáv, feltételezett hozam."
+ },
+ "index.51": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "02"
+ },
+ "index.52": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Hiteltervezés"
+ },
+ "index.53": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Havi törlesztő és teljes visszafizetés."
+ },
+ "index.54": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "03"
+ },
+ "index.55": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Védelmi tartalék"
+ },
+ "index.56": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Felkészülés a váratlan helyzetekre."
+ },
+ "index.57": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Tájékoztató modellek a tudatos tervezéshez."
+ },
+ "index.58": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span>04 / Blog</span><span class=\"gt-small-rule\"></span>"
+ },
+ "index.59": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h2",
+  "rich": true,
+  "text": "Gondolatok a következő<br><em>döntés előtt.</em>"
+ },
+ "index.60": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "a",
+  "rich": true,
+  "text": "Minden írás <span aria-hidden=\"true\">↗</span>"
+ },
+ "index.61": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Befektetés"
+ },
+ "index.62": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": true,
+  "text": "A pénznek ne csak helye,<br>iránya is legyen."
+ },
+ "index.63": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Portfólió, kockázat és likviditás közérthetően."
+ },
+ "index.64": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": true,
+  "text": "Elolvasom <span aria-hidden=\"true\">↗</span>"
+ },
+ "index.65": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Vagyontervezés"
+ },
+ "index.66": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": true,
+  "text": "Nagyobb vagyonmozgás.<br>Mi legyen az első lépés?"
+ },
+ "index.67": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A türelmes döntési sorrend jelentősége."
+ },
+ "index.68": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": true,
+  "text": "Elolvasom <span aria-hidden=\"true\">↗</span>"
+ },
+ "index.69": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Finanszírozás"
+ },
+ "index.70": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": true,
+  "text": "Mikor segít a hitel,<br>és mikor szűkít?"
+ },
+ "index.71": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A kamaton túl: rugalmasság és mozgástér."
+ },
+ "index.72": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": true,
+  "text": "Elolvasom <span aria-hidden=\"true\">↗</span>"
+ },
+ "index.73": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "05 / Kapcsolat"
+ },
+ "index.74": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h2",
+  "rich": true,
+  "text": "Minden jó döntés<br><em>egy beszélgetéssel kezdődik.</em>"
+ },
+ "index.75": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Mondja el, hol tart most és hová szeretne eljutni. A következő lépést együtt gondoljuk át."
+ },
+ "index.76": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "a",
+  "rich": true,
+  "text": "Időpontot foglalok <span aria-hidden=\"true\">↗</span>"
+ },
+ "index.77": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<a href=\"mailto:info@goldentor.hu\">info@goldentor.hu</a><a href=\"tel:+36207456490\">+36 20 745 6490</a><span>9023 Győr, Bartók Béla út 44.</span>"
+ },
+ "index.78": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Írjon nekünk"
+ },
+ "index.79": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Miben segíthetünk?"
+ },
+ "index.80": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Név *"
+ },
+ "index.81": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "E-mail *"
+ },
+ "index.82": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Telefonszám"
+ },
+ "index.83": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Érdeklődési terület *"
+ },
+ "index.84": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Üzenet *"
+ },
+ "index.85": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "span",
+  "rich": true,
+  "text": "Elfogadom az <a href=\"adatkezeles.html\">adatkezelési tájékoztatót</a>. *"
+ },
+ "index.86": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "button",
+  "rich": false,
+  "text": "Üzenet küldése"
+ },
+ "index.87": {
+  "page": "index",
+  "pages": [
+   "index"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Időpontot foglalok"
+ },
+ "ingatlan.1": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ugrás a tartalomra"
+ },
+ "ingatlan.2": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Ingatlan"
+ },
+ "ingatlan.3": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Egy ingatlan lehet álom, teher vagy kiemelkedő vagyonépítő eszköz. A különbséget a stratégia, a lokáció és a jó időzítés dönti el."
+ },
+ "ingatlan.4": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "strong",
+  "rich": false,
+  "text": "Fókusz"
+ },
+ "ingatlan.5": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "lokációelemzés"
+ },
+ "ingatlan.6": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "hozampotenciál"
+ },
+ "ingatlan.7": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "finanszírozás"
+ },
+ "ingatlan.8": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "vagyontervezés"
+ },
+ "ingatlan.9": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "strong",
+  "rich": false,
+  "text": "Tartalom"
+ },
+ "ingatlan.10": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Stratégiai szerep"
+ },
+ "ingatlan.11": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Értékelési szempontok"
+ },
+ "ingatlan.12": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Gyors ábra"
+ },
+ "ingatlan.13": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Portfólió és megtérülés"
+ },
+ "ingatlan.14": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Kiválasztási folyamat"
+ },
+ "ingatlan.15": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ügyfélhelyzetek"
+ },
+ "ingatlan.16": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Az ingatlandöntés röviden"
+ },
+ "ingatlan.17": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Cél</span>\n                  <strong>Miért kell az ingatlan?</strong>\n                  <small>otthon, bérbeadás, értéknövekedés, presztízs</small>"
+ },
+ "ingatlan.18": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Piac</span>\n                  <strong>Mit mond a lokáció?</strong>\n                  <small>kereslet, fejlődés, eladhatóság, környezet</small>"
+ },
+ "ingatlan.19": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Számok</span>\n                  <strong>Megéri vagy csak jól néz ki?</strong>\n                  <small>hozam, költség, finanszírozás, üresedés</small>"
+ },
+ "ingatlan.20": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Döntés</span>\n                  <strong>Belépés vagy kihagyás?</strong>\n                  <small>kockázat, alku, kilépési stratégia</small>"
+ },
+ "ingatlan.21": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Az ingatlan, ami nem csak szép - hanem dolgozik is"
+ },
+ "ingatlan.22": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Az ingatlan sok ügyfél számára kézzelfogható, stabilnak érzett vagyonelem, de valódi értékét az határozza meg, hogy milyen célt szolgál. Lehet saját használatú prémium otthon, bérbeadási célú befektetés, értéknövekedésre építő hosszú távú eszköz, vállalkozási célú ingatlan vagy családi vagyontervezési elem."
+ },
+ "ingatlan.23": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A Golden Tor Consulting megközelítése abban segít, hogy az ingatlandöntés ne érzelmi impulzus, hanem átgondolt stratégiai lépés legyen. Vizsgáljuk az ügyfél teljes pénzügyi helyzetét, a szükséges likviditást, a finanszírozási lehetőségeket és azt is, hogy az ingatlan mekkora súlyt képviseljen a teljes vagyonon belül."
+ },
+ "ingatlan.24": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A részletek, amelyeken milliók múlhatnak"
+ },
+ "ingatlan.25": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Egy ingatlan értéke nem csak a négyzetméterárból olvasható ki. A lokáció minősége, a környék fejlődési iránya, a műszaki állapot, az energetikai jellemzők, a jogi háttér, a hasznosítási lehetőség és a későbbi eladhatóság mind befolyásolja a döntést."
+ },
+ "ingatlan.26": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Lokáció"
+ },
+ "ingatlan.27": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Megközelíthetőség, presztízs, infrastruktúra, környékfejlődés és célcsoport szerinti kereslet."
+ },
+ "ingatlan.28": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Állapot"
+ },
+ "ingatlan.29": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Műszaki tartalom, fenntartási költség, felújítási igény és rejtett kockázatok vizsgálata."
+ },
+ "ingatlan.30": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Piacképesség"
+ },
+ "ingatlan.31": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Bérbeadhatóság, eladhatóság, jövőbeni kereslet és alternatív hasznosítási lehetőségek."
+ },
+ "ingatlan.32": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Megtérülés, presztízs és kilépési stratégia egyben"
+ },
+ "ingatlan.33": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Befektetési célú ingatlannál a hozam nem kizárólag a bérleti díjból áll. Figyelembe kell venni az értéknövekedési potenciált, az üresen állás kockázatát, a fenntartási és adózási költségeket, a finanszírozás árát, valamint azt, hogy az ingatlan mennyire köti le az ügyfél vagyonát."
+ },
+ "ingatlan.34": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Portfóliószinten az a kérdés, hogy az ingatlan mennyire erősíti vagy éppen túlsúlyossá teszi a vagyonstruktúrát. Segítünk abban, hogy az ingatlanbefektetés ne elszigetelt döntés legyen, hanem illeszkedjen a befektetési, finanszírozási és biztosítási stratégiához."
+ },
+ "ingatlan.35": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Így szűrjük ki a látványos, de veszélyes ajánlatokat"
+ },
+ "ingatlan.36": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Igényfelmérés:</strong> cél, költségkeret, lokáció, hozamelvárás és használati szándék pontosítása."
+ },
+ "ingatlan.37": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Piaci szűrés:</strong> releváns lehetőségek előválogatása stratégiai szempontok szerint."
+ },
+ "ingatlan.38": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Kockázati áttekintés:</strong> jogi, műszaki, finanszírozási és likviditási tényezők vizsgálata."
+ },
+ "ingatlan.39": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Döntéstámogatás:</strong> összehasonlítás, alternatívák bemutatása és következő lépések meghatározása."
+ },
+ "ingatlan.40": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Amikor az ingatlanvásárlás már vagyonpolitikai döntés"
+ },
+ "ingatlan.41": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Ingatlan tanácsadás különösen hasznos, ha az ügyfél prémium lakóingatlant keres, meglévő portfólióját bővítené, kiadási célú ingatlanban gondolkodik, külföldi vagy nagyobb értékű ingatlanlehetőséget mérlegel, illetve ha finanszírozással kombinált vásárlás előtt áll."
+ },
+ "ingatlan.42": {
+  "page": "ingatlan",
+  "pages": [
+   "ingatlan"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Kérem az ingatlanstratégiai konzultációt"
+ },
+ "jogi-nyilatkozat.1": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Golden Tor Consulting"
+ },
+ "jogi-nyilatkozat.2": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Jogi információ"
+ },
+ "jogi-nyilatkozat.3": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Jogi és pénzügyi nyilatkozat"
+ },
+ "jogi-nyilatkozat.4": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Tájékoztató jelleg"
+ },
+ "jogi-nyilatkozat.5": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A weboldalon szereplő információk általános tájékoztatásul szolgálnak. Nem minősülnek személyre szabott befektetési, hitel-, biztosítási, adózási vagy jogi tanácsadásnak, ajánlattételnek vagy hozamígéretnek."
+ },
+ "jogi-nyilatkozat.6": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Egyedi döntés"
+ },
+ "jogi-nyilatkozat.7": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Pénzügyi döntés előtt szükséges az ügyfél céljainak, pénzügyi helyzetének, kockázatviselő képességének és az adott konstrukció feltételeinek egyedi vizsgálata. A múltbeli teljesítmény nem jelent garanciát a jövőbeni eredményre."
+ },
+ "jogi-nyilatkozat.8": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Kockázatok"
+ },
+ "jogi-nyilatkozat.9": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A befektetések értéke emelkedhet és csökkenhet, a finanszírozás hosszú távú kötelezettségeket teremthet, az ingatlan- és biztosítási döntések pedig egyedi kockázatokat hordoznak. A szolgáltatások pontos jogi minősítése és feltételei minden esetben az adott szerződéses dokumentációból ismerhetők meg."
+ },
+ "jogi-nyilatkozat.10": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Külső hivatkozások"
+ },
+ "jogi-nyilatkozat.11": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A külső szolgáltatások és hivatkozások tartalmáért azok üzemeltetői felelnek. A Golden Tor Consulting nem vállal felelősséget az ellenőrzési körén kívül eső oldalak elérhetőségéért vagy tartalmáért."
+ },
+ "jogi-nyilatkozat.12": {
+  "page": "jogi-nyilatkozat",
+  "pages": [
+   "jogi-nyilatkozat"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Éles közzététel előtt a nyilatkozatot a ténylegesen nyújtott, közvetített vagy tanácsolt szolgáltatások és a szükséges engedélyek alapján jogi szakértővel véglegesíteni kell."
+ },
+ "kalkulatorok.1": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ugrás a tartalomra"
+ },
+ "kalkulatorok.2": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Döntés számokkal"
+ },
+ "kalkulatorok.3": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Pénzügyi kalkulátorok"
+ },
+ "kalkulatorok.4": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Három gyors számítás, amely megmutatja, mekkora lehetőség, havi teher vagy biztonsági rés van a tervei mögött."
+ },
+ "kalkulatorok.5": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<strong>Azonnali eredmény</strong><span>Személyes ügyfélfiókkal</span><span>Átlátható feltételezések</span><span>Személyre szabható folytatás</span>"
+ },
+ "kalkulatorok.6": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "button",
+  "rich": false,
+  "text": "Vagyonépítés"
+ },
+ "kalkulatorok.7": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "button",
+  "rich": false,
+  "text": "Hitel"
+ },
+ "kalkulatorok.8": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "button",
+  "rich": false,
+  "text": "Védelmi tartalék"
+ },
+ "kalkulatorok.9": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Befektetési növekedés"
+ },
+ "kalkulatorok.10": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Mennyit építhet fel a pénze?"
+ },
+ "kalkulatorok.11": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Kezdőtőke"
+ },
+ "kalkulatorok.12": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "small",
+  "rich": false,
+  "text": "Ft"
+ },
+ "kalkulatorok.13": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Havi megtakarítás"
+ },
+ "kalkulatorok.14": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "small",
+  "rich": false,
+  "text": "Ft"
+ },
+ "kalkulatorok.15": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Éves feltételezett hozam"
+ },
+ "kalkulatorok.16": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Időtáv"
+ },
+ "kalkulatorok.17": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Becsült jövőérték"
+ },
+ "kalkulatorok.18": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Tájékoztató számítás, nem hozamígéret. A tényleges eredmény és kockázat eltérhet."
+ },
+ "kalkulatorok.19": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Személyre szabott stratégiát kérek"
+ },
+ "kalkulatorok.20": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Finanszírozási teher"
+ },
+ "kalkulatorok.21": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Mennyibe kerülhet a hitel?"
+ },
+ "kalkulatorok.22": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Hitelösszeg"
+ },
+ "kalkulatorok.23": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "small",
+  "rich": false,
+  "text": "Ft"
+ },
+ "kalkulatorok.24": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Éves kamat"
+ },
+ "kalkulatorok.25": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Futamidő"
+ },
+ "kalkulatorok.26": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Becsült havi törlesztő"
+ },
+ "kalkulatorok.27": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Az eredmény annuitásos, végig azonos kamattal számol; banki díjakat nem tartalmaz."
+ },
+ "kalkulatorok.28": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Finanszírozási átvilágítást kérek"
+ },
+ "kalkulatorok.29": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Pénzügyi biztonság"
+ },
+ "kalkulatorok.30": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Mekkora tartalék adhat nyugalmat?"
+ },
+ "kalkulatorok.31": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Havi alapkiadás"
+ },
+ "kalkulatorok.32": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "small",
+  "rich": false,
+  "text": "Ft"
+ },
+ "kalkulatorok.33": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Eltartottak száma"
+ },
+ "kalkulatorok.34": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Biztonsági időszak"
+ },
+ "kalkulatorok.35": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Jelenlegi likvid tartalék"
+ },
+ "kalkulatorok.36": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "small",
+  "rich": false,
+  "text": "Ft"
+ },
+ "kalkulatorok.37": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Javasolt tartalékszint"
+ },
+ "kalkulatorok.38": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Irányadó modell; az élethelyzet, bevételbiztonság és meglévő védelem módosíthatja."
+ },
+ "kalkulatorok.39": {
+  "page": "kalkulatorok",
+  "pages": [
+   "kalkulatorok"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Védelmi tervet kérek"
+ },
+ "preindex.1": {
+  "page": "preindex",
+  "pages": [
+   "preindex"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Golden Tor Consulting"
+ },
+ "preindex.2": {
+  "page": "preindex",
+  "pages": [
+   "preindex"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Új főoldal"
+ },
+ "preindex.3": {
+  "page": "preindex",
+  "pages": [
+   "preindex"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Átirányítás a Golden Tor főoldalára."
+ },
+ "preindex.4": {
+  "page": "preindex",
+  "pages": [
+   "preindex"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A kapunyitós belépőt kivettük, helyette a letisztultabb vizuális főoldal fogadja a látogatókat."
+ },
+ "preindex.5": {
+  "page": "preindex",
+  "pages": [
+   "preindex"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Főoldal megnyitása"
+ },
+ "szakertoink.1": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Ugrás a tartalomra"
+ },
+ "szakertoink.2": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Szakértőink"
+ },
+ "szakertoink.3": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Ez az a pont, ahol a pénzügyi döntés nem vélemény kérdése marad. Megmutatjuk, hol van rejtett kockázat, hol szivárog el pénz, és hol lehet a következő nagy stratégiai előny."
+ },
+ "szakertoink.4": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "strong",
+  "rich": false,
+  "text": "Miért most?"
+ },
+ "szakertoink.5": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "drága hibák megelőzése"
+ },
+ "szakertoink.6": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "rejtett potenciál feltárása"
+ },
+ "szakertoink.7": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "független döntési keret"
+ },
+ "szakertoink.8": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "konkrét lépésterv"
+ },
+ "szakertoink.9": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "strong",
+  "rich": false,
+  "text": "Tartalom"
+ },
+ "szakertoink.10": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Gyors ábra"
+ },
+ "szakertoink.11": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Szakértői területek"
+ },
+ "szakertoink.12": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Esettanulmányok"
+ },
+ "szakertoink.13": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Miért kritikus?"
+ },
+ "szakertoink.14": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Átvilágítás"
+ },
+ "szakertoink.15": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Döntéstámogatás"
+ },
+ "szakertoink.16": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Folyamat"
+ },
+ "szakertoink.17": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Eredmény"
+ },
+ "szakertoink.18": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A szakértői döntéstámogatás röviden"
+ },
+ "szakertoink.19": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Tény</span>\n                  <strong>Hol áll most?</strong>\n                  <small>vagyonhelyzet, kötelezettség, cél, kockázat</small>"
+ },
+ "szakertoink.20": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Rés</span>\n                  <strong>Mi kerülhet sokba?</strong>\n                  <small>rossz konstrukció, halogatás, félreértett ajánlat</small>"
+ },
+ "szakertoink.21": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Esély</span>\n                  <strong>Hol van növekedés?</strong>\n                  <small>befektetés, finanszírozás, ingatlan, védelem</small>"
+ },
+ "szakertoink.22": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "div",
+  "rich": true,
+  "text": "<span class=\"flow-icon\">Terv</span>\n                  <strong>Mi legyen a következő lépés?</strong>\n                  <small>prioritás, sorrend, felelős döntés</small>"
+ },
+ "szakertoink.23": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Szakértői csapat"
+ },
+ "szakertoink.24": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A megfelelő kérdéshez a megfelelő szakterület"
+ },
+ "szakertoink.25": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A konzultációt az ügyfélhelyzethez legjobban illeszkedő szakterületi fókusz szerint készítjük elő. Személyes szakértői neveket és képesítéseket csak ellenőrzött, publikálható adatokkal jelenítünk meg."
+ },
+ "szakertoink.26": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Befektetési stratégia"
+ },
+ "szakertoink.27": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Portfóliólogika, kockázati profil, likviditás és hosszú távú vagyonépítés."
+ },
+ "szakertoink.28": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Ingatlan és vagyonstruktúra"
+ },
+ "szakertoink.29": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Lokáció, megtérülési szemlélet, finanszírozási háttér és portfólióilleszkedés."
+ },
+ "szakertoink.30": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Finanszírozási döntések"
+ },
+ "szakertoink.31": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Terhelhetőség, konstrukciók összevetése, teljes költség és stresszteszt."
+ },
+ "szakertoink.32": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Kockázati védelem"
+ },
+ "szakertoink.33": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Családi, vállalati és vagyoni kitettségek feltárása és védelmi prioritások."
+ },
+ "szakertoink.34": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Szakértői konzultációt kérek"
+ },
+ "szakertoink.35": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Anonimizált helyzetek"
+ },
+ "szakertoink.36": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Tipikus döntési pontok, ahol a rendszer számít"
+ },
+ "szakertoink.37": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Vagyonépítés"
+ },
+ "szakertoink.38": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Szabad tőke több, egymással versengő célra"
+ },
+ "szakertoink.39": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": true,
+  "text": "<strong>Helyzet:</strong> tartalék, befektetés és ingatlancél egyszerre jelent meg."
+ },
+ "szakertoink.40": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": true,
+  "text": "<strong>Megközelítés:</strong> időtávok és likviditási szintek szétválasztása, majd prioritási sorrend kialakítása."
+ },
+ "szakertoink.41": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Finanszírozás"
+ },
+ "szakertoink.42": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Kedvezőnek tűnő ajánlat rejtett kötöttségekkel"
+ },
+ "szakertoink.43": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": true,
+  "text": "<strong>Helyzet:</strong> az alacsony induló teher mellett a rugalmasság és a teljes költség nem volt átlátható."
+ },
+ "szakertoink.44": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": true,
+  "text": "<strong>Megközelítés:</strong> alternatívák összevetése, stresszteszt és hosszú távú mozgástér vizsgálata."
+ },
+ "szakertoink.45": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Vagyonvédelem"
+ },
+ "szakertoink.46": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Meglévő szerződések, de hiányos valódi védelem"
+ },
+ "szakertoink.47": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": true,
+  "text": "<strong>Helyzet:</strong> több biztosítás mellett is maradtak kritikus kitettségek."
+ },
+ "szakertoink.48": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": true,
+  "text": "<strong>Megközelítés:</strong> átfedések és hiányok feltárása, majd a védelem célok szerinti újrarendezése."
+ },
+ "szakertoink.49": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A példák tipikus, összevont és anonimizált helyzetek. Nem minősülnek hozamígéretnek vagy személyre szabott ajánlásnak."
+ },
+ "szakertoink.50": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A legdrágább pénzügyi hiba sokszor nem látványos"
+ },
+ "szakertoink.51": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A veszteségek jelentős része nem egyetlen rossz döntésből indul, hanem apró, sokáig láthatatlan résekből: túl drága finanszírozásból, rosszul időzített befektetésből, elmaradt biztosítási védelemből, vagy abból, hogy egy jó lehetőséget túl későn vesznek észre."
+ },
+ "szakertoink.52": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A szakértői munka célja, hogy ezeket a pontokat ne utólag kelljen megmagyarázni. Előre feltárjuk, mi az, ami veszélyt jelenthet, mi az, ami félrevezetően kedvezőnek tűnik, és melyik döntés hozhat valódi előnyt rövid, közép- és hosszú távon."
+ },
+ "szakertoink.53": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Átvilágítás, ahol a számok mögé nézünk"
+ },
+ "szakertoink.54": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Nem csak azt vizsgáljuk, milyen termék vagy ajánlat van az asztalon. Megnézzük, milyen célhoz kell illeszkednie, milyen kockázatot hordoz, milyen költségei vannak, és milyen következménye lehet akkor, ha a piaci környezet, az ügyfél élethelyzete vagy a vállalkozás pénzáramlása megváltozik."
+ },
+ "szakertoink.55": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Kockázat"
+ },
+ "szakertoink.56": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Megmutatjuk, hol lehet a legnagyobb pénzügyi kitettség, mielőtt problémává válna."
+ },
+ "szakertoink.57": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Potenciál"
+ },
+ "szakertoink.58": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Azonosítjuk, hol van kiaknázatlan lehetőség a vagyonban, finanszírozásban vagy védelemben."
+ },
+ "szakertoink.59": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h3",
+  "rich": false,
+  "text": "Sorrend"
+ },
+ "szakertoink.60": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Nem mindegy, mivel kezdünk. A jó stratégia gyakran a lépések sorrendjén múlik."
+ },
+ "szakertoink.61": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Nem ígéretet adunk, hanem döntési kontrollt"
+ },
+ "szakertoink.62": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A szenzáció nem az, hogy mindenre van egy gyors válasz. Az igazi különbség az, amikor egy ügyfél pontosan látja, miért érdemes egy döntést meghozni, mit kockáztat vele, mit nyerhet vele, és milyen alternatívák állnak még előtte."
+ },
+ "szakertoink.63": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A Golden Tor szakértői szemlélete a függetlenségre, diszkrécióra és piaci rálátásra épül. Ez különösen fontos akkor, amikor befektetés, ingatlan, finanszírozás és biztosítás egyszerre érinti ugyanazt a vagyoni helyzetet."
+ },
+ "szakertoink.64": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Így lesz a pénzügyi zajból tiszta lépésterv"
+ },
+ "szakertoink.65": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Helyzetfeltárás:</strong> célok, vagyon, kötelezettségek, meglévő megoldások és nyitott kérdések áttekintése."
+ },
+ "szakertoink.66": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Veszélypontok:</strong> költségek, kockázatok, hiányzó védelmek és rossz irányba mutató konstrukciók azonosítása."
+ },
+ "szakertoink.67": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Lehetőségek:</strong> befektetési, ingatlan-, finanszírozási és biztosítási irányok összevetése."
+ },
+ "szakertoink.68": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "li",
+  "rich": true,
+  "text": "<strong>Döntési terv:</strong> konkrét prioritási sorrend, következő lépések és felülvizsgálati pontok meghatározása."
+ },
+ "szakertoink.69": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "A cél: kevesebb bizonytalanság, több stratégiai előny"
+ },
+ "szakertoink.70": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Egy jó szakértői átvilágítás után nem több információja lesz, hanem tisztább döntési képe. Látni fogja, melyik pénzügyi terület sürgős, melyik várhat, hol lehet veszteséget elkerülni, és hol érdemes tudatosan lépni a növekedés érdekében."
+ },
+ "szakertoink.71": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Kérem a szakértői átvilágítást"
+ },
+ "szakertoink.72": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Visszajelzések"
+ },
+ "szakertoink.73": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "h2",
+  "rich": false,
+  "text": "Az Ön tapasztalata számít."
+ },
+ "szakertoink.74": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Írja meg, hogyan segítette a konzultáció a döntését. A visszajelzést a csapatunk kapja meg; nem jelenik meg automatikusan nyilvánosan."
+ },
+ "szakertoink.75": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "jelentkezzen be"
+ },
+ "szakertoink.76": {
+  "page": "szakertoink",
+  "pages": [
+   "szakertoink"
+  ],
+  "tag": "button",
+  "rich": false,
+  "text": "Visszajelzés elküldése"
+ },
+ "ugyfelportal.1": {
+  "page": "ugyfelportal",
+  "pages": [
+   "ugyfelportal"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Golden Tor Consulting"
+ },
+ "ugyfelportal.2": {
+  "page": "ugyfelportal",
+  "pages": [
+   "ugyfelportal"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Ügyfélportál"
+ },
+ "ugyfelportal.3": {
+  "page": "ugyfelportal",
+  "pages": [
+   "ugyfelportal"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Foglalás állapota"
+ },
+ "ugyfelportal.4": {
+  "page": "ugyfelportal",
+  "pages": [
+   "ugyfelportal"
+  ],
+  "tag": "dt",
+  "rich": false,
+  "text": "Téma"
+ },
+ "ugyfelportal.5": {
+  "page": "ugyfelportal",
+  "pages": [
+   "ugyfelportal"
+  ],
+  "tag": "dt",
+  "rich": false,
+  "text": "Időpont"
+ },
+ "ugyfelportal.6": {
+  "page": "ugyfelportal",
+  "pages": [
+   "ugyfelportal"
+  ],
+  "tag": "dt",
+  "rich": false,
+  "text": "Találkozás módja"
+ },
+ "welcome.1": {
+  "page": "welcome",
+  "pages": [
+   "welcome"
+  ],
+  "tag": "span",
+  "rich": false,
+  "text": "Golden Tor Consulting"
+ },
+ "welcome.2": {
+  "page": "welcome",
+  "pages": [
+   "welcome"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "Új főoldal"
+ },
+ "welcome.3": {
+  "page": "welcome",
+  "pages": [
+   "welcome"
+  ],
+  "tag": "h1",
+  "rich": false,
+  "text": "Átirányítás a letisztult Golden Tor főoldalra."
+ },
+ "welcome.4": {
+  "page": "welcome",
+  "pages": [
+   "welcome"
+  ],
+  "tag": "p",
+  "rich": false,
+  "text": "A külön választóoldalt kivettük, a szolgáltatások és a blog az új főoldalról érhetők el."
+ },
+ "welcome.5": {
+  "page": "welcome",
+  "pages": [
+   "welcome"
+  ],
+  "tag": "a",
+  "rich": false,
+  "text": "Főoldal megnyitása"
+ }
+}

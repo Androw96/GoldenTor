@@ -41,6 +41,9 @@ jobs:
           tools: composer:v2
           coverage: none
 
+      - name: Szövegazonosítók ellenőrzése
+        run: python3 scripts/tag-editable-text.py --check
+
       - name: Laravel 12 + Filament 5 összeállítása
         run: |
           set -euo pipefail

@@ -144,9 +144,11 @@ async function loadSiteTextOverrides(language = localStorage.getItem("goldenTorL
     const values = result.payload?.[currentPage];
     if (!values) return;
     const targets = pageTextTargets();
-    if (targets.eyebrow && values.eyebrow) targets.eyebrow.textContent = values.eyebrow;
-    if (targets.title && values.title) targets.title.textContent = values.title;
-    if (targets.lead && values.lead) targets.lead.textContent = values.lead;
+    // Texts saved with the full-page editor (site-text.js) take precedence.
+    const free = (element) => element && !element.hasAttribute("data-gt-overridden");
+    if (free(targets.eyebrow) && values.eyebrow) targets.eyebrow.textContent = values.eyebrow;
+    if (free(targets.title) && values.title) targets.title.textContent = values.title;
+    if (free(targets.lead) && values.lead) targets.lead.textContent = values.lead;
   } catch (_) {
     // Static fallback: keep bundled page text.
   }

@@ -13,6 +13,7 @@ Elérés élesítés után: **https://goldentor.hu/admin**
 | **Ügyfélfiókok** | regisztrált ügyfelek, mentett kalkulációik és visszajelzéseik, adatmódosítás, új jelszó beállítása |
 | **Mentett kalkulációk** | minden ügyfél-kalkuláció olvasható bontásban |
 | **Visszajelzések** | csillagos értékelések szakértőnként |
+| **Tartalom → Teljes szövegek** | a weboldal mind az 525 szövege oldalanként; ugyanez közvetlenül a weboldalon is szerkeszthető |
 | **Tartalom → Blog** | cikkek létrehozása, sorrend, vázlat/publikált, képfeltöltés |
 | **Tartalom → Oldalszövegek** | az oldalak nyitószövegei HU/EN/DE nyelven |
 | **Tartalom → Szakértők** | szakértői profilok fotófeltöltéssel |
@@ -45,3 +46,15 @@ composer remove laravel/sanctum && composer require filament/filament:^5.0
 php ../filament-admin/build/patch-skeleton.php && rsync -a --exclude build/ --exclude deploy/ ../filament-admin/ ./
 php artisan filament:assets && php artisan test
 ```
+
+## Szövegek szerkesztése a weboldalon
+
+Belépett adminként a nyilvános oldalakon jobb alul megjelenik a **„✎ Szövegek szerkesztése”** gomb.
+Bekapcsolva minden szerkeszthető szöveg szaggatott keretet kap: rákattintasz, átírod, majd **Mentés**.
+A kijelölt szöveg az **„Eredeti visszaállítása”** gombbal visszaállítható. A fejléc és a lábléc szövegei minden oldalon közösek.
+
+- A szövegek azonosítóit a `scripts/tag-editable-text.py` teszi a HTML-be (`data-gt-text`). Ha új szöveget írsz a HTML-be,
+  futtasd le újra: `python3 scripts/tag-editable-text.py`. A meglévő azonosítók nem változnak. A CI `--check` móddal ellenőrzi.
+- A mentett szövegek a `content` tábla `page_text` / `hu` rekordjában vannak; a weboldal a `site-text.js`-sel tölti be.
+- Kimaradnak a menüpontok, a nyelvválasztó, az űrlapmezők címkéi és a JavaScript által frissített értékek (ezeket a kód írná felül).
+- A szerkesztés csak magyar nyelven érvényes; angol/német nézetben az eredeti fordítások látszanak.
