@@ -51,6 +51,8 @@ jobs:
           composer require "filament/filament:^5.0" --no-update --no-interaction
           composer update --with-all-dependencies --no-interaction --no-progress
           php ../filament-admin/build/patch-skeleton.php
+          # The UNAS PHP has no "intl" extension: let Laravel's Number fall back to plain PHP formatting.
+          php ../filament-admin/build/patch-number-intl.php
           rsync -a --exclude 'build/' --exclude 'deploy/' --exclude 'README.md' ../filament-admin/ ./
           composer dump-autoload --optimize
           php artisan filament:assets
@@ -82,6 +84,8 @@ jobs:
         run: |
           set -euo pipefail
           composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+          php ../filament-admin/build/patch-number-intl.php
+          grep -q 'goldentor-intl-fallback' vendor/laravel/framework/src/Illuminate/Support/Number.php
           umask 077
           php ../filament-admin/build/write-env.php .env
           rm -rf tests phpunit.xml node_modules package.json vite.config.js .git .github .editorconfig .gitattributes README.md

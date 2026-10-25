@@ -35,6 +35,9 @@ class AdminPanelProvider extends PanelProvider
             URL::forceRootUrl($appUrl);
         }
 
+        // Hungarian number format in tables and counters (1 234 instead of 1,234).
+        \Illuminate\Support\Number::useLocale('hu');
+
         // Logged-in admins see the real error instead of a bare "Server Error" page.
         $handler = $this->app->make(\Illuminate\Contracts\Debug\ExceptionHandler::class);
         if (method_exists($handler, 'renderable')) {
