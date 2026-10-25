@@ -7,6 +7,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+# The UNAS host does not answer over IPv6 from GitHub runners: resolve IPv4 only.
+import socket
+_getaddrinfo = socket.getaddrinfo
+socket.getaddrinfo = lambda host, port, family=0, *args, **kwargs: _getaddrinfo(host, port, socket.AF_INET, *args, **kwargs)
+
 base = os.environ['GOLDENTOR_PUBLIC_URL'].rstrip('/')
 url = base + '/admin/setup'
 opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))

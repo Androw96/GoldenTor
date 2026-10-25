@@ -105,7 +105,7 @@ jobs:
           trap 'rm -f "$netrc_file" admin-deploy.php' EXIT
           printf 'machine %s\nlogin %s\npassword %s\n' "$UNAS_FTP_HOST" "$UNAS_FTP_USERNAME" "$UNAS_FTP_PASSWORD" > "$netrc_file"
           upload() {
-            curl --fail --silent --show-error --retry 3 --retry-all-errors --connect-timeout 20 --max-time 900 \
+            curl --ipv4 --fail --silent --show-error --retry 3 --retry-all-errors --connect-timeout 20 --max-time 900 \
               --ftp-pasv --disable-epsv --ftp-skip-pasv-ip --ftp-create-dirs \
               --netrc-file "$netrc_file" --upload-file "$1" "ftp://$UNAS_FTP_HOST/$2"
           }
@@ -113,9 +113,27 @@ jobs:
           upload admin-deploy.php unas/admin-deploy.php
           upload .htaccess .htaccess
           echo "Telepítés a szerveren…"
-          status=$(curl --silent --show-error --max-time 900 -o result.json -w '%{http_code}' -X POST \
-            -H "X-GoldenTor-Setup-Key: $UNAS_SETUP_KEY" "$GOLDENTOR_PUBLIC_URL/unas/admin-deploy.php")
-          cat result.json; echo
+          # The UNAS host does not answer over IPv6 from GitHub runners: always use IPv4.
+          # Retry only while the TCP connection could not be opened at all, so the
+          # installer never runs twice for one upload.
+          status=000
+          for attempt in 1 2 3 4 5; do
+            rm -f result.json
+            set +e
+            out=$(curl --ipv4 --silent --show-error --connect-timeout 20 --max-time 900 -o result.json \
+              -w '%{http_code} %{time_connect}' -X POST \
+              -H "X-GoldenTor-Setup-Key: $UNAS_SETUP_KEY" "$GOLDENTOR_PUBLIC_URL/unas/admin-deploy.php")
+            rc=$?
+            set -e
+            status=${out%% *}
+            connected=${out##* }
+            echo "Kísérlet $attempt: curl=$rc HTTP=$status kapcsolódás=${connected}s"
+            if [ "$rc" -eq 0 ] || [ "$connected" != "0.000000" ]; then
+              break
+            fi
+            sleep 20
+          done
+          cat result.json 2>/dev/null || true; echo
           test "$status" = "200"
           grep -q '"ok": true' result.json
 
@@ -124,15 +142,15 @@ jobs:
         run: |
           set -euo pipefail
           for path in / /admin/login /api/health; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' "$GOLDENTOR_PUBLIC_URL$path")
+            code=$(curl --ipv4 --connect-timeout 20 --max-time 60 --retry 3 --retry-all-errors -s -o /dev/null -w '%{http_code}' "$GOLDENTOR_PUBLIC_URL$path")
             echo "$path -> $code"
             test "$code" = "200"
           done
           # Without MultiViews disabled, /admin silently serves the legacy admin.html.
-          code=$(curl -s -o /dev/null -w '%{http_code}' "$GOLDENTOR_PUBLIC_URL/admin")
+          code=$(curl --ipv4 --connect-timeout 20 --max-time 60 --retry 3 --retry-all-errors -s -o /dev/null -w '%{http_code}' "$GOLDENTOR_PUBLIC_URL/admin")
           echo "/admin -> $code (302 elvárt: bejelentkezés)"
           test "$code" = "302"
-          code=$(curl -s -o /dev/null -w '%{http_code}' "$GOLDENTOR_PUBLIC_URL/admin-panel/.env")
+          code=$(curl --ipv4 --connect-timeout 20 --max-time 60 --retry 3 --retry-all-errors -s -o /dev/null -w '%{http_code}' "$GOLDENTOR_PUBLIC_URL/admin-panel/.env")
           echo "/admin-panel/.env -> $code (403/404 elvárt)"
           test "$code" = "403" -o "$code" = "404"
 
