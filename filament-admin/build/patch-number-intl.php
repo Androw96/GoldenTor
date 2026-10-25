@@ -19,10 +19,12 @@ if (str_contains($source, MARKER)) {
     exit(0);
 }
 
+// Required parameters after the first one (the first, numeric parameter is read from the
+// source, because its name differs between Laravel versions: $number / $amount).
 $methods = [
-    'format' => ['number', 'precision', 'maxPrecision', 'locale'],
-    'percentage' => ['number', 'precision', 'maxPrecision', 'locale'],
-    'currency' => ['amount', 'in', 'locale', 'precision'],
+    'format' => ['precision', 'maxPrecision', 'locale'],
+    'percentage' => ['precision', 'maxPrecision', 'locale'],
+    'currency' => ['in', 'locale', 'precision'],
 ];
 
 foreach ($methods as $method => $parameters) {
@@ -37,9 +39,14 @@ foreach ($methods as $method => $parameters) {
             exit(1);
         }
     }
+    if (!preg_match('/^\s*(?:[\w|?\\\\]+\s+)?\$(\w+)/', $match[2], $first)) {
+        fwrite(STDERR, "patch-number-intl: cannot read the first parameter of {$method}(): {$match[2]}\n");
+        exit(1);
+    }
+    $value = '$' . $first[1];
     $arguments = $method === 'currency'
-        ? '$amount, $in !== \'\' ? $in : static::$currency, $locale ?? static::$locale, $precision'
-        : '$number, $precision, $maxPrecision, $locale ?? static::$locale';
+        ? $value . ', $in !== \'\' ? $in : static::$currency, $locale ?? static::$locale, $precision'
+        : $value . ', $precision, $maxPrecision, $locale ?? static::$locale';
     $guard = "\n        " . MARKER . "\n        if (! extension_loaded('intl')) {\n"
         . "            return \\App\\Support\\IntlFallback::{$method}({$arguments});\n        }\n";
     $source = preg_replace_callback($pattern, fn (array $found) => $found[1] . $guard, $source, 1, $count);
