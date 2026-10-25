@@ -90,6 +90,7 @@ jobs:
           ls -lh ../admin-panel.zip
 
       - name: Feltöltés és telepítés UNAS-ra
+        id: install
         if: github.event_name == 'workflow_dispatch' && inputs.deploy
         env:
           UNAS_FTP_HOST: ${{ secrets.UNAS_FTP_HOST }}
@@ -112,12 +113,13 @@ jobs:
           upload admin-panel.zip data/admin-panel.zip
           upload admin-deploy.php unas/admin-deploy.php
           upload .htaccess .htaccess
+          upload filament-admin/deploy/admin-activate.php unas/admin-activate.php
           echo "Telepítés a szerveren…"
           # The UNAS host does not answer over IPv6 from GitHub runners: always use IPv4.
           # Retry only while the TCP connection could not be opened at all, so the
           # installer never runs twice for one upload.
           status=000
-          for attempt in 1 2 3 4 5; do
+          for attempt in 1 2 3; do
             rm -f result.json
             set +e
             out=$(curl --ipv4 --silent --show-error --connect-timeout 20 --max-time 900 -o result.json \
@@ -133,12 +135,26 @@ jobs:
             fi
             sleep 20
           done
+          if [ "$status" = "000" ] && [ "$connected" = "0.000000" ]; then
+            # The UNAS firewall blocks HTTPS from GitHub runners at times. Everything is
+            # uploaded already, so the installer can be started from a normal browser.
+            echo "activated=false" >> "$GITHUB_OUTPUT"
+            echo "::warning title=Aktiválásra vár::A GitHub nem éri el a goldentor.hu-t HTTPS-en (UNAS tűzfal). A kiadás feltöltve; indítsd el böngészőből: $GOLDENTOR_PUBLIC_URL/unas/admin-activate.php"
+            {
+              echo "### Az admin kiadás feltöltve, aktiválásra vár"
+              echo "A GitHub szerverei most nem érik el HTTPS-en a goldentor.hu-t."
+              echo "Nyisd meg böngészőben és nyomd meg a gombot (6 órán belül): $GOLDENTOR_PUBLIC_URL/unas/admin-activate.php"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
           cat result.json 2>/dev/null || true; echo
           test "$status" = "200"
           grep -q '"ok": true' result.json
+          echo "activated=true" >> "$GITHUB_OUTPUT"
 
       - name: Élő ellenőrzés
-        if: github.event_name == 'workflow_dispatch' && inputs.deploy
+        if: github.event_name == 'workflow_dispatch' && inputs.deploy && steps.install.outputs.activated == 'true'
+        continue-on-error: true
         run: |
           set -euo pipefail
           for path in / /admin/login /api/health; do
