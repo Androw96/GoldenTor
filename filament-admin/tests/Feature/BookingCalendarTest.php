@@ -21,6 +21,7 @@ class BookingCalendarTest extends TestCase
         config(['goldentor.mail_enabled' => false]);
         DB::unprepared((string) file_get_contents(base_path('tests/fixtures/legacy_schema.sqlite.sql')));
         Artisan::call('migrate', ['--force' => true]);
+        BookingCalendar::load();
         $this->actingAs(AdminUser::query()->create(['name' => 'Admin', 'email' => 'admin@example.test', 'password' => 'nagyon-titkos-jelszo']));
 
         // A weekday at least two days ahead, so the default "from tomorrow" rule always allows it.
