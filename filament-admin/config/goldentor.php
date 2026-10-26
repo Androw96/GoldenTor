@@ -8,8 +8,10 @@ return [
     'mail_from' => env('GOLDENTOR_MAIL_FROM', 'info@goldentor.hu'),
     'contact_recipient' => env('GOLDENTOR_CONTACT_RECIPIENT', 'info@goldentor.hu'),
     'mail_enabled' => (bool) env('GOLDENTOR_MAIL_ENABLED', true),
-    // Bookable consultation slots (same list as GOLDENTOR_SLOTS in unas/api.php).
+    // Fallback only: the bookable slots are set in the admin (Naptár → Foglalási szabályok).
     'slots' => ['09:00', '11:00', '14:00', '16:00'],
+    // The website root that holds unas/calendar.php (the admin lives in <root>/admin-panel).
+    'site_root' => env('GOLDENTOR_SITE_ROOT', dirname(__DIR__, 2)),
     'topics' => ['Befektetés', 'Ingatlan', 'Finanszírozás', 'Biztosítás', 'Komplex pénzügyi átvilágítás'],
     'meetings' => ['Online konzultáció', 'Személyes találkozó Győrben', 'Telefonos egyeztetés'],
 ];

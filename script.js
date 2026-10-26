@@ -267,7 +267,11 @@ async function postJson(url, payload) {
     body: JSON.stringify(payload),
   });
   const result = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(result.error || "A kérés nem sikerült.");
+  if (!response.ok) {
+    const error = new Error(result.error || "A kérés nem sikerült.");
+    error.status = response.status;
+    throw error;
+  }
   return result;
 }
 
@@ -304,20 +308,103 @@ if (bookingDate) {
     month: "long",
     day: "numeric",
   });
-  const date = new Date();
-  let added = 0;
-  while (added < 12) {
-    date.setDate(date.getDate() + 1);
-    const weekday = date.getDay();
-    if (weekday === 0 || weekday === 6) continue;
-    const value = date.toISOString().slice(0, 10);
-    const option = document.createElement("option");
-    option.value = value;
-    option.textContent = formatter.format(date);
-    bookingDate.append(option);
-    added += 1;
-  }
+  const slotBox = document.querySelector("[data-time-slots]");
+  const staticSlots = slotBox ? [...slotBox.querySelectorAll('input[name="time"]')].map((radio) => radio.value) : [];
+  let calendarDays = null;
+
+  const localDate = (value) => {
+    const [year, month, day] = value.split("-").map(Number);
+    return new Date(year, month - 1, day, 12);
+  };
+
+  // Rebuilds the time choices of the selected day: taken or blocked slots cannot be picked.
+  const renderSlots = (slots) => {
+    if (!slotBox) return;
+    const selected = slotBox.querySelector('input[name="time"]:checked')?.value;
+    slotBox.replaceChildren();
+    slots.forEach((slot, index) => {
+      const label = document.createElement("label");
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "time";
+      radio.value = slot.time;
+      if (index === 0) radio.required = true;
+      radio.disabled = !slot.available;
+      radio.checked = slot.available && slot.time === selected;
+      const text = document.createElement("span");
+      text.textContent = slot.time;
+      label.append(radio, text);
+      if (!slot.available) {
+        label.classList.add("unavailable");
+        label.title = "Ez az időpont már foglalt";
+        radio.setAttribute("aria-label", `${slot.time} (foglalt)`);
+      }
+      slotBox.append(label);
+    });
+    if (!slots.length) {
+      const note = document.createElement("p");
+      note.className = "time-slots-empty";
+      note.textContent = "Válasszon előbb napot.";
+      slotBox.append(note);
+    }
+  };
+
+  const fillDates = (days) => {
+    bookingDate.querySelectorAll("option:not([value=''])").forEach((option) => option.remove());
+    days.forEach((day) => {
+      const option = document.createElement("option");
+      const free = day.slots.some((slot) => slot.available);
+      option.value = day.date;
+      option.textContent = formatter.format(localDate(day.date)) + (free ? "" : " – betelt");
+      option.disabled = !free;
+      bookingDate.append(option);
+    });
+  };
+
+  // Fallback without the calendar API: the next 12 weekdays with the slots in the HTML.
+  const fillStaticDates = () => {
+    const date = new Date();
+    let added = 0;
+    const days = [];
+    while (added < 12) {
+      date.setDate(date.getDate() + 1);
+      const weekday = date.getDay();
+      if (weekday === 0 || weekday === 6) continue;
+      const value = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+      days.push({ date: value, slots: staticSlots.map((time) => ({ time, available: true })) });
+      added += 1;
+    }
+    fillDates(days);
+  };
+
+  const loadCalendar = async () => {
+    try {
+      const response = await fetch("/api/booking-calendar", { cache: "no-store" });
+      if (!response.ok) throw new Error("calendar");
+      const result = await response.json();
+      if (!Array.isArray(result.days)) throw new Error("calendar");
+      calendarDays = result.days;
+      const current = bookingDate.value;
+      fillDates(calendarDays);
+      const day = calendarDays.find((item) => item.date === current && item.slots.some((slot) => slot.available));
+      bookingDate.value = day ? current : "";
+      renderSlots(day ? day.slots : []);
+      if (!calendarDays.some((item) => item.slots.some((slot) => slot.available))) {
+        const status = document.querySelector("[data-booking-status]");
+        if (status) status.textContent = "A következő hetekben nincs szabad időpont. Kérjük, írjon nekünk, és egyeztetünk.";
+      }
+    } catch (_) {
+      calendarDays = null;
+      if (bookingDate.options.length <= 1) fillStaticDates();
+    }
+  };
+
   bookingDate.addEventListener("change", async () => {
+    if (calendarDays) {
+      const day = calendarDays.find((item) => item.date === bookingDate.value);
+      renderSlots(day ? day.slots : []);
+      return;
+    }
     const radios = [...document.querySelectorAll('[name="time"]')];
     radios.forEach((radio) => {
       radio.disabled = false;
@@ -340,6 +427,9 @@ if (bookingDate) {
       // Static fallback: all listed slots remain selectable.
     }
   });
+
+  window.goldenTorReloadBookingCalendar = loadCalendar;
+  loadCalendar();
 }
 
 const bookingForm = document.querySelector("[data-booking-form]");
@@ -371,6 +461,7 @@ if (bookingForm) {
       localStorage.setItem("goldenTorBookingRequest", JSON.stringify({ ...request, token: result.token }));
       trackEvent("booking_request_submitted", { topic: request.topic, meeting: request.meeting });
       bookingForm.reset();
+      window.goldenTorReloadBookingCalendar?.();
       if (status) {
         status.textContent = "Időpontkérését rögzítettük. ";
         const portalLink = document.createElement("a");
@@ -379,6 +470,12 @@ if (bookingForm) {
         status.append(portalLink);
       }
     } catch (error) {
+      if (error.status === 409) {
+        // The slot was taken or blocked in the meantime: offer the remaining free times.
+        if (status) status.textContent = error.message;
+        window.goldenTorReloadBookingCalendar?.();
+        return;
+      }
       if (status) status.textContent = `${error.message} Az adatokat a levelezőprogramjában készítettük elő.`;
       openPreparedEmail("Golden Tor - időpontkérés", [
         `Név: ${request.name}`, `E-mail: ${request.email}`, `Telefon: ${request.phone}`,

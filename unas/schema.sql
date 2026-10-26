@@ -72,3 +72,25 @@ CREATE TABLE IF NOT EXISTS rate_limits (
     window_started DATETIME NOT NULL,
     request_count SMALLINT UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Booking calendar (created by the Filament admin's migration as well; see unas/calendar.php).
+CREATE TABLE IF NOT EXISTS calendar_blocks (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    source VARCHAR(16) NOT NULL,
+    starts_at DATETIME NOT NULL,
+    ends_at DATETIME NOT NULL,
+    all_day TINYINT(1) NOT NULL DEFAULT 0,
+    busy TINYINT(1) NOT NULL DEFAULT 1,
+    title VARCHAR(190) NOT NULL DEFAULT '',
+    uid VARCHAR(190) NOT NULL DEFAULT '',
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    INDEX calendar_blocks_range (starts_at, ends_at),
+    INDEX calendar_blocks_source (source)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS calendar_settings (
+    setting_key VARCHAR(40) PRIMARY KEY,
+    setting_value MEDIUMTEXT NOT NULL,
+    updated_at DATETIME NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

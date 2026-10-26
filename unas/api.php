@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/bootstrap.php';
-
-const GOLDENTOR_SLOTS = ['09:00', '11:00', '14:00', '16:00'];
+require_once __DIR__ . '/calendar.php';
 
 function route(): string {
     return trim((string) ($_GET['route'] ?? ''), '/');
@@ -74,12 +73,14 @@ function create_booking(array $payload): void {
     if (!$selected || $selected->format('Y-m-d') !== $date) {
         throw new InvalidArgumentException('Érvénytelen dátum.');
     }
-    $today = new DateTimeImmutable('today', new DateTimeZone('Europe/Budapest'));
-    if ($selected <= $today || (int) $selected->format('N') > 5) {
-        throw new InvalidArgumentException('Kérjük, válasszon egy jövőbeli munkanapot.');
-    }
-    if (!in_array($time, GOLDENTOR_SLOTS, true)) {
+    if (!preg_match('/^\d{2}:\d{2}$/', $time)) {
         throw new InvalidArgumentException('Érvénytelen időpont.');
+    }
+    // Rules, bookings, admin blocks and the imported Google Calendar decide together.
+    GoldenTorCalendar::autoSync(db());
+    $problem = GoldenTorCalendar::slotProblem(db(), $date, $time);
+    if ($problem !== null) {
+        json_response(['error' => $problem], 409);
     }
     $token = bin2hex(random_bytes(24));
     $statement = db()->prepare('INSERT INTO bookings(public_token,created_at,name,email,phone,topic,meeting,booking_date,booking_time,message,active_slot) VALUES(?,?,?,?,?,?,?,?,?,?,?)');
@@ -176,17 +177,20 @@ function get_availability(): void {
     if (!$selected || $selected->format('Y-m-d') !== $date) {
         json_response(['error' => 'Érvénytelen dátum.'], 400);
     }
-    $today = new DateTimeImmutable('today', new DateTimeZone('Europe/Budapest'));
-    if ($selected <= $today || (int) $selected->format('N') > 5) {
-        json_response(['slots' => []]);
+    GoldenTorCalendar::autoSync(db());
+    $slots = [];
+    foreach (GoldenTorCalendar::occupancy(db(), $date, $date)[0]['slots'] as $slot) {
+        if (!in_array($slot['state'], ['closed', 'past', 'later'], true)) {
+            $slots[] = ['time' => $slot['time'], 'available' => $slot['available']];
+        }
     }
-    $statement = db()->prepare("SELECT TIME_FORMAT(booking_time, '%H:%i') AS booking_time FROM bookings WHERE booking_date=? AND status!='cancelled'");
-    $statement->execute([$date]);
-    $busy = array_column($statement->fetchAll(), 'booking_time');
-    $slots = array_map(static function (string $time) use ($busy): array {
-        return ['time' => $time, 'available' => !in_array($time, $busy, true)];
-    }, GOLDENTOR_SLOTS);
     json_response(['date' => $date, 'slots' => $slots]);
+}
+
+/** Every bookable day with its slots for the booking form (only free / not free). */
+function get_booking_calendar(): void {
+    GoldenTorCalendar::autoSync(db());
+    json_response(GoldenTorCalendar::bookableDays(db()));
 }
 
 function get_booking(): void {
@@ -219,7 +223,7 @@ function get_calendar(): void {
         json_response(['error' => 'A foglalás nem található.'], 404);
     }
     $start = new DateTimeImmutable("{$row['booking_date']} {$row['booking_time']}", new DateTimeZone('Europe/Budapest'));
-    $end = $start->modify('+45 minutes');
+    $end = $start->modify('+' . GoldenTorCalendar::rules(db())['duration'] . ' minutes');
     $escape = static function (string $value): string {
         return str_replace(["\\", ";", ",", "\r", "\n"], ["\\\\", "\\;", "\\,", '', "\\n"], $value);
     };
@@ -380,6 +384,9 @@ try {
         }
         if ($path === 'availability') {
             get_availability();
+        }
+        if ($path === 'booking-calendar') {
+            get_booking_calendar();
         }
         if ($path === 'booking') {
             get_booking();

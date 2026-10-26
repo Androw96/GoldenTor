@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Filament\Pages\BlogPosts;
+use App\Filament\Pages\BookingCalendarPage;
 use App\Filament\Pages\ExpertProfiles;
 use App\Filament\Pages\SiteDesign;
 use App\Filament\Pages\SiteTexts;
@@ -95,6 +96,7 @@ class AdminPanelSmokeTest extends TestCase
             SiteDesign::getUrl(),
             ExpertProfiles::getUrl(),
             SystemStatus::getUrl(),
+            BookingCalendarPage::getUrl(),
         ];
 
         foreach ($urls as $url) {

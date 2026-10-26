@@ -10,6 +10,7 @@ on:
   push:
     paths:
       - "filament-admin/**"
+      - "unas/calendar.php"
       - ".htaccess"
       - ".github/workflows/deploy-admin.yml"
 
@@ -121,6 +122,8 @@ jobs:
           upload admin-deploy.php unas/admin-deploy.php
           upload .htaccess .htaccess
           upload filament-admin/deploy/admin-activate.php unas/admin-activate.php
+          # The admin and the booking form share the calendar rules in this file.
+          upload unas/calendar.php unas/calendar.php
           echo "Telepítés a szerveren…"
           # The UNAS host does not answer over IPv6 from GitHub runners: always use IPv4.
           # Retry only while the TCP connection could not be opened at all, so the

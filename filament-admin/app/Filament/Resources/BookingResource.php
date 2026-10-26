@@ -63,7 +63,7 @@ class BookingResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        $slots = array_combine(config('goldentor.slots'), config('goldentor.slots'));
+        $slots = \App\Support\BookingCalendar::slotOptions();
         $topics = array_combine(config('goldentor.topics'), config('goldentor.topics'));
         $meetings = array_combine(config('goldentor.meetings'), config('goldentor.meetings'));
 
@@ -84,7 +84,9 @@ class BookingResource extends Resource
                         ->options(fn (?Booking $record) => static::withCurrent($meetings, $record?->meeting)),
                     Forms\Components\DatePicker::make('booking_date')->label('Nap')->required()->native(false)
                         ->displayFormat('Y. m. d.')->firstDayOfWeek(1)->closeOnDateSelection(),
-                    Forms\Components\Select::make('booking_time')->label('Időpont')->options($slots)->required()->native(false)
+                    Forms\Components\Select::make('booking_time')->label('Időpont')->required()->native(false)
+                        ->options(fn (?Booking $record) => static::withCurrent($slots, $record?->booking_time))
+                        ->helperText('Az időpontok listája a Naptár → Foglalási szabályok alatt módosítható.')
                         ->rules([
                             fn (Get $get, ?Booking $record): Closure => function (string $attribute, $value, Closure $fail) use ($get, $record): void {
                                 if ($get('status') === 'cancelled' || ! $get('booking_date') || ! $value) {

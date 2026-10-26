@@ -29,6 +29,8 @@ class Diagnostics
         'content' => ['content_key', 'language', 'title', 'payload', 'updated_at'],
         'feedback' => ['id', 'user_id', 'expert', 'rating', 'message', 'created_at'],
         'calculations' => ['id', 'user_id', 'calculator_type', 'inputs_json', 'results_json', 'created_at'],
+        'calendar_blocks' => ['id', 'source', 'starts_at', 'ends_at', 'all_day', 'busy', 'title', 'uid', 'created_at', 'updated_at'],
+        'calendar_settings' => ['setting_key', 'setting_value', 'updated_at'],
     ];
 
     /** @var array<int, Throwable> */
