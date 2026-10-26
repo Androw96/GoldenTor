@@ -30,7 +30,8 @@ from html.parser import HTMLParser
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANIFEST = os.path.join(ROOT, "filament-admin", "resources", "defaults", "page-text.json")
-SCRIPT_TAG = '<script src="site-text.js?v=1" defer></script>'
+SCRIPT_TAG = '<script src="site-text.js?v=2" defer></script>'
+OLD_SCRIPT_TAG = re.compile(r'<script src="site-text\.js\?v=\d+" defer></script>')
 EXCLUDED_PAGES = {"admin.html"}
 
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
@@ -97,7 +98,7 @@ class TreeBuilder(HTMLParser):
 
 
 def has_js_hook(node: Node) -> bool:
-    return any(name.startswith("data-") and name not in ALLOWED_DATA for name in node.attrs)
+    return any(name.startswith("data-") and not name.startswith("data-gt-") and name not in ALLOWED_DATA for name in node.attrs)
 
 
 def skipped(node: Node) -> bool:
@@ -128,7 +129,7 @@ def inner_html(source: str, node: Node) -> str:
 
 
 def outer_html(source: str, node: Node) -> str:
-    opening = re.sub(r'\sdata-gt-(?:text|rich)(?:="[^"]*")?', "", source[node.start:node.end])
+    opening = re.sub(r'\sdata-gt-[a-z]+(?:="[^"]*")?', "", source[node.start:node.end])
     if node.tag in VOID:
         return opening
     return opening + inner_html(source, node) + f"</{node.tag}>"
@@ -165,6 +166,101 @@ def collect(node: Node, found: list, area: str | None = None):
         collect(child, found, child_area)
 
 
+STRUCTURE_REPORT: dict[str, int] = {}
+ITEM_TAGS = {"li", "p", "div", "a", "article", "figure", "blockquote", "section", "aside", "dd", "dt", "tr"}
+STRUCTURE = [
+    # attribute, id letter
+    ("data-gt-block", "s"),
+    ("data-gt-list", "l"),
+    ("data-gt-item", "i"),
+    ("data-gt-img", "m"),
+    ("data-gt-link", "k"),
+]
+
+
+def area_of(node: Node) -> str | None:
+    while node is not None:
+        if node.tag == "footer":
+            return "footer"
+        if node.tag == "header" and "site-header" in node.classes():
+            return "header"
+        node = node.parent
+    return None
+
+
+def inside(node: Node, tags: set) -> bool:
+    node = node.parent
+    while node is not None:
+        if node.tag in tags:
+            return True
+        node = node.parent
+    return False
+
+
+def structure_nodes(root: Node) -> dict[str, list]:
+    """Sections of <main>, repeated groups (lists + items), images and links."""
+    found: dict[str, list] = {attribute: [] for attribute, _ in STRUCTURE}
+
+    def signature(node: Node):
+        return node.tag, tuple(sorted(node.classes()))
+
+    def walk(node: Node):
+        elements = [c for c in node.children if isinstance(c, Node) and not skipped(c)]
+        if node.tag == "main":
+            for section in elements:
+                if section.tag not in ("script", "style", "template"):
+                    found["data-gt-block"].append(section)
+        elif node.tag not in ("form", "select", "nav") or (node.tag == "nav" and "data-nav" not in node.attrs):
+            groups: dict = {}
+            for child in elements:
+                if child.tag in ITEM_TAGS and not has_js_hook(child) and not inside(child, {"form"}):
+                    groups.setdefault(signature(child), []).append(child)
+            items = [child for members in groups.values() if len(members) >= 2 for child in members]
+            if items and not has_js_hook(node):
+                found["data-gt-list"].append(node)
+                found["data-gt-item"].extend(sorted(items, key=lambda n: n.start))
+        for child in elements:
+            if child.tag == "img":
+                found["data-gt-img"].append(child)
+            elif child.tag == "a" and "href" in child.attrs and not has_js_hook(child):
+                found["data-gt-link"].append(child)
+            walk(child)
+
+    walk(root)
+    return found
+
+
+def assign_structure(source: str, page: str, root: Node, check: bool, path: str, inserts: list, problems: list, report: dict):
+    found = structure_nodes(root)
+    for attribute, letter in STRUCTURE:
+        nodes = found[attribute]
+        taken = {n.attrs[attribute] for n in nodes if n.attrs.get(attribute)}
+        highest: dict[str, int] = {}
+        for key in taken:
+            prefix, _, rest = key.partition(".")
+            if rest[1:].isdigit():
+                highest[prefix] = max(highest.get(prefix, 0), int(rest[1:]))
+        position: dict[str, int] = {}
+        for node in nodes:
+            area = area_of(node)
+            prefix = area or page
+            position[prefix] = position.get(prefix, 0) + 1
+            report[letter] = report.get(letter, 0) + (0 if area and page != "index" else 1)
+            if node.attrs.get(attribute):
+                continue
+            if check:
+                problems.append(f"{path}: missing {attribute} on <{node.tag}> {text_of(node).strip()[:40]!r}")
+                continue
+            key = f"{prefix}.{letter}{position[prefix]}" if area else ""
+            if not key or key in taken:
+                highest[prefix] = highest.get(prefix, 0) + 1
+                key = f"{prefix}.{letter}{highest[prefix]}"
+            taken.add(key)
+            highest[prefix] = max(highest.get(prefix, 0), int(key.split(".")[1][1:]))
+            opening = source[node.start:node.end]
+            inserts.append((node.end - (2 if opening.endswith("/>") else 1), f' {attribute}="{key}"'))
+
+
 def process(path: str, manifest: dict, check: bool) -> list[str]:
     page = os.path.splitext(os.path.basename(path))[0]
     with open(path, encoding="utf-8") as handle:
@@ -176,6 +272,7 @@ def process(path: str, manifest: dict, check: bool) -> list[str]:
 
     problems = []
     inserts = []  # (offset, text)
+    changed_script = False
     taken = {node.attrs["data-gt-text"] for node, _ in found if "data-gt-text" in node.attrs}
     highest: dict[str, int] = {}
     for key in taken:
@@ -220,6 +317,17 @@ def process(path: str, manifest: dict, check: bool) -> list[str]:
             if page not in entry["pages"]:
                 entry["pages"].append(page)
 
+    assign_structure(source, page, builder.root, check, path, inserts, problems, STRUCTURE_REPORT)
+
+    if SCRIPT_TAG not in source and OLD_SCRIPT_TAG.search(source):
+        # Bump the cache-busting version of an existing tag instead of adding a second one.
+        if check:
+            problems.append(f"{path}: outdated site-text.js version, expected {SCRIPT_TAG}")
+        else:
+            match = OLD_SCRIPT_TAG.search(source)
+            source = source[:match.start()] + SCRIPT_TAG + source[match.end():]
+            inserts = [(pos + (len(SCRIPT_TAG) - (match.end() - match.start())) if pos > match.start() else pos, text) for pos, text in inserts]
+            changed_script = True
     if SCRIPT_TAG not in source:
         if check:
             problems.append(f"{path}: missing {SCRIPT_TAG}")
@@ -230,7 +338,7 @@ def process(path: str, manifest: dict, check: bool) -> list[str]:
             else:
                 inserts.append((position, SCRIPT_TAG))
 
-    if inserts and not check:
+    if (inserts or changed_script) and not check:
         for position, text in sorted(inserts, reverse=True):
             source = source[:position] + text + source[position:]
         with open(path, "w", encoding="utf-8") as handle:
@@ -267,6 +375,8 @@ def main() -> int:
         for entry in manifest.values():
             by_page[entry["page"]] = by_page.get(entry["page"], 0) + 1
         print(f"{len(manifest)} szerkeszthető szöveg:", ", ".join(f"{p} {n}" for p, n in sorted(by_page.items())))
+        names = {"s": "szakasz", "l": "elemcsoport", "i": "mozgatható elem", "m": "kép", "k": "link"}
+        print("Szerkezet:", ", ".join(f"{STRUCTURE_REPORT.get(k, 0)} {v}" for k, v in names.items()))
     return 1 if problems else 0
 
 

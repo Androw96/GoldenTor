@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Support\PageLayouts;
 use App\Support\PageTexts;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Textarea;
@@ -184,7 +185,15 @@ class FullPageTexts extends Page
         return [
             Action::make('editOnSite')->label('Szerkesztés a weboldalon')->icon('heroicon-m-cursor-arrow-rays')
                 ->url(fn () => $this->publicUrl(), shouldOpenInNewTab: true),
-            Action::make('resetPage')->label('Oldal visszaállítása')->icon('heroicon-m-arrow-uturn-left')->color('gray')
+            Action::make('resetLayout')->label('Szerkezet visszaállítása')->icon('heroicon-m-squares-2x2')->color('gray')
+                ->requiresConfirmation()
+                ->modalDescription('Az oldalon végzett szerkezeti módosítások (sorrend, elrejtés, másolatok, képek, linkek) törlődnek, az eredeti felépítés áll vissza. A szövegek maradnak.')
+                ->visible(fn () => ! PageLayouts::isEmpty(PageLayouts::forPrefix($this->selectedPage)))
+                ->action(function (): void {
+                    PageLayouts::reset($this->selectedPage);
+                    Notification::make()->title('Szerkezet visszaállítva')->success()->send();
+                }),
+            Action::make('resetPage')->label('Szövegek visszaállítása')->icon('heroicon-m-arrow-uturn-left')->color('gray')
                 ->requiresConfirmation()
                 ->modalDescription('Az oldal összes módosított szövege visszaáll az eredetire.')
                 ->visible(fn () => count(array_intersect_key(PageTexts::saved(), $this->entries())) > 0)
@@ -195,6 +204,23 @@ class FullPageTexts extends Page
                     $this->fillForm();
                 }),
         ];
+    }
+
+    public function getSubheading(): ?string
+    {
+        $layout = PageLayouts::forPrefix($this->selectedPage);
+        if (PageLayouts::isEmpty($layout)) {
+            return null;
+        }
+        $parts = array_filter([
+            count($layout['hidden'] ?? []) ? count($layout['hidden']) . ' elrejtett elem' : null,
+            count($layout['clones'] ?? []) ? count($layout['clones']) . ' másolat' : null,
+            count($layout['order'] ?? []) ? 'módosított sorrend' : null,
+            count($layout['images'] ?? []) ? count($layout['images']) . ' cserélt kép' : null,
+            count($layout['links'] ?? []) ? count($layout['links']) . ' módosított link' : null,
+        ]);
+
+        return 'Szerkezeti módosítások ezen az oldalon: ' . implode(', ', $parts) . '. Ezeket a weboldalon, az „Oldal szerkesztése” módban lehet módosítani.';
     }
 
     private function tagLabel(string $tag): string

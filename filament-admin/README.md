@@ -47,6 +47,26 @@ php ../filament-admin/build/patch-skeleton.php && rsync -a --exclude build/ --ex
 php artisan filament:assets && php artisan test
 ```
 
+## Oldal szerkesztése a weboldalon
+
+Belépett adminként a nyilvános oldalakon jobb alul megjelenik az **„✎ Oldal szerkesztése”** gomb. Bekapcsolva:
+
+- **Szövegek:** kattints bármelyik szövegre és írd át.
+- **Elemek** (kártyák, pontok, listaelemek, bekezdések): vidd föléjük az egeret → **↑ ↓** sorrend, **⧉ Másolat** (új elem hozzáadása: másold, majd írd át), **🚫 Elrejtés** / **👁 Megjelenítés**, a másolatoknál **🗑 Törlés**.
+- **Szakaszok:** bal felső „Szakasz” eszköztár → **↑ ↓** sorrend, elrejtés, a háttérkép cseréje.
+- **Képek:** **🖼 Kép** → új kép feltöltése (JPG, PNG, WebP, GIF, max. 8 MB; az `assets/uploads/site/` mappába kerül).
+- **Linkek és gombok:** **🔗 Link** → új cél (oldal, https://…, mailto:, tel:).
+
+Minden módosítás a **Mentés** gombbal lesz élő. Az elrejtett elem nem törlődik: szerkesztő módban halványan, piros kerettel látszik.
+Az admin *Tartalom → Teljes szövegek* oldalán oldalanként visszaállítható a szerkezet és a szövegek is.
+
+### Szerkezet szerkesztése – technikai részletek
+
+- Az azonosítókat a `scripts/tag-editable-text.py` teszi a HTML-be: `data-gt-text` (szöveg), `data-gt-block` (szakasz),
+  `data-gt-list` / `data-gt-item` (ismétlődő elemek), `data-gt-img` (kép), `data-gt-link` (link).
+- A szerkezet a `content` tábla `page_layout` / `hu` rekordjában van (sorrend, elrejtés, másolatok, képek, linkek), a szövegek a `page_text` rekordban.
+  A másolatok szövegei `@c<n>` utótagú azonosítót kapnak.
+
 ## Szövegek szerkesztése a weboldalon
 
 Belépett adminként a nyilvános oldalakon jobb alul megjelenik a **„✎ Szövegek szerkesztése”** gomb.

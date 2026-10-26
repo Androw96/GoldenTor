@@ -13,7 +13,7 @@ class PageTexts
 
     public const LANGUAGE = 'hu';
 
-    public const KEY_PATTERN = '/^[a-z0-9-]{1,40}\.\d{1,5}$/';
+    public const KEY_PATTERN = '/^[a-z0-9-]{1,40}\.\d{1,5}(@c\d{1,5})?$/';
 
     public const MAX_LENGTH = 5000;
 
@@ -60,9 +60,11 @@ class PageTexts
                 $result['removed'][] = $key;
                 continue;
             }
-            $rich = $manifest[$key]['rich'] ?? (bool) ($change['rich'] ?? false);
+            // Copies of items ("index.12@c3") share the original of their source text.
+            $base = explode('@', (string) $key)[0];
+            $rich = $manifest[$base]['rich'] ?? (bool) ($change['rich'] ?? false);
             $value = $rich ? HtmlSanitizer::clean((string) ($change['value'] ?? '')) : self::normalisePlain((string) ($change['value'] ?? ''));
-            $original = $manifest[$key]['text'] ?? (string) ($change['original'] ?? '');
+            $original = $manifest[$base]['text'] ?? (string) ($change['original'] ?? '');
             $originalComparable = $rich ? HtmlSanitizer::clean($original) : self::normalisePlain($original);
 
             if ($value === $originalComparable) {
