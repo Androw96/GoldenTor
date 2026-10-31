@@ -2025,3 +2025,25 @@ body[data-page] .calculator-form input[type="range"]::-webkit-slider-thumb { bac
 body[data-page] .calculator-form input[type="range"]::-moz-range-track { background:#a6b99b; border:0; }
 body[data-page] .calculator-form input[type="range"]::-moz-range-thumb { background:var(--forest); border:2px solid var(--ivory); box-shadow:0 0 0 1px #668272; }
 body[data-page] .calculator-result>strong { font:400 clamp(36px,4.4vw,58px)/1.15 var(--serif); letter-spacing:-.035em; }
+
+/* Developer credit under the footer */
+body .footer-credit {
+  margin-top:14px;
+  text-align:center;
+}
+body .footer-credit p {
+  margin:0;
+  font:400 9px/1.9 var(--sans);
+  letter-spacing:.04em;
+  color:#7f8f78;
+}
+body .footer-credit a {
+  color:#a9b99e;
+  text-decoration:none;
+}
+body .footer-credit a:hover {
+  text-decoration:underline;
+}
+@media (max-width: 640px) {
+  body .footer-credit p { font-size:10px; }
+}
